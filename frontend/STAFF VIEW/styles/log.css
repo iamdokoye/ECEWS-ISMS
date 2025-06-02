@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Nunito Sans;
+    src: url(/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+}
+
+.header{
+    height: 80px;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 1vh 12vh;
+    margin-top: 0.2vh;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.logoContain{
+    height: auto;
+    width: auto;
+    /* border: 1px solid green; */
+}
+
+.logoContain img{
+    -webkit-user-drag: none;
+}
+
+.bodyContain{
+    height: 100%;
+    width: 100%;
+    padding: 2vh 12vh 2vh 12vh;
+    background-color: #F9F9F9;
+}
+
+.heading{
+    height: 60px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headingContain{
+    height: 100%;
+    width: 40%;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+}
+
+.backArrow{
+    height: 100%;
+    width: 8%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.backArrow img{
+    -webkit-user-drag: none;
+}
+
+
+.headTxt{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    font-family: Nunito Sans;
+    font-size: 32px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.homeBtn{
+    height: 70%;
+    width: 8%;
+    border: 1px solid #096D49;
+    border-radius: 4px;
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+}
