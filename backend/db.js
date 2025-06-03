@@ -1,16 +1,22 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+// Internal DB
+const internalPool = new Pool({
+    connectionString: process.env.ISMS_DATABASE_URL,
+});
+
+// External DB
+const externalPool = new Pool({
+    connectionString: process.env.ECEWS_DATABASE_URL,
+});
+
+pool.on('connect', () => {
+    console.log('Connected to the ISMS database');
 });
 
 pool.connect()
     .then(() => console.log('Connected to the database'))
     .catch(err => console.error('Connection error', err.stack));
 
-module.exports = {
-    query: (text, params) => pool.query(text, params),
-    getClient: () => pool.connect(),
-    end: () => pool.end(),
-};
+module.exports = {internalPool, externalPool};
