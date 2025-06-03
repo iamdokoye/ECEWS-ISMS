@@ -613,3 +613,135 @@
     justify-content: center;
     cursor: pointer;
 }
+
+/* -----Hero section----- */
+
+.totesContain{
+    height: 150px;
+    width: 100%;
+    background-color: #096D49;
+    border-radius: 4px;
+    margin-top: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0vh 2vw 0vh 2vw;
+}
+
+.toteStudent{
+    height: 100%;
+    width: 15%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.totesHeadTxt{
+    height: 24px;
+    width: 100%;
+    /* border: 1px solid red; */
+    color: #FFFFFF;
+    font-family: Nunito Sans;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.totesHeadNum{
+    height: 60px;
+    width: 100%;
+    /* border: 1px solid brown; */
+    font-family: Nunito Sans;
+    font-size: 36px;
+    font-weight: 600;
+    color: #FFFFFF;
+    display: flex;
+    align-items: last baseline;
+}
+
+.topology{
+    height: 100%;
+    width: 50%;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topology img{
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+.totesGender{
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.totesMale{
+    height: 100%;
+    width: 40%;
+    /* border: 1px solid floralwhite; */
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 0.5vh;
+}
+
+.maleImg{
+    height: 50%;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.maleImg img{
+    -webkit-user-drag: none;
+    height: 50px;
+    width: 51px;
+
+}
+
+.maleTxtContain{
+    height: auto;
+    width: auto;
+    /* border: 1px solid yellow; */
+}
+
+.maleTxt{
+    height: auto;
+    width: 100%;
+    color: #FFFFFF;
+    font-family: Nunito Sans;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: last baseline;
+    /* border: 1px solid black; */
+}
+
+.maleNum{
+    height: auto;
+    width: 100%;
+    /* border: 1px solid black; */
+    color: #FFFFFF;
+    font-family: Nunito Sans;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+
+.totesFemale{
+    height: 100%;
+    width: 40%;
+    /* border: 1px solid floralwhite; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
