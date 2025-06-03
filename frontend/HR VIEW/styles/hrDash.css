@@ -1,0 +1,615 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+@font-face {
+    font-family: Nunito Sans;
+    src: url(/frontend/STAFF\ VIEW/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf);
+}
+
+.header {
+    height: 80px;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 1vh 12vh;
+    margin-top: 0.2vh;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.logoContain {
+    height: auto;
+    width: auto;
+    /* border: 1px solid green; */
+}
+
+.logoContain img {
+    -webkit-user-drag: none;
+}
+
+.bodyContain {
+    height: 100%;
+    width: 100%;
+    padding: 2vh 12vh;
+    background-color: #F9F9F9;
+}
+
+/* <!-- -----------Header section------------ --> */
+
+
+.headerContain {
+    height: auto;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerText {
+    height: auto;
+    width: auto;
+    /* border: 1px solid pink; */
+    font-size: 36px;
+    font-family: Nunito Sans;
+    user-select: none;
+}
+
+.addBtnContain{
+    height: 40px;
+    width: 26%;
+    /* border: 1px solid blueviolet; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.addStudent{
+    height: 100%;
+    width: 43%;
+    background-color: #096D49;
+    border-radius: 4px;
+    color: #FFFFFF;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.assignSuper{
+    height: 100%;
+    width: 51%;
+    border: 1px solid #096D49;
+    border-radius: 4px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 300;
+    color: #096D49;
+    cursor: pointer;
+}
+
+/* <!-- ------End of Header section------------ --> */
+
+/* ---------Add student Modal------ */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    z-index: 10;
+}
+
+.addModal {
+    height: 676px;
+    width: 50%;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    margin: 5vw auto;
+    padding: 3vh 4.5vh;
+    z-index: 20;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.modalHead {
+    height: 60px;
+    width: 100%;
+    /* border: 1px solid #d9d9d9; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.headText {
+    height: auto;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-family: Nunito Sans;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.closeBox {
+    height: 44px;
+    width: 5%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeBox img {
+    -webkit-user-drag: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.studentInfo {
+    height: auto;
+    width: 100%;
+    /* border: 1px solid blue; */
+    margin-top: 1vh;
+}
+
+.NameFieldContain {
+    height: 48px;
+    width: 100%;
+    border: 1px solid #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    background-color: #FFFFFF;
+    margin-top: 1vh;
+    padding-left: 1vh;
+    gap: 1vh;
+    position: relative;
+}
+
+.NameFieldText {
+    height: 100%;
+    width: auto;
+    /* border: 1px solid purple; */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    color: #9A9A9A;
+    font-family: Nunito Sans;
+    font-weight: 500;
+    font-size: 16px;
+    user-select: none;
+}
+
+.NameFieldInput {
+    height: 100%;
+    width: 75%;
+    /* border: 1px solid black; */
+}
+
+.NameFieldInput input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-family: Nunito Sans;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: default;
+}
+
+.caretdown{
+    height: 100%;
+    width: 16%;
+    /* border: 1px solid brown; */
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    cursor: pointer;
+}
+
+.caretdown img{
+    -webkit-user-drag: none;
+}
+
+/* ------unit dropdown----- */
+
+.unitDrop{
+    height: 225px;
+    width: 100%;
+    background-color: #FFFFFF;
+    /* border: 1px solid salmon; */
+    position: absolute;
+    z-index: 2;
+    top: 55px;
+    right: 0;
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.unitLIst{
+    height: 45px;
+    width: 100%;
+    border-bottom: 1px solid #F5F5F5;
+    display: flex;
+    align-items: center;
+    padding-left: 1vw;
+    user-select: none;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.unitLIst:hover{
+    background-color: #F5F5F5;
+}
+
+.saveBtn {
+    height: 48px;
+    width: 100%;
+    background-color: #096D49;
+    border-radius: 4px;
+    margin-top: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: Nunito Sans;
+    font-weight: 300;
+    font-size: 16px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.saveBtn:hover {
+    background-color: #6BA792;
+}
+
+/* -------End of modal-------- */
+/* Mini Modal */
+
+.overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    z-index: 10;
+}
+
+.confirmModal{
+    height: 171px;
+    width: 30%;
+    background-color: #FFFFFF;
+    margin: 20vw auto;
+    border-radius: 4px;
+}
+
+.modalHead2 {
+    height: 38px;
+    width: 100%;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    padding: 0vh 1vh;
+}
+
+.headText2 {
+    height: auto;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.confirmTxt{
+    height: 87px;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    /* align-items: center; */
+    user-select: none;
+    font-family: Nunito Sans;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 2vh;
+}
+
+.confirmBtnContain{
+    height: 44px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: right;
+    user-select: none;
+    /* gap: 1vh; */
+    padding: 0vh 1vh;
+}
+
+.cancelBtn{
+    height: 32px;
+    width: 20%;
+    /* border: 1px solid green; */
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.proceedBtn{
+    height: 34px;
+    width: 30%;
+    background-color: #096D49;
+    border-radius: 4px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-weight: 200;
+    font-size: 14px;
+    cursor: pointer;
+}
+/* ------------Success modal--- */
+.overlay3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    z-index: 10;
+}
+
+.successModal{
+    height: 210px;
+    width: 30%;
+    background-color: #FFFFFF;
+    margin: 20vw auto;
+    border-radius: 4px;
+}
+
+.modalHead3{
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    padding: 0vh 2vh;
+}
+
+.modalBody{
+    height: 128px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.successImg{
+    height: 70px;
+    width: 20%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.successImg img{
+    -webkit-user-drag: none;
+}
+
+.successTxt{
+    height: 24px;
+    width: 100%;
+    /* border: 1px solid purple; */
+    font-family: Nunito Sans;
+    font-size: 13px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalFooter{
+    height: 40px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: right;
+    padding: 0vh 1vh;
+}
+
+.okayBtn{
+    height: 34px;
+    width: 20%;
+    background-color: #096D49;
+    border-radius: 4px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.okayBtn:hover{
+    background-color: #aac8be;
+}
+
+/* ----------Assign Supervisor Modal---- */
+
+.superOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    z-index: 10;
+}
+
+.assignSuperModal{
+    height: 356px;
+    width: 58%;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    margin: 15vw auto;
+    padding: 2vw 2vw 0vw 2vw;
+}
+
+.superBody{
+    height: 216px;
+    width: 100%;
+    /* border: 1px solid brown; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.superUnitContain{
+    height: 60px;
+    width: 100%;
+    border: 1px solid #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0vh 1vh;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.superUnit{
+    height: auto;
+    width: auto;
+    /* border: 1px solid blue; */
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    color: #9A9A9A;
+}
+
+.superUnitDisplay{
+    height: 24px;
+    width: 75%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.superUnitDisplay input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: default;
+}
+
+.superDrop{
+    height: 225px;
+    width: 100%;
+    background-color: #FFFFFF;
+    /* border: 1px solid salmon; */
+    position: absolute;
+    z-index: 2;
+    top: 140px;
+    right: 0;
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.superDisplay{
+    height: 24px;
+    width: 70%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.superDisplay input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: default;
+}
+
+.superFooter{
+    height: 56px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0vh 1vh;
+}
+
+.superFooterTxt{
+    height: 100%;
+    width: 70%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    color: #848484;
+    font-family: Nunito Sans;
+    font-size: 15px;
+}
+
+.assignBtn{
+    height: 40px;
+    width: 10%;
+    background-color: #096D49;
+    border-radius: 4px;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

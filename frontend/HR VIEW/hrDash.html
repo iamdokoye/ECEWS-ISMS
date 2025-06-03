@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT DASHBOARD</title>
+    <link rel="stylesheet" href="./styles/hrDash.css">
+    <script src="./scripts/jQuery v3.7.1.js"></script>
+</head>
+
+<body>
+    <nav class="header">
+        <div class="logoContain">
+            <img src="./assets/24388.svg" alt="">
+        </div>
+    </nav>
+    <section class="bodyContain">
+
+        <!-- -----------Header section------------ -->
+        <div class="headerContain">
+            <div class="headerText">
+                IT Dashboard
+            </div>
+            <div class="addBtnContain">
+                <div class="addStudent" id="addNewStudent">
+                    &#43; Add Student
+                </div>
+                <div class="assignSuper" id="assignSupervisor">
+                    Assign Supervisor
+                </div>
+            </div>
+            <!-- ----------Add student Modal-------- -->
+            <div class="overlay" id="overlay">
+                <div class="addModal" id="addModal">
+                    <div class="modalHead">
+                        <div class="headText">
+                            New Student
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="./assets/close-circle.svg" alt="" id="closeModal">
+
+                        </div>
+
+                    </div>
+
+                    <div class="studentInfo">
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Name:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Institution:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Level:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Course of Study:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Unit:
+                            </div>
+                            <div class="NameFieldInput" id="unitDisplay">
+                                <input type="text" readonly>
+                            </div>
+                            <div class="caretdown" id="caretdown">
+                                <img src="./assets/CaretDown.svg" alt="">
+                            </div>
+
+                            <!-- ----------Unit dropdown -->
+                            <div class="unitDrop" id="unitDrop">
+                                <div class="unitLIst">
+                                    Information Technology
+                                </div>
+                                <div class="unitLIst">
+                                    Communications
+                                </div>
+                                <div class="unitLIst">
+                                    Startegic Information
+                                </div>
+                                <div class="unitLIst">
+                                    Human Resources
+                                </div>
+                                <div class="unitLIst">
+                                    Administration
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Supervisor:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" readonly>
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Email:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="email">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Password:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="password">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Confirm Password:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="password">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="saveBtn" id="saveBtn">
+                        Add
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- -------------End of modal--------- -->
+            <!-- ------Mini Modal----- -->
+            <div class="overlay2" id="overlay2">
+                <div class="confirmModal" id="confirmModal">
+                    <div class="modalHead2">
+                        <div class="headText2">
+                            Confirm Addition
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="./assets/close-circle.svg" alt="" id="closeConfirmModal">
+
+                        </div>
+
+                    </div>
+                    <div class="confirmTxt">
+                        Are you sure you want to add this student?
+                    </div>
+                    <div class="confirmBtnContain">
+                        <div class="cancelBtn" id="cancelBtn">
+                            Cancel
+                        </div>
+                        <div class="proceedBtn" id="proceedBtn">
+                            Proceed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---------- Mini Success Modal------------ -->
+            <div class="overlay3" id="overlay3">
+                <div class="successModal" id="successModal">
+                    <div class="modalHead3">
+                        <div class="headText2">
+                            Success!
+                        </div>
+
+                    </div>
+                    <div class="modalBody">
+                        <div class="successImg">
+                            <img src="./assets/Vector copy 3.png" alt="">
+                        </div>
+                        <div class="successTxt">
+                            You’ve successfully added a new student.
+                        </div>
+
+                    </div>
+                    <div class="modalFooter">
+                        <div class="okayBtn" id="okayBtn">
+                            Okay
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!----------Assign Supervisor Modal--  -->
+            <div class="superOverlay" id="superOverlay">
+                <div class="assignSuperModal" id="assignSuperModal">
+                    <div class="modalHead">
+                        <div class="headText">
+                            Assign Supervisor
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="./assets/close-circle.svg" alt="" id="closeSuperModal">
+
+                        </div>
+                    </div>
+                    <div class="superBody">
+                        <div class="superUnitContain" id="superUnit">
+                            <div class="superUnit" >
+                                Unit:
+                            </div>
+                            <div class="superUnitDisplay" id="superUnitDisplay">
+                                <input type="text" readonly >
+                            </div>
+                            <div class="caretdown">
+                                <img src="./assets/CaretDown.svg" alt="">
+                            </div>
+                            <!-- ----------Unit dropdown -->
+                            <div class="unitDrop" id="superUnitDrop">
+                                <div class="unitLIst">
+                                    Information Technology
+                                </div>
+                                <div class="unitLIst">
+                                    Communications
+                                </div>
+                                <div class="unitLIst">
+                                    Startegic Information
+                                </div>
+                                <div class="unitLIst">
+                                    Human Resources
+                                </div>
+                                <div class="unitLIst">
+                                    Administration
+                                </div>
+                            </div>
+                        </div>
+                        <div class="superUnitContain" id="super">
+                            <div class="superUnit">
+                                Supervisor:
+                            </div>
+                            <div class="superDisplay" id="superDisplay">
+                                <input type="text" readonly >
+                            </div>
+                            <div class="caretdown" >
+                                <img src="./assets/CaretDown.svg" alt="">
+                            </div>
+                            <!-- ----------Supervisor dropdown -->
+                            <div class="superDrop" id="superDrop">
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                            </div>
+                        </div>
+                        <div class="superFooter">
+                            <div class="superFooterTxt">
+                                By clicking ‘Assign’, you’re assigning a supervisor to the selected unit
+                            </div>
+                            <div class="assignBtn" id="assignBtn">
+                                Assign
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- --------------------- -->
+        </div>
+
+        <!-- ------End of header section------- -->
+
+        <!-- ---------Hero Section -->
+    </section>
+    <script src="./routes/hrDashRoute.js"></script>
+    <script src="./scripts/hrDash.js"></script>
+</body>
+
+</html>
