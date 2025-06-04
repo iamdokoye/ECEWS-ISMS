@@ -207,7 +207,6 @@ html, body {
 
   .eBox{
     width: 100%;
-    padding: 12px;
     margin-top: 2%;
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
@@ -218,8 +217,10 @@ html, body {
   }
 
 
-  .email{
+  .efield{
   width: 100%;
+  height: 100%;
+  padding: 12px;
   border: none; /* Removes the default border */
   outline: none; /* Prevents outline on focus */
   border-radius: 4px;
@@ -243,14 +244,28 @@ html, body {
 
   .pBox{
     width: 100%;
-    padding: 12px;
-    border: 1px solid #F5F5F5;
+    border: 1.6px solid #F5F5F5;
     margin-top: 2%;
     border-radius: 4px;
     font-size: 14px;
     color: #848484;
     font-family: Nunito San;
     /* background-color: #db1887; */
+    
+  }
+
+  .pfield{
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  border: none; /* Removes the default border */
+  outline: none; /* Prevents outline on focus */
+  border-radius: 4px;
+  font-size: 14px;
+  color: #848484;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: transparent; /* Optional: keep background transparent */
+    /* background-color: #a04ed0; */
     
   }
 
