@@ -15,12 +15,16 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
                 window.location.href = "dashboard.html";
                 break;
             case 'Supervisor':
-                console.log("Welcome Supervisor:", userData);
-                window.location.href = "dashboard.html";
+                console.log("Login successful! Welcome Supervisor:", userData);
+                window.location.href = "../Supervisor VIEW/homeListView.html";
                 break;
             case 'HR':
-                console.log("Welcome HR:", userData);
-                window.location.href = "dashboard.html";
+                console.log("Login successful! Welcome HR:", userData);
+                window.location.href = "../HR VIEW/hr_dash.html";
+                break;
+            case 'Staff':
+                console.log("Login successful!", userData);
+                window.location.href = "../Staff VIEW/homeGrid.html";
                 break;
             default:
                 console.error("Unknown role:", userData.role);
