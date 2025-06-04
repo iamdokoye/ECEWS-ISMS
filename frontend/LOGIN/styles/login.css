@@ -59,10 +59,10 @@
 
   
 html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden; /* Hides horizontal overflow */
   width: 100%; /* Ensures content fits the screen width */
   margin: 0; /* Removes default margin */
@@ -88,8 +88,8 @@ html, body {
   }
 
 .headerLogo{
-    height: 10vh;
     width: 12%;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -175,34 +175,33 @@ html, body {
     background-color: #ffffff;
     
   }
-
+/* WELCOME BACK *//* WELCOME BACK *//* WELCOME BACK *//* WELCOME BACK */
   .lHead{
     height: 40%;
     justify-self: center;
     text-align: center;
     font-size: 32px;
-    font-family: Nunito San;
-    /* background-color: #c8d608; */
-    
+    font-family: Nunito San;    
   }
 
+  /* ENTER YOUR EMAIL AND PASSWORD TO LOGIN *//* ENTER YOUR EMAIL AND PASSWORD TO LOGIN *//* ENTER YOUR EMAIL AND PASSWORD TO LOGIN */
   .lTag{
     justify-self: center;
     text-align: center;
     font-size: 20px;
     color: #848484;
-    font-family: Nunito San;
-    /* background-color: #08d638 */
-    
+    font-family: Nunito San;    
   }
 
+
+
+
+  /* THIS CODE IS FOR THE EMAIL SECTION *//* THIS CODE IS FOR THE EMAIL SECTION *//* THIS CODE IS FOR THE EMAIL SECTION *//* THIS CODE IS FOR THE EMAIL SECTION */
   .eText{
     justify-self: center;
     margin-top: 8%;
     font-size: 24px;
-    font-family: Nunito San;
-    /* background-color: #0b89dd; */
-    
+    font-family: Nunito San;    
   }
 
   .eBox{
@@ -211,9 +210,7 @@ html, body {
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
     color: #848484;
-    font-family: Nunito San;
-    /* background-color: #a04ed0; */
-    
+    font-family: Nunito San;    
   }
 
 
@@ -227,19 +224,20 @@ html, body {
   font-size: 14px;
   color: #848484;
   font-family: 'Nunito Sans', sans-serif;
-  background-color: transparent; /* Optional: keep background transparent */
-    /* background-color: #a04ed0; */
-    
+  background-color: transparent; /* Optional: keep background transparent */    
   }
 
 
+
+
+
+
+  /* THIS CODE IS FOR THE PASSWORD SECTION *//* THIS CODE IS FOR THE PASSWORD SECTION *//* THIS CODE IS FOR THE PASSWORD SECTION *//* THIS CODE IS FOR THE PASSWORD SECTION */
   .pText{
     justify-self: center;
     margin-top: 6%;
     font-size: 24px;
-    font-family: Nunito San;
-    /* background-color: #df920c; */
-    
+    font-family: Nunito San;    
   }
 
   .pBox{
@@ -249,10 +247,9 @@ html, body {
     border-radius: 4px;
     font-size: 14px;
     color: #848484;
-    font-family: Nunito San;
-    /* background-color: #db1887; */
-    
+    font-family: Nunito San;    
   }
+
 
   .pfield{
   width: 100%;
@@ -264,11 +261,15 @@ html, body {
   font-size: 14px;
   color: #848484;
   font-family: 'Nunito Sans', sans-serif;
-  background-color: transparent; /* Optional: keep background transparent */
-    /* background-color: #a04ed0; */
-    
+  background-color: transparent; /* Optional: keep background transparent */    
   }
 
+
+
+
+
+
+  /* THIS CODE IS FOR THE LOGIN BUTTON *//* THIS CODE IS FOR THE LOGIN BUTTON *//* THIS CODE IS FOR THE LOGIN BUTTON *//* THIS CODE IS FOR THE LOGIN BUTTON */
 .lButton{
   width: 100%;
   padding: 14px;
@@ -280,5 +281,10 @@ html, body {
   border-radius: 4px;
   font-size: 20px;
   text-align: center;
+  cursor: pointer;
     
   }
+
+.lButton:hover {
+  background-color: #53a587; /* Color on hover */
+}
