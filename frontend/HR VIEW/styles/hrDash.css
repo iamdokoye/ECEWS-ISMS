@@ -994,6 +994,63 @@
     padding: 2vw 2vh;
 }
 
+.supervisorsContain{
+    height: 195px;
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.supervisor{
+    height: 45px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.superPhoto{
+    height: 100%;
+    width: 12%;
+    /* border: 1px solid green; */
+    border-radius: 50%;
+}
+
+.superPhoto img{
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
+    border-radius: 50%;
+    -webkit-user-drag: none;
+}
+
+.superName{
+    height: 100%;
+    width: 70%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.supervisorUnit{
+    height: 100%;
+    width: 8%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+    color: #848484;
+}
+
 .lessMajor{
     height: 100%;
     width: 28%;
