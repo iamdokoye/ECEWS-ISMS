@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const authRoutes = require('./routes/auth');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use('/', authRoutes);
 
 // Sample route
 app.get('/', (req, res) => {
