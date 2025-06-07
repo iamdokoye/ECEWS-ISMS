@@ -3,10 +3,11 @@ const app = express();
 const authRoutes = require('./routes/auth.js');
 const cors = require('cors');
 require('dotenv').config();
+const db = require('./db.js');
 
-
-// Import database connection
-const db = require('./db');
+// Middleware to parse JSON bodies
+app.use(express.json());
+app.use('/', authRoutes);
 
 // Middleware to enable CORS
 app.use(cors());
@@ -16,10 +17,6 @@ app.use(express.static('public'));
 
 // Set the port from environment variable or default to 3000
 const PORT = process.env.PORT || 3000;
-
-// Middleware to parse JSON bodies
-app.use(express.json());
-app.use('/', authRoutes);
 
 // Sample route
 app.get('/', (req, res) => {
