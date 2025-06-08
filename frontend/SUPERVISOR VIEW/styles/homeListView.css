@@ -93,6 +93,27 @@ html, body {
     height: auto; /* Restrict body height to viewport */
     width: 100%;
     display: flex;
+    flex-direction: column;
     padding: 0;
+    background-color: #0ab3e2;
+}
+
+
+.topSection {
+    height: auto; /* Restrict body height to viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #e2d40a;
+}
+
+.table {
+    height: auto; /* Restrict body height to viewport */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #de0ae2;
 }
 
