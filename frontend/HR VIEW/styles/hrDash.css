@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: Nunito Sans;
-    src: url(/frontend/STAFF\ VIEW/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf);
+    src: url(/frontend/HR\ VIEW/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf);
 }
 
 .header {
@@ -679,7 +679,7 @@
     width: 30%;
     /* border: 1px solid red; */
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .totesMale{
@@ -693,7 +693,7 @@
 }
 
 .maleImg{
-    height: 50%;
+    height: 35%;
     width: auto;
     /* border: 1px solid red; */
     display: flex;
@@ -744,4 +744,417 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+/* ----------End of hero section----- */
+
+.majorSect{
+    height: 480px;
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-top: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.moreMajor{
+    height: 100%;
+    width: 71%;
+    /* border: 1px solid purple; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topMore{
+    height: 160px;
+    width: 100%;
+    /* border: 1px solid brown; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.superCard{
+    height: 100%;
+    width: 32%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    display: flex;
+    align-items: center;
+    padding: 2vh;
+}
+
+.supercardHead{
+    height: 100%;
+    width: 70%;
+    /* border: 1px solid blue; */
+    padding: 0.5vh;
+}
+
+.superHead{
+    height: auto;
+    width: 100%;
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-weight: 400;
+    /* border: 1px solid black; */
+}
+
+.totesSuper{
+    height: 73px;
+    width: 100%;
+    font-family: Nunito Sans;
+    font-size: 36px;
+    font-weight: 600;
+    /* border: 1px solid grey; */
+    color: #096D49;
+    display: flex;
+    align-items: center;
+}
+
+.teacherContain{
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid red; */
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+}
+
+.radiusContain{
+    height: 41px;
+    width: 80%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    border: 1px solid #F5F5F5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statCard{
+    height: 100%;
+    width: 32%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2vh;
+}
+
+.statsbarContain{
+    height: 78px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.activeBarContain{
+    height: 48%;
+    width: 100%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.activeBar{
+    height: 100%;
+    width: auto;
+    background-color: #6BA792;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding: 0vh 1vh;
+}
+
+.activeNum{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0vh 1vh;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.pastBarContain{
+    height: 48%;
+    width: 100%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.pastBar{
+    height: 100%;
+    width: auto;
+    background-color: #F3F3F3;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    color: Grey;
+    display: flex;
+    align-items: center;
+    padding: 0vh 1vh;
+}
+
+.pastNum{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0vh 1vh;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.bottomMore{
+    height: 300px;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.unitsBarContain{
+    height: 100%;
+    width: 49%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2vw 2vh;
+}
+
+.unitListContain{
+    height: 190px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 1vh;
+}
+
+.units{
+    height: 35px;
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.totesUnit{
+    height: 100%;
+    width: auto;
+    background-color: #EDE4CF;
+    display: flex;
+    align-items: center;
+    padding: 0vh 1vh;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.totesNum{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0vh 1vh;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.superList{
+    height: 100%;
+    width: 49%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    padding: 2vw 2vh;
+}
+
+.supervisorsContain{
+    height: 195px;
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.supervisor{
+    height: 45px;
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.superPhoto{
+    height: 100%;
+    width: 12%;
+    /* border: 1px solid green; */
+    border-radius: 50%;
+}
+
+.superPhoto img{
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
+    border-radius: 50%;
+    -webkit-user-drag: none;
+}
+
+.superName{
+    height: 100%;
+    width: 70%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.supervisorUnit{
+    height: 100%;
+    width: 8%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+    color: #848484;
+}
+
+.lessMajor{
+    height: 100%;
+    width: 28%;
+    /* border: 1px solid blue; */
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.lessHead{
+    height: 10%;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.studentHead{
+    height: auto;
+    width: auto;
+    /* border: 1px solid red; */
+    font-family: Nunito Sans;
+    font-size: 24px;
+    user-select: none;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.viewBtn{
+    height: 99%;
+    width: 33%;
+    border: 1px solid #096D49;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    user-select: none;
+    font-weight: 500;
+    color: #096D49;
+    cursor: pointer;
+}
+
+.lessBody{
+    height: 87%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.studentsList{
+    height: 45px;
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    padding: 0vh 1vh;
+    gap: 1vh;
+}
+
+.studPhoto{
+    height: 100%;
+    width: 14%;
+    /* border: 1px solid green; */
+    border-radius: 50%;
+}
+
+.studPhoto img{
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
+    border-radius: 50%;
+    -webkit-user-drag: none;
+}
+
+.nameUnitContain{
+    height: 100%;
+    width: 40%;
+    /* border: 1px solid pink; */
+    display: flex;
+    flex-direction: column;
+}
+
+.nameBox{
+    height: 60%;
+    width: 100%;
+    /* background-color: blue; */
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.unitBox{
+    height: 40%;
+    width: 100%;
+    /* background-color: yellow; */
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 200;
+    color: #848484;
 }

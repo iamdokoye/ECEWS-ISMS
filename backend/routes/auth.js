@@ -1,12 +1,14 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { internalPool, externalPool } = require('../db'); // Adjust the path as necessary
+const { internalPool, externalPool } = require('../db.js');
 const router = express.Router();
 
-
+express.json();
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log('Request received:', req.body);
+    res.status(200).json({ message: 'Login endpoint hit', received: true, body: req.body });
 
     // Email Validation
     try {

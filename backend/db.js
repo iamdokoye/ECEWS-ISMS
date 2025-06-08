@@ -11,11 +11,11 @@ const externalPool = new Pool({
     connectionString: process.env.ECEWS_DATABASE_URL,
 });
 
-pool.on('connect', () => {
+internalPool.on('connect', () => {
     console.log('Connected to the ISMS database');
 });
 
-pool.connect()
+internalPool.connect()
     .then(() => console.log('Connected to the database'))
     .catch(err => console.error('Connection error', err.stack));
 

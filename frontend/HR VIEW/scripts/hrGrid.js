@@ -1,6 +1,6 @@
 
 
-  $(document).ready(function () {
+$(document).ready(function () {
     function applyActiveStyles(button) {
       $(".allStudents").css({
         "background-color": "",
@@ -31,5 +31,28 @@
       // Show target section
       const target = $(this).data("target");
       $(target).fadeIn(200);
+    });
+  });
+
+  $(document).ready(function () {
+    // Open only the clicked card's modal
+    $(".dotsThree").click(function (e) {
+      e.stopPropagation(); // Prevent bubbling
+  
+      // First close any open modals
+      $(".editModal").fadeOut(200);
+  
+      // Open the modal related to the clicked .editStud
+      $(this).closest(".studentsCard").find(".editModal").fadeIn(200);
+    });
+  
+    // Click outside any modal closes all modals
+    $(document).click(function () {
+      $(".editModal").fadeOut(200);
+    });
+  
+    // Prevent click inside modal from closing it
+    $(".editModal").click(function (e) {
+      e.stopPropagation();
     });
   });
