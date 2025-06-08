@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
-const authRoutes = require("./routes/auth.js");
+const authRoutes = require("./routes/authRoutes.js");
 const { errorHandler } = require("./middleware/errorHandler.js");
 
 dotenv.config(); // Load environment variables from .env file
@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/auth', require('./routes/auth.js'));
+app.use('/auth', require('./routes/authRoutes'));
 app.use(errorHandler); // Error handling middleware
 
 app.get("/", (req, res) => {
