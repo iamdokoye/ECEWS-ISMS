@@ -4,53 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="./STYLES/login.css">
+    <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
-    <nav class="mainNav">
-        <div class="headerLogo">
+    <nav class="mainNav" id="mainNav">
+        <div class="headerLogo" id="headerLogo">
             <img src="./ASSETS/24388.svg" alt="">
         </div>
     </nav>
-    <div class="mainContainer">
-        <div class="section1">
-            <div class="pageTitle">
-                <div class="text">
+    <div class="mainContainer" id="mainContainer">
+        <div class="section1" id="section1">
+            <div class="pageTitle" id="pageTitle">
+                <div class="text" id="text">
                     IT Students
                 </div>
             </div>
-            <div class="pageImage">
+            <div class="pageImage" id="pageImage">
                 <img src="./ASSETS/super.svg" alt="">
             </div>
         </div>
-        <div class="section2">
-            <div class="loginBox">
-                <div class="lHead">
-                    Welcome back
+        <div class="section2" id="section2">
+            <div class="loginBox" id="loginBox">
+                <div class="logHeader" id="logHeader">
+                    <div class="lHead" id="lHead">
+                        Welcome back
+                    </div>
+                    <div class="lTag" id="lTag">
+                        Enter your email and password to login
+                    </div>
                 </div>
-                <div class="lTag">
-                    Enter your email and password to login
+                <div class="logbody" id="logbody">
+                    <div class="eText" id="eText">
+                        Email
+                    </div>
+                    <div class="eBox" id="eBox">
+                        <input class="efield" type="email" id="efield" placeholder="ludd@example.com" />
+                    </div>
+                    <div class="pText" id="pText">
+                        Password
+                    </div>
+                    <div class="pBox" id="pBox">
+                        <input class="pfield" type="password" placeholder="*************" id="pfield">
+                    </div>
+                    <button class="lButton" id="lButton">
+                        Log in
+                    </button>
                 </div>
-                <div class="eText">
-                    Email
-                </div>
-                <div class="eBox">
-                    <input class="efield" type="email" id="efield" placeholder="ludd@example.com" />
-                </div>
-                <div class="pText">
-                    Password
-                </div>
-                <div class="pBox">
-                    <input class="pfield" type="password" placeholder="*************" id="pfield">
-                </div>
-                <a href="/frontend/SUPERVISOR VIEW/homeListView.html">
-                <button class="lButton">
-                    Log in
-                </button>
-                </a>
             </div>
         </div>
     </div>
 </body>
-<script src="./SCRIPT/login.js"></script>
+<script src="./routes/login.js"></script>
 </html>
