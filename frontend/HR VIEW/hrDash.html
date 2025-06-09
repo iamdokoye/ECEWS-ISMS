@@ -316,7 +316,7 @@
                 <div class="totesHeadTxt">
                     Total IT Students
                 </div>
-                <div class="totesHeadNum">
+                <div class="totesHeadNum" id="totalStudents">
                     24
                 </div>
             </div>
@@ -333,7 +333,7 @@
                         <div class="maleTxt">
                             Male
                         </div>
-                        <div class="maleNum">
+                        <div class="maleNum" id="maleCount">
                             15
                         </div>
 
@@ -348,7 +348,7 @@
                             <div class="maleTxt">
                                 Female
                             </div>
-                            <div class="maleNum">
+                            <div class="maleNum" id="femaleCount">
                                 9
                             </div>
     
@@ -367,7 +367,7 @@
                                 <div class="superHead">
                                     Supervisors
                                 </div>
-                                <div class="totesSuper">
+                                <div class="totesSuper" id="supervisorCount">
                                     10
                                 </div>
                             </div>
@@ -382,7 +382,7 @@
                                 <div class="superHead">
                                     Units
                                 </div>
-                                <div class="totesSuper">
+                                <div class="totesSuper" id="unitCount">
                                     4
                                 </div>
                             </div>
@@ -401,7 +401,7 @@
                                     <div class="activeBar">
                                         Active (Present)
                                     </div>
-                                    <div class="activeNum">
+                                    <div class="activeNum" id="activeStudents">
                                         8
                                     </div>
                                 </div>
@@ -409,7 +409,7 @@
                                     <div class="pastBar">
                                         Inactive (Past)
                                     </div>
-                                    <div class="pastNum">
+                                    <div class="pastNum" id="pastStudents">
                                         5
                                     </div>
                                 </div>
@@ -422,7 +422,7 @@
                             <div class="superHead">
                                 Units
                             </div>
-                            <div class="unitListContain">
+                            <div class="unitListContain" id="unitListContainer">
                                 <div class="units">
                                     <div class="totesUnit">
                                         Communications
@@ -471,7 +471,7 @@
                                 Supervisors
 
                             </div>
-                            <div class="supervisorsContain">
+                            <div class="supervisorsContain" id="supervisorList">
                                 <div class="supervisor">
                                     <div class="superPhoto">
                                         <img src="./assets/johndoe.png" alt="">
@@ -530,7 +530,7 @@
                         </div>
                     </div>
                     <div class="lessBody">
-                        <div class="studentsList">
+                        <div class="studentsList" id="studentList">
                             <div class="studPhoto">
                                 <img src="./assets/johndoe.png" alt="">
                             </div>
@@ -628,6 +628,8 @@
     </section>
     <script src="./routes/hrDashRoute.js"></script>
     <script src="./scripts/hrDash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./scripts/adminDash.js"></script>
 </body>
 
 </html>
