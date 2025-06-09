@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
             return this.role === 'Student' || this.role === 'Supervisor';
         }
     },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Other'],
+        required: true
+    },    
     createdAt: {
         type: Date,
         default: Date.now

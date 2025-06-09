@@ -18,6 +18,11 @@ const studentSchema = new mongoose.Schema({
         required: true,
         default: null
     },
+    it_status: {
+        type: String,
+        enum: ['Current', 'Past'],
+        default: 'Active'
+    },
     created_at: {
         type: Date,
         default: Date.now
