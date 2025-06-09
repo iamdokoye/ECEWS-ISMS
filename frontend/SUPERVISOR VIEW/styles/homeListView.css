@@ -35,8 +35,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 0vh 4vw 0vh 4vw;
-    background-color: #e2560a;
+    padding: 0vh 6vw 0vh 6vw;
     
   }
 
@@ -45,7 +44,6 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0a6fe2;
   }
 
 .headerLogo img{
@@ -63,26 +61,25 @@ html, body {
   display: flex;
   padding-top: 0.35rem;
   cursor: pointer;
-  background-color: #c5e20a;
   }
 
 .sText{
-  height: 1.6rem;
+  height: 1.2rem;
   width: auto;
   display: flex;
-  justify-content: space-between;
   font-family: Nunito San;
-  font-size: 16px;
-  background-color: #0a60e2;
+  font-size: 14px;
+  font-weight: 600;
+  color: #047c34;
+  gap: 1;
   }
 
 .sIcon{
-  height: 1.4rem;
+  height: 1.2rem;
   width: auto;
   display: flex;
   justify-content: space-around;
-  margin-left: 0.4rem;
-  background-color: #e20a72;
+  margin-left: 1rem;
   }
 
 
@@ -92,28 +89,215 @@ html, body {
 .mainContainer {
     height: auto; /* Restrict body height to viewport */
     width: 100%;
+    padding: 0vh 6vw 0vh 6vw;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    background-color: #0ab3e2;
+    background-color: #F9F9F9;
 }
 
 
 .topSection {
-    height: auto; /* Restrict body height to viewport */
+    height: 25vh; /* Restrict body height to viewport */
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    background-color: #e2d40a;
+    padding-top: 2vh;
+    /* background-color: #e2d40a; */
 }
+
+  .ItHeader{
+    height: 50%;
+    width: 100% ;
+    justify-self: center;
+    text-align: left;
+    font-size: 48px;
+    font-family: Nunito San;
+  } 
+
+
+.searchBars{
+    height: 50%;
+    width: 100% ;
+    display: flex;
+    justify-content: space-between;
+    padding: 2vh 0vw 2vh 0vw;
+    font-size: 48px;
+    font-family: Nunito San;
+  }
+
+  .searchName{
+    height: 70%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    padding: 2vh 0.5vw 2vh 0.5vw;
+    overflow: hidden;
+    border: 1.6px solid #F5F5F5;
+    border-radius: 4px;
+    color: #848484;
+    font-family: Nunito San;
+    background-color: #FFFFFF;
+  } 
+
+
+.searchIcon {
+  width: 2%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+  
+
+  .searchText{
+    flex: 1; /* <-- This makes the input fill remaining space */
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: Nunito San;
+  }
+
+  .searchField{
+    flex: 1;
+    width: 100%;
+    padding: 4px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .searchInstit{
+    height: 70%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    padding: 2vh 0.5vw 2vh 0.5vw;
+    overflow: hidden;
+    border: 1.6px solid #F5F5F5;
+    border-radius: 4px;
+    color: #848484;
+    font-family: Nunito San;
+    background-color: #FFFFFF;
+  }
+
+  .searchInterest{
+    height: 70%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    padding: 2vh 0.5vw 2vh 0.5vw;
+    overflow: hidden;
+    border: 1.6px solid #F5F5F5;
+    border-radius: 4px;
+    color: #848484;
+    font-family: Nunito San;
+    background-color: #FFFFFF;
+  }
+
+
 
 .table {
     height: auto; /* Restrict body height to viewport */
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    background-color: #de0ae2;
+    
 }
 
+.tableHeaders{
+    height: 4.5vh;
+    width: 100% ;
+    display: flex;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #F3F3F3;
+    padding-top: 0.4%;
+    padding-left: 0.6rem;
+  }
+
+  .c1{
+    height: 4vh;
+    width: 4% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .c2{
+    height: 4vh;
+    width: 24% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .c3{
+    height: 4vh;
+    width: 25% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .c4{
+    height: 4vh;
+    width: 20% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .c5{
+    height: 4vh;
+    width: 12% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+  .c6{
+    height: 4vh;
+    width: 15% ;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: Nunito San;
+  }
+
+
+  .tableRows{
+    height: 6vh;
+    width: 100% ;
+    display: flex;
+    text-align: left;
+    font-size: 14px;
+    font-family: Nunito San;
+    background-color: #FFFFFF;
+    padding-top: 1%;
+    padding-left: 0.6rem;
+  }
+
+
+.straightLines {
+  content: '';
+  display:block;
+  width: auto;
+  height: 0.056vw;
+  background: #F3F3F3; /* Line color */
+  justify-content: center;
+  justify-items: center;
+}
