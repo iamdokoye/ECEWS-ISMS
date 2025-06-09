@@ -1,7 +1,7 @@
 const User = require('../models/User.js');
 const bcrypt = require('bcrypt'); // Ensure bcrypt is installed
 
-exports.loginuser = async (req, res, next) => {
+exports.loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     try {
         // Find the user by email
@@ -20,7 +20,7 @@ exports.loginuser = async (req, res, next) => {
             role: user.role,
             userId: user._id,
         });
-    } catch (error) {
-        next(error);
-    }
+        } catch (error) {
+            next(error);
+        }
     };
