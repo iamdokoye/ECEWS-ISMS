@@ -1,38 +1,41 @@
-import { loginuser } from "./auth.js";
-
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent the default form submission
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     try {
-        const userData = await loginuser(email, password);
+        const response = await axios.post("http://localhost:5000/auth/login", {
+            email,
+            password
+        });
+        console.log(response.data);
+        if (response.status === 200) {
+            const userData = response.data;
 
-        switch (userData.role) {
-            case 'Student':
-                console.log("Login successful! Welcome Student:", userData);
-                window.location.href = "dashboard.html";
-                break;
-            case 'Supervisor':
-                console.log("Login successful! Welcome Supervisor:", userData);
-                window.location.href = "../Supervisor VIEW/homeListView.html";
-                break;
-            case 'HR':
-                console.log("Login successful! Welcome HR:", userData);
-                window.location.href = "../HR VIEW/hr_dash.html";
-                break;
-            case 'Staff':
-                console.log("Login successful!", userData);
-                window.location.href = "../Staff VIEW/homeGrid.html";
-                break;
-            default:
-                console.error("Unknown role:", userData.role);
-                alert("Unknown role: " + userData.role);
-                return; // Exit if the role is unknown
+            switch (userData.role) {
+                case 'Student':
+                    window.location.href = "dashboard.html";
+                    break;
+                case 'Supervisor':
+                    window.location.href = "../Supervisor VIEW/homeListView.html";
+                    break;
+                case 'Admin':
+                    window.location.href = "../HR VIEW/hrDash.html";
+                    break;
+                case 'Staff':
+                    window.location.href = "../Staff VIEW/homeGrid.html";
+                    break;
+                default:
+                    alert("Unknown role: " + userData.role);
+            }
+            console.log("Login successful:", response.data);
+        } else {
+            console.error("Login failed with status:", response.status);
+            alert("Login failed: " + response.statusText);
         }
     } catch (error) {
         console.error("Login failed:", error);
-        alert("Login failed: " + error.message); // Display an error message to the user
+        alert("Login failed: " + error.message);
     }
 });
