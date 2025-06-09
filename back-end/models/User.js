@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
     email: {
         type: String,
         required: true,
@@ -12,23 +17,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
     role: {
         type: String,
         enum: ['Student', 'Supervisor', 'Admin', 'Staff'],
+        default: 'Staff',
         required: true
+    },
+    unit: {
+        type: String,
+        required: function () {
+            return this.role === 'Student' || this.role === 'Supervisor';
+        }
     },
     createdAt: {
         type: Date,
         default: Date.now
-    },
-    default: {
-        type: String,
-        default: 'Student'
     },
 });
 
