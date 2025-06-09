@@ -5,7 +5,6 @@ const connectDB = require("./config/db.js");
 const authRoutes = require("./routes/authRoutes.js");
 const { errorHandler } = require("./middleware/errorHandler.js");
 
-dotenv.config(); // Load environment variables from .env file
 connectDB(); // Connect to MongoDB
 
 const app = express();

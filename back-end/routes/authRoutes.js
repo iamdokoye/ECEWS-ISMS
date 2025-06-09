@@ -1,6 +1,6 @@
-const exppress = require('express');
+const express = require('express');
 const { loginUser } = require('../controllers/authController.js');
-const router = exppress.Router()
+const router = express.Router()
 ;
 router.post('/login', loginUser);
 
