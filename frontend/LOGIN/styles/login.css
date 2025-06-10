@@ -8,9 +8,10 @@
 
 @font-face {
     font-family: Nunito Sans;
-  src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
-}
+  /* src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf); */
+  src: url(/frontend/LOGIN/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf); 
 
+}
 
   
 html, body {
@@ -77,6 +78,7 @@ html, body {
     width: 100% ;
     padding-top: 12%;
     /* background-color: rgb(51, 241, 8); */
+    padding-left: 4vw;
   }  
 
   .text{
@@ -85,7 +87,7 @@ html, body {
     justify-self: center;
     text-align: left;
     font-size: 48px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     /* background-color: rgb(241, 8, 128); */
   } 
 
@@ -142,7 +144,7 @@ html, body {
     justify-self: center;
     text-align: center;
     font-size: 32px;
-    font-family: Nunito San;    
+    font-family: Nunito Sans;    
         /* border: 1px solid red; */
 
   }
@@ -153,7 +155,7 @@ html, body {
     text-align: center;
     font-size: 20px;
     color: #848484;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     margin-top: 2%;    
         /* border: 1px solid red; */
 
@@ -174,7 +176,7 @@ html, body {
     justify-self: center;
     margin-top: 4%;
     font-size: 24px;
-    font-family: Nunito San;    
+    font-family: Nunito Sans;    
   }
 
   .eBox{
@@ -183,7 +185,7 @@ html, body {
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
     color: #848484;
-    font-family: Nunito San;    
+    font-family: Nunito Sans;    
   }
 
 
@@ -210,7 +212,7 @@ html, body {
     justify-self: center;
     margin-top: 6%;
     font-size: 24px;
-    font-family: Nunito San;    
+    font-family: Nunito Sans;    
   }
 
   .pBox{
@@ -220,7 +222,7 @@ html, body {
     border-radius: 4px;
     font-size: 14px;
     color: #848484;
-    font-family: Nunito San;    
+    font-family: Nunito Sans;    
   }
 
 
@@ -233,7 +235,7 @@ html, body {
   border-radius: 4px;
   font-size: 14px;
   color: #848484;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: Nunito Sans;
   background-color: transparent; /* Optional: keep background transparent */    
   }
 

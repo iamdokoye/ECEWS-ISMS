@@ -8,7 +8,9 @@
 
 @font-face {
     font-family: Nunito Sans;
-  src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+  /* src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf); */
+  src: url(/frontend/SUPERVISOR\ VIEW/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf);
+
 }
 
 
@@ -67,7 +69,7 @@ html, body {
   height: 1.2rem;
   width: auto;
   display: flex;
-  font-family: Nunito San;
+  font-family: Nunito Sans;
   font-size: 14px;
   font-weight: 600;
   color: #047c34;
@@ -111,7 +113,7 @@ html, body {
     justify-self: center;
     text-align: left;
     font-size: 48px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   } 
 
 
@@ -122,7 +124,7 @@ html, body {
     justify-content: space-between;
     padding: 2vh 0vw 2vh 0vw;
     font-size: 48px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .searchName{
@@ -135,7 +137,7 @@ html, body {
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
     color: #848484;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     background-color: #FFFFFF;
   } 
 
@@ -155,7 +157,7 @@ html, body {
     border: none;
     outline: none;
     font-size: 16px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .searchField{
@@ -165,7 +167,7 @@ html, body {
     border: none;
     outline: none;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .searchInstit{
@@ -178,7 +180,7 @@ html, body {
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
     color: #848484;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     background-color: #FFFFFF;
   }
 
@@ -192,7 +194,7 @@ html, body {
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
     color: #848484;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     background-color: #FFFFFF;
   }
 
@@ -225,7 +227,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .c2{
@@ -235,7 +237,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .c3{
@@ -245,7 +247,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .c4{
@@ -255,7 +257,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .c5{
@@ -265,7 +267,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
   .c6{
@@ -275,7 +277,7 @@ html, body {
     text-align: left;
     justify-content: space-between;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
   }
 
 
@@ -285,7 +287,7 @@ html, body {
     display: flex;
     text-align: left;
     font-size: 14px;
-    font-family: Nunito San;
+    font-family: Nunito Sans;
     background-color: #FFFFFF;
     padding-top: 1%;
     padding-left: 0.6rem;
