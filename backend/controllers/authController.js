@@ -26,14 +26,15 @@ exports.loginUser = async (req, res, next) => {
     };
 
 exports.registerUser = async (req, res, next) => {
-    const { name, email, password, role, unit } = req.body;
+    const { name, email, password, role, unit, gender,  } = req.body;
     try {
         const user = new User({
             name,
             email,
             password: await bcrypt.hash(password, 10), // Hash the password before saving
             role,
-            unit
+            unit,
+            gender
         });
         await user.save();
         res.status(201).json({

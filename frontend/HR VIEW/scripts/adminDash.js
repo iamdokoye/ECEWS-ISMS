@@ -1,6 +1,6 @@
 window.onload = async () => {
     try {
-        const response = await fetch('http://localhost:5000/admin/dashboard-stats');
+        const response = await fetch('http://localhost:5000/api/admin/dashboard');
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }

@@ -3,6 +3,8 @@ const User = require('../models/User');
 
 exports.getDashboardStats = async (req, res) => {
     try {
+        res.json({message: 'API WORKING!'});
+        // Fetching dashboard statistics
         const totalStudents = await Student.countDocuments();
         const activeStudents = await Student.countDocuments({it_status: 'Active'});
         const pastStudents = await Student.countDocuments({it_status: 'Past'});
@@ -35,6 +37,6 @@ exports.getDashboardStats = async (req, res) => {
             supervisors
         });
     } catch (error) {
-        res.status(500).json({ message:error.message });
+        res.status(500).json({ message: error.message });
     }
 };
