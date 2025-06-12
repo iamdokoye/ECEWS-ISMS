@@ -35,7 +35,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             alert("Login failed: " + response.statusText);
         }
     } catch (error) {
-        console.error("Login failed:", error);
-        alert("Login failed: " + error.message);
+        document.getElementById("error").textContent = error.message;
+        console.error("Login failed: " + error.message);
     }
 });
