@@ -133,6 +133,7 @@
     font-size: 14px;
     font-weight: 500;
     user-select: none;
+    
 }
 
 .checkBox {
@@ -365,10 +366,40 @@
     align-items: center;
     justify-content: center;
     gap: 1vh;
+    /* background-color: #096D49; */
 }
 
 .weekBtn:hover{
     background-color: #6BA79233;
+}
+
+.weekTxt {
+    height: 100%;
+    width: auto;
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+    /* color: #FFFFFF; */
+    
+}
+
+.checkBox2 {
+    height: 100%;
+    width: 11%;
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkBox2 img {
+    -webkit-user-drag: none;
+    width: 90%;
 }
 
 /* .weekBtn.activeWeek {
