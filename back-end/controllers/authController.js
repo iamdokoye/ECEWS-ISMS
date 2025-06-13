@@ -52,3 +52,35 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+exports.register = async (req, res) => {
+    const { email, password, role } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
+    }
+    try {
+        // Check if user already exists
+        const existingUser = await User.findByEmail(email);
+        if (existingUser) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        // Create user
+        const newUser = await User.create({ email, password: hashedPassword, role: role || 'user' });
+        // Generate JWT
+        const token = jwt.sign({ id: newUser.id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({
+            message: 'Registration successful',
+            token,
+            user: {
+                id: newUser.id,
+                email: newUser.email,
+                role: newUser.role
+            }
+        });
+    } catch (error) {
+        console.error('Register error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
