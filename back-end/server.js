@@ -13,17 +13,12 @@ const { authenticate } = require('./middleware/authMiddleware');
 
 const app = express();
 
-app.use(cors(
-    {
-        origin: 'null', // Adjust this to your frontend URL
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true, // Allow credentials if needed
-    }
+app.use(cors({}
 ));
 
 app.use(express.json());
 
-app.use('/auth/login', authRoutes);
+app.use('/api', authRoutes);
 
 app.get('/api/test', (req, res) => {
     res.send('Welcome to the ECEWS API');

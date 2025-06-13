@@ -7,9 +7,7 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
-    ssl: {
-        rejectUnauthorized: false, // Set to true in production with a valid certificate
-    },
+    ssl: false // Set to true in production with a valid certificate
 });
 pool.on('connect', () => {
   console.log('Connected to the database');
