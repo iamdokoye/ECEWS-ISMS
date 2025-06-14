@@ -1,14 +1,21 @@
-document.getElementById("loginForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('loginForm');
+    if (!form) {
+        console.error('loginForm not found!');
+        return;
+    }
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
     try {
         const response = await axios.post("http://localhost:5000/auth/login", {
             email,
             password
         });
+        alert(response.data.message); 
         console.log(response.data);
         if (response.status === 200) {
             const role = userData.user.role;
@@ -35,6 +42,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             alert("Login failed: " + response.statusText);
         }
     } catch (error) {
+        alert(error.response.data.message);
         console.error("Login failed: " + error.message);
     }
+});
 });
