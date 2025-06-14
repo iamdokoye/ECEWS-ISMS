@@ -3,6 +3,8 @@ const {
   getUserByEmailExternal,
   createUserInternal,
 } = require('../models/userModel');
+const { addStudent } = require('../models/studentModel');
+
 
 const register = async (req, res) => {
   const { name, email, password, role, unit } = req.body;
@@ -12,9 +14,31 @@ const register = async (req, res) => {
   try {
     const existingUser = await getUserByEmailInternal(email);
     if (existingUser) return res.status(409).json({ message: 'User already exists' });
-
+    
+    // 1. Create user in internal database
     await createUserInternal({ name, email, password, role, unit });
+    
+    // 2. If the role is student, auto-add to students table
+    if (role === 'student') {
+      // Fetch the newly created user to get its ID
+      const newUser = await getUserByEmailInternal(email);
+      const hrUserId = req.user?.id || 1; // Replace 1 with real HR ID logic if available
+      const validDurations = [3, 6, 9, 12];
+      const chosenDuration = Number(duration) || 6;
+
+      if (!validDurations.includes(chosenDuration)) {
+        return res.status(400).json({ message: 'Invalid duration. Must be 3, 6, 9, or 12 months.' });
+      }
+      await addStudent({
+        student_id: newUser.id,
+        added_by_hr: hrUserId,
+        duration: chosenDuration
+      });
+    }
+
+    // 3. Return success response
     return res.status(201).json({ message: 'User registered successfully' });
+
   } catch (err) {
     console.error('Register error:', err);
     return res.status(500).json({ message: 'Internal server error' });
