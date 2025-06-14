@@ -1,5 +1,5 @@
-const internalDb = require('../db/internalDb');
-const externalDb = require('../db/externalDb');
+const internalDb = require('../db/internalDB');
+const externalDb = require('../db/externalDB');
 
 const getUserByEmailInternal = async (email) => {
   const res = await internalDb.query('SELECT * FROM users WHERE email = $1', [email]);
