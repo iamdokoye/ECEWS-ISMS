@@ -1,86 +1,55 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
+const {
+  getUserByEmailInternal,
+  getUserByEmailExternal,
+  createUserInternal,
+} = require('../models/userModel');
 
-exports.login = async (req, res) => {
-    const { email, password } = req.body;
+const register = async (req, res) => {
+  const { name, email, password, role, unit } = req.body;
+  if (!name || !email || !password || !role || !unit)
+    return res.status(400).json({ message: 'All fields are required' });
 
-    try {
-        // If email is from ecews.org, auto-create staff user
-        const isEcewsEmail = email.endsWith('@ecews.org');
-        if (isEcewsEmail) {
-            // Check if user already exists
-            const existingUser = await User.findByEmail(email);
-            if (!existingUser) {
-                // Auto-create staff user
-                const newUser = await User.autoCreateStaff(email, password);
-                if (!newUser) {
-                    return res.status(500).json({ message: 'Failed to create staff user' });
-                }
-            }
-        }
-        // If email is not from ecews.org, proceed with normal login
-        if (!email || !password) {
-            return res.status(400).json({ message: 'Email and password are required' });
-        }
-        // Check if user exists
-        const user = await User.findByEmail(email);
-        if (!user) {
-            return res.status(404).json({ message: 'Access denied: User not found.' });
-        }
+  try {
+    const existingUser = await getUserByEmailInternal(email);
+    if (existingUser) return res.status(409).json({ message: 'User already exists' });
 
-        // Verify password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
+    await createUserInternal({ name, email, password, role, unit });
+    return res.status(201).json({ message: 'User registered successfully' });
+  } catch (err) {
+    console.error('Register error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
-        // Generate JWT token
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(400).json({ message: 'Email and password are required' });
 
-        res.json({
-            message: 'Login successful',
-            token,
-            user: {
-                id: user.id,
-                email: user.email,
-                role: user.role
-            }
-        });
-    } catch (error) {
-        console.error('Login error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+  try {
+    const userInternal = await getUserByEmailInternal(email);
+    if (userInternal) {
+      if (userInternal.password === password) {
+        return res.status(200).json({ message: 'Login successful (internal)', user: userInternal });
+      } else {
+        return res.status(401).json({ message: 'Invalid password' });
+      }
     }
-}
 
-exports.register = async (req, res) => {
-    const { email, password, role } = req.body;
-    if (!email || !password) {
-        return res.status(400).json({ message: 'Email and password are required' });
+    // Validate @ecews.org enforced by middleware
+    const userExternal = await getUserByEmailExternal(email);
+    if (userExternal && userExternal.password === password) {
+      return res.status(200).json({ message: 'Login successful (external)', user: userExternal });
+    } else {
+      return res.status(404).json({ message: 'User not found or password incorrect in external DB' });
     }
-    try {
-        // Check if user already exists
-        const existingUser = await User.findByEmail(email);
-        if (existingUser) {
-            return res.status(409).json({ message: 'User already exists' });
-        }
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-        // Create user
-        const newUser = await User.create({ email, password: hashedPassword, role: role || 'user' });
-        // Generate JWT
-        const token = jwt.sign({ id: newUser.id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(201).json({
-            message: 'Registration successful',
-            token,
-            user: {
-                id: newUser.id,
-                email: newUser.email,
-                role: newUser.role
-            }
-        });
-    } catch (error) {
-        console.error('Register error:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+  } catch (err) {
+    console.error('Login error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = {
+  register,
+  login,
 };
