@@ -11,9 +11,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         });
         console.log(response.data);
         if (response.status === 200) {
-            const userData = response.data;
+            const role = userData.user.role;
 
-            switch (userData.role) {
+            switch (role) {
                 case 'Student':
                     window.location.href = "dashboard.html";
                     break;
