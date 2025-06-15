@@ -47,6 +47,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+
   if (!email || !password)
     return res.status(400).json({ message: 'Email and password are required' });
 
@@ -60,7 +61,7 @@ const login = async (req, res) => {
       }
     }
 
-    // Validate @ecews.org enforced by middleware
+    // Now we're in external zone
     const userExternal = await getUserByEmailExternal(email);
     if (userExternal && userExternal.password === password) {
       return res.status(200).json({ message: 'Login successful (external)', user: userExternal });
@@ -72,6 +73,7 @@ const login = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
 module.exports = {
   register,
