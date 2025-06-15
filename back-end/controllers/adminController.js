@@ -9,17 +9,17 @@ const getDashboardStats = async (req, res) => {
         const supervisorResult = await pool.query('SELECT COUNT(*) FROM users WHERE role = $1', ['supervisor']);
         const supervisorCount = parseInt(supervisorResult.rows[0].count, 10);
 
-        const unitResult = await pool.query('SELECT COUNT(DISTINCT unit) FROM students');
+        const unitResult = await pool.query("SELECT COUNT(DISTINCT unit) FROM users WHERE role = 'student'");
         const unitCount = parseInt(unitResult.rows[0].count, 10);
 
-        const maleResult = await pool.query("SELECT COUNT(*) FROM students WHERE gender = 'male'");
-        const femaleResult = await pool.query("SELECT COUNT(*) FROM students WHERE gender = 'female'");
+        const maleResult = await pool.query("SELECT COUNT(*) FROM users WHERE gender = 'male'");
+        const femaleResult = await pool.query("SELECT COUNT(*) FROM users WHERE gender = 'female'");
 
-        const activeResult = await pool.query("SELECT COUNT(*) FROM students WHERE status = 'active'");
-        const pastResult = await pool.query("SELECT COUNT(*) FROM students WHERE status = 'past'");
+        const activeResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'active'");
+        const pastResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'past'");
 
-        const studentListResult = await pool.query("SELECT full_name AS name, unit, gender FROM students LIMIT 6");
-        const supervisorListResult = await pool.query("SELECT full_name AS name, unit FROM users WHERE role = 'supervisor' LIMIT 6");
+        const studentListResult = await pool.query("SELECT name AS name, unit, gender FROM users LIMIT 6");
+        const supervisorListResult = await pool.query("SELECT name AS name, unit FROM users WHERE role = 'supervisor' LIMIT 6");
 
         res.json({
             totalStudents,
