@@ -9,7 +9,7 @@ window.onload = async () => {
         document.getElementById('totalStudents').textContent = data.totalStudents || 0;
         document.getElementById('activeStudents').textContent = data.status?.active || 0;
         document.getElementById('pastStudents').textContent = data.status?.past || 0;
-        document.getElementById('supervisorCount').textContent = data.totalSupervisors || 0;
+        document.getElementById('supervisorCount').textContent = data.supervisorCount || 0;
         document.getElementById('unitCount').textContent = data.units?.length || 0;
         document.getElementById('maleCount').textContent = data.gender?.male || 0;
         document.getElementById('femaleCount').textContent = data.gender?.female || 0;

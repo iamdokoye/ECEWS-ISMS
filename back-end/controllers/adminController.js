@@ -1,4 +1,3 @@
-
 const pool = require('../db/internalDB');
 
 const getDashboardStats = async (req, res) => {
@@ -9,26 +8,53 @@ const getDashboardStats = async (req, res) => {
         const supervisorResult = await pool.query('SELECT COUNT(*) FROM users WHERE role = $1', ['supervisor']);
         const supervisorCount = parseInt(supervisorResult.rows[0].count, 10);
 
-        const unitResult = await pool.query("SELECT COUNT(DISTINCT unit) FROM users WHERE role = 'student'");
-        const unitCount = parseInt(unitResult.rows[0].count, 10);
+        const unitCountResult = await pool.query("SELECT COUNT(DISTINCT unit) FROM users WHERE role = 'student'");
+        const unitCount = parseInt(unitCountResult.rows[0].count, 10);
 
-        const maleResult = await pool.query("SELECT COUNT(*) FROM users WHERE gender = 'male'");
-        const femaleResult = await pool.query("SELECT COUNT(*) FROM users WHERE gender = 'female'");
+        const unitListResult = await pool.query(`
+            SELECT unit, COUNT(*) as count
+            FROM users
+            WHERE role = 'student'
+            GROUP BY unit
+        `);
+        const units = unitListResult.rows.map(row => ({
+            name: row.unit,
+            count: parseInt(row.count, 10)
+        }));
+
+        const maleResult = await pool.query("SELECT COUNT(*) FROM users WHERE role = 'student' AND gender = 'male'");
+        const femaleResult = await pool.query("SELECT COUNT(*) FROM users WHERE role = 'student' AND gender = 'female'");
 
         const activeResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'active'");
         const pastResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'past'");
 
-        const studentListResult = await pool.query("SELECT name AS name, unit, gender FROM users LIMIT 6");
-        const supervisorListResult = await pool.query("SELECT name AS name, unit FROM users WHERE role = 'supervisor' LIMIT 6");
+        const studentListResult = await pool.query(`
+            SELECT name, unit, gender
+            FROM users
+            WHERE role = 'student'
+            LIMIT 6
+        `);
+
+        const supervisorListResult = await pool.query(`
+            SELECT name, unit, photo
+            FROM users
+            WHERE role = 'supervisor'
+            LIMIT 6
+        `);
 
         res.json({
             totalStudents,
             supervisorCount,
             unitCount,
-            male: parseInt(maleResult.rows[0].count, 10),
-            female: parseInt(femaleResult.rows[0].count, 10),
-            activeStudents: parseInt(activeResult.rows[0].count, 10),
-            pastStudents: parseInt(pastResult.rows[0].count, 10),
+            units,
+            gender: {
+                male: parseInt(maleResult.rows[0].count, 10),
+                female: parseInt(femaleResult.rows[0].count, 10)
+            },
+            status: {
+                active: parseInt(activeResult.rows[0].count, 10),
+                past: parseInt(pastResult.rows[0].count, 10)
+            },
             students: studentListResult.rows,
             supervisors: supervisorListResult.rows
         });
