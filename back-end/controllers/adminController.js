@@ -1,5 +1,5 @@
 
-const pool = require('../db');
+const pool = require('../db/internalDB');
 
 const getDashboardStats = async (req, res) => {
     try {
