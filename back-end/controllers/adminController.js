@@ -1,6 +1,5 @@
-const Student = require('../models/studentModel');
-const User = require('../models/User');
-const pool = require('../config/db'); // Add this if missing
+
+const pool = require('../db');
 
 const getDashboardStats = async (req, res) => {
     try {
@@ -37,4 +36,8 @@ const getDashboardStats = async (req, res) => {
         console.error('Error fetching dashboard stats:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
+};
+
+module.exports = {
+    getDashboardStats
 };
