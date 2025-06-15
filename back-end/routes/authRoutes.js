@@ -1,33 +1,35 @@
-// routes/authRoutes.js
 const express = require('express');
 const router = express.Router();
-const { login, register } = require('../controllers/authController');
-const validateEmailDomain = require('../middleware/validateEmailDomain');
+const { login } = require('../controllers/authController');
 const { getUserByEmailInternal } = require('../models/userModel');
 
-// Registration - public
-router.post('/register', register);
+// Register route stays the same
+router.post('/register', require('../controllers/authController').register);
 
-// Login - smart handling of internal & external users
-router.post('/login', async (req, res, next) => {
+// Login route
+router.post('/login', async (req, res) => {
+  const { email } = req.body;
+
   try {
-    const { email } = req.body;
-
-    if (!email) {
-      return res.status(400).json({ message: 'Email is required' });
-    }
-
     const internalUser = await getUserByEmailInternal(email);
+
     if (internalUser) {
-      // Found in internal DB → skip domain check
-      return login(req, res);
-    } else {
-      // Enforce @ecews.org domain for external login
-      validateEmailDomain(req, res, () => login(req, res));
+      // If found in internal DB (regardless of email), continue login
+      return require('../controllers/authController').login(req, res);
     }
-  } catch (err) {
-    console.error('Login route error:', err);
-    return res.status(500).json({ message: 'Server error during login' });
+
+    // Not found in internal DB
+    if (email.endsWith('@ecews.org')) {
+      // Only check external DB if email is @ecews.org
+      return require('../controllers/authController').login(req, res);
+    }
+
+    // Not in internal DB, and not an @ecews.org email
+    return res.status(404).json({ message: 'User not found in internal DB' });
+
+  } catch (error) {
+    console.error('Login route error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
 
