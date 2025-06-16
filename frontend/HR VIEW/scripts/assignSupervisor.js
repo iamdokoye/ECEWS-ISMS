@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load users in unit from external DB
   function loadSupervisors(unit) {
-    fetch(`http://localhost:5000/api/supervisor/users/${encodeURIComponent(unit)}`)
+    fetch(`http://localhost:5000/api/supervisor/users/by-unit/${encodeURIComponent(unit)}`)
       .then(res => res.json())
       .then(users => {
         supervisorDropdown.innerHTML = '';
         users.forEach(user => {
           const div = document.createElement('div');
           div.classList.add('unitLIst');
-          div.textContent = `${user.first_name} ${user.last_name}`;
+            div.textContent = user.name;
           div.addEventListener('click', () => {
             supervisorInput.value = div.textContent;
             selectedSupervisorId = user.id;

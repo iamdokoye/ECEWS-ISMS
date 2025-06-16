@@ -13,6 +13,6 @@ router.get('/units', getUnitsFromExternal);
 router.get('/users/by-unit/:unit', getUsersByUnitExternal);
 
 // POST /api/assign-supervisor - assign supervisor into internal DB
-router.post('/assign-supervisor', assignSupervisor);
+router.post('/assign', assignSupervisor);
 
 module.exports = router;
