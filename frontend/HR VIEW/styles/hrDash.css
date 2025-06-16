@@ -1137,7 +1137,7 @@
 
 .supervisorUnit{
     height: 100%;
-    width: 8%;
+    width: auto;
     /* border: 1px solid green; */
     display: flex;
     align-items: center;
