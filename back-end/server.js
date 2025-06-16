@@ -4,6 +4,7 @@
 
   const authRoutes = require('./routes/authRoutes');
   const adminRoutes = require('./routes/adminRoutes');
+  const supervisorRoutes = require('./routes/assignSupervisorRoutes')
 
   const app = express();
   app.use(cors());
@@ -11,6 +12,7 @@
 
   app.use('/auth', authRoutes);
   app.use('/admin', adminRoutes);
+  app.use('/assign', supervisorRoutes)
 
   app.get('/', (req, res) => res.send('Server OK'));
 
