@@ -63,6 +63,26 @@ window.onload = async () => {
             supervisorContainer.appendChild(supDiv);
         });
 
+        // Populate Student Section
+        const studentContainer = document.getElementById('studentList');
+        studentContainer.innerHTML = '';
+        data.students.forEach(student => {
+            const studentDiv = document.createElement('div');
+            studentDiv.classList.add('student');
+
+            const nameDiv = document.createElement('div');
+            nameDiv.classList.add('studentName');
+            nameDiv.textContent = student.name;
+
+            const interestDiv = document.createElement('div');
+            interestDiv.classList.add('studentInterest');
+            interestDiv.textContent = `${student.interest || 'Not specified'}, ${student.unit}`;
+
+            studentDiv.appendChild(nameDiv);
+            studentDiv.appendChild(interestDiv);
+            studentContainer.appendChild(studentDiv);
+        });
+
     } catch (error) {
         console.error('Error loading admin dashboard:', error);
         alert('Something went wrong while loading dashboard stats.');
