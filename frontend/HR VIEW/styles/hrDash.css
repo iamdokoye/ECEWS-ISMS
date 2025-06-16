@@ -1095,7 +1095,7 @@
     margin-top: 1vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     background-color: #FFFFFF;
 }
 
