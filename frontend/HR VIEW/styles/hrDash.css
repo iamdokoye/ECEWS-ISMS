@@ -854,6 +854,28 @@
 
 }
 
+.superHead2{
+    height: auto;
+    width: 100%;
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-weight: 400;
+    /* border: 1px solid black; */
+    background-color: #FFFFFF;
+
+}
+
+.superHead3{
+    height: auto;
+    width: 100%;
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-weight: 400;
+    /* border: 1px solid black; */
+    background-color: #FFFFFF;
+
+}
+
 .totesSuper{
     height: auto;
     width: 100%;
@@ -887,6 +909,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.radiusContain img{
+    -webkit-user-drag: none;
+    background-color: #FFFFFF;
 }
 
 .statCard{
