@@ -41,12 +41,12 @@ window.onload = async () => {
             const supDiv = document.createElement('div');
             supDiv.classList.add('supervisor');
 
-            const photoDiv = document.createElement('div');
-            photoDiv.classList.add('superPhoto');
-            const img = document.createElement('img');
-            img.src = supervisor.photo || './assets/johndoe.png';
-            img.alt = 'Supervisor Photo';
-            photoDiv.appendChild(img);
+            // const photoDiv = document.createElement('div');
+            // photoDiv.classList.add('superPhoto');
+            // const img = document.createElement('img');
+            // img.src = supervisor.photo || './assets/johndoe.png';
+            // img.alt = 'Supervisor Photo';
+            // photoDiv.appendChild(img);
 
             const nameDiv = document.createElement('div');
             nameDiv.classList.add('superName');
@@ -56,7 +56,7 @@ window.onload = async () => {
             unitDiv.classList.add('supervisorUnit');
             unitDiv.textContent = supervisor.unit;
 
-            supDiv.appendChild(photoDiv);
+            // supDiv.appendChild(photoDiv);
             supDiv.appendChild(nameDiv);
             supDiv.appendChild(unitDiv);
 
