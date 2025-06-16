@@ -21,21 +21,28 @@ const register = async (req, res) => {
     supervisor
   } = req.body;
 
-  if (!name || !email || !password || !role || !unit)
+  if (!name || !email || !password || !role || !unit) {
     return res.status(400).json({ message: 'All required fields must be filled' });
+  }
 
   try {
     const existingUser = await getUserByEmailInternal(email);
-    if (existingUser)
+    if (existingUser) {
       return res.status(409).json({ message: 'User already exists' });
+    }
 
-    // 1. Create user in internal database
+    // Step 1: Create user in internal database
     await createUserInternal({ name, email, password, role, unit });
 
-    // 2. If the role is student, add to students table
+    // Step 2: If role is student, enrich in students table
     if (role === 'student') {
+      // Ensure student-specific fields are present
+      if (!institution || !level || !course_of_study || !gender || !supervisor) {
+        return res.status(400).json({ message: 'Missing student-specific fields' });
+      }
+
       const newUser = await getUserByEmailInternal(email);
-      const hrUserId = req.user?.id || 1; // fallback if req.user not set
+      const hrUserId = req.user?.id || 1; // fallback HR ID
       const validDurations = [3, 6, 9, 12];
       const chosenDuration = Number(duration) || 6;
 
@@ -63,6 +70,7 @@ const register = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
 
 const login = async (req, res) => {
