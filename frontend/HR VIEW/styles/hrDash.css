@@ -1029,7 +1029,7 @@
     box-shadow: 0px 2px 10px 0px #00000029;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 2vw 2vh;
 }
 
@@ -1039,7 +1039,7 @@
     /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin-top: 1vh;
     background-color: #FFFFFF;
 }
@@ -1051,6 +1051,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
+    margin-top: 0.5vh;
 }
 
 .totesUnit{
@@ -1092,7 +1093,7 @@
     height: 195px;
     width: 100%;
     /* border: 1px solid red; */
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
