@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const level = document.getElementById('studentLevel').value;
     const course_of_study = document.getElementById('studentCourse').value;
     const duration = document.getElementById('studentDuration').value;
+    const interest = document.getElementById('studentInterest').value;
     const unit = document.getElementById('studentUnit').value;
     const email = document.getElementById('studentEmail').value;
     const password = document.getElementById('studentPassword').value;
@@ -103,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
           password,
           role,
           unit,
+          interest,
           duration,
           institution,
           level,
