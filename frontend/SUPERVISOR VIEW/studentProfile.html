@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles/studentProfile.css">
+
+    <!-- jQuery Library -->
+    <script src="./scripts/jQuery v3.7.1.js"></script>
+</head>
+
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <nav class="header">
+        <div class="logoContain">
+            <img src="./assets/24388.svg" alt="App Logo">
+        </div>
+    </nav>
+
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <section class="bodyContain">
+
+        <!-- ==== Page Heading Section ==== -->
+        <div class="heading">
+            <div class="headingContain">
+
+                <!-- Back Arrow Icon -->
+                <div class="backArrow">
+                    <img src="./assets/backVector.svg" alt="Go Back">
+                </div>
+
+                <!-- Heading Text -->
+                <div class="headTxt">
+                    Student Profile
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ===================== HERO SECTION ===================== -->
+        <div class="heroContain">
+
+            <!-- ==== Profile Picture and Name ==== -->
+            <div class="photoNname">
+
+                <!-- Profile Photo Box -->
+                <div class="profilePhoto">
+
+                    <!-- Student's Current Photo -->
+                    <div class="photoBox">
+                        <img src="./assets/johndoe.svg" alt="John Doe">
+                    </div>
+
+                    <!-- Upload Trigger -->
+                    <div class="uploadBox" id="uploadTrigger">
+                        <div class="imgBox">
+                            <img src="./assets/picVector.png" alt="Upload Icon">
+                        </div>
+                        <div class="txtBox">
+                            Click to change Image
+                        </div>
+                    </div>
+
+                    <!-- Hidden File Input for Image Upload -->
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+                </div>
+
+                <!-- Student Name & Interest -->
+                <div class="nameInterest">
+                    <div class="johnDoe">
+                        John Doe
+                    </div>
+                    <div class="Interest">
+                        UI/UX Design
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==== Bio Data Section ==== -->
+            <div class="bioData">
+                <div class="bioTitle">
+                    BIO
+                </div>
+                <div class="bioBody">
+                    My name is Lucy. I’m a 300 level Computer science student from the University of Uyo.
+                    My hobbies are coding, reading and exercising. My area of interest is Web development.
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ===================== INFORMATION SECTION ===================== -->
+        <div class="majorContainer">
+
+            <!-- ==== Internship Information Card ==== -->
+            <div class="personInfo">
+
+                <!-- Section Title -->
+                <div class="infoTitle">
+                    Internship Information
+                </div>
+
+                <!-- Row 1 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">Unit</div>
+                        <div class="infoData">IT</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">Area Of Interest</div>
+                        <div class="infoData">UI/UX Design</div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">Start Date</div>
+                        <div class="infoData">01/05/2025</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">End Date</div>
+                        <div class="infoData">01/11/2025</div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">Duration</div>
+                        <div class="infoData">6 Months</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">Supervisor</div>
+                        <div class="infoData">John Doe</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ==== Personal Information Card ==== -->
+            <div class="personInfo">
+
+                <!-- Section Title -->
+                <div class="infoTitle">
+                    Personal Information
+                </div>
+
+                <!-- Row 1 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">First Name</div>
+                        <div class="infoData">John</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">Last Name</div>
+                        <div class="infoData">Doe</div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">Contact</div>
+                        <div class="infoData">09123456789</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">Email Address</div>
+                        <div class="infoData">tranute@gmail.com</div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">Course Of Study</div>
+                        <div class="infoData">Computer Science</div>
+                    </div>
+
+                    <div class="halfInfo">
+                        <div class="infoLabel">Institution</div>
+                        <div class="infoData">Trevor High School</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="./scripts/studentProfile.js"></script>
+   
+</body>
+</html>
+
+

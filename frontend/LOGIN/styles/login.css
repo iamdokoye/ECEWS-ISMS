@@ -8,12 +8,11 @@
 
 @font-face {
     font-family: Nunito Sans;
-  /* src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf); */
-  src: url(/frontend/LOGIN/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf); 
-
+  src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
 }
 
-  
+
+ 
 html, body {
   height: 100%;
   margin: 0;
@@ -35,20 +34,20 @@ html, body {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 0vh 4vw 0vh 4vw;
-    
+    padding: 0.5rem 4rem 0.5rem 4rem;
+   
   }
 
 .headerLogo{
+    height: 10vh;
     width: 12%;
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
 .headerLogo img{
-    width: 100%;
+    height: 80%;
     display: flex;
 
   }
@@ -78,7 +77,6 @@ html, body {
     width: 100% ;
     padding-top: 12%;
     /* background-color: rgb(51, 241, 8); */
-    padding-left: 4vw;
   }  
 
   .text{
@@ -88,12 +86,13 @@ html, body {
     text-align: left;
     font-size: 48px;
     font-family: Nunito Sans;
+    font-weight: 600;
     /* background-color: rgb(241, 8, 128); */
-  } 
+  }
 
-  
-  
-  
+ 
+ 
+ 
   .pageImage{
     height: 70%;
     width: 100% ;
@@ -105,7 +104,7 @@ html, body {
     height: 100%;
     width: 100% ;
   }
-  
+ 
 
 
 
@@ -127,7 +126,7 @@ html, body {
     padding: 6vh 4vw 12vh 4vw;
     background-color: #ffffff;
     /* border: 1px solid red; */
-    
+   
   }
   .logHeader{
     height: 25%;
@@ -144,6 +143,7 @@ html, body {
     justify-self: center;
     text-align: center;
     font-size: 32px;
+    font-weight: 600;
     font-family: Nunito Sans;    
         /* border: 1px solid red; */
 
@@ -154,6 +154,7 @@ html, body {
     justify-self: center;
     text-align: center;
     font-size: 20px;
+    font-weight: 400;
     color: #848484;
     font-family: Nunito Sans;
     margin-top: 2%;    
@@ -167,7 +168,7 @@ html, body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    
+   
   }
 
 
@@ -176,6 +177,7 @@ html, body {
     justify-self: center;
     margin-top: 4%;
     font-size: 24px;
+    font-weight: 600;
     font-family: Nunito Sans;    
   }
 
@@ -184,8 +186,10 @@ html, body {
     margin-top: 2%;
     border: 1.6px solid #F5F5F5;
     border-radius: 4px;
+    font-style: Nunito Sans ;
+    font-size: 14px;
+    font-weight: 400;
     color: #848484;
-    font-family: Nunito Sans;    
   }
 
 
@@ -197,8 +201,9 @@ html, body {
   outline: none; /* Prevents outline on focus */
   border-radius: 4px;
   font-size: 14px;
-  color: #848484;
-  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  color: #282828;
+  font-family: Nunito Sans;
   background-color: transparent; /* Optional: keep background transparent */    
   }
 
@@ -212,6 +217,7 @@ html, body {
     justify-self: center;
     margin-top: 6%;
     font-size: 24px;
+    font-weight: 600;
     font-family: Nunito Sans;    
   }
 
@@ -220,9 +226,10 @@ html, body {
     border: 1.6px solid #F5F5F5;
     margin-top: 2%;
     border-radius: 4px;
+    font-style: Nunito Sans ;
     font-size: 14px;
-    color: #848484;
-    font-family: Nunito Sans;    
+    font-weight: 400;  
+    color: #848484;  
   }
 
 
@@ -234,7 +241,8 @@ html, body {
   outline: none; /* Prevents outline on focus */
   border-radius: 4px;
   font-size: 14px;
-  color: #848484;
+  font-weight: 400;
+  color: #282828;
   font-family: Nunito Sans;
   background-color: transparent; /* Optional: keep background transparent */    
   }
@@ -250,16 +258,19 @@ html, body {
   padding: 14px;
   margin-top: 6%;
   margin-bottom: 1rem;
-  background-color: #096D49; 
+  background-color: #096D49;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 20px;
   text-align: center;
   cursor: pointer;
-    
+  font-size: 20px;
+  font-weight: 600;
+  font-family: Nunito Sans;
+   
   }
 
 .lButton:hover {
-  background-color: #53a587; /* Color on hover */
+  background-color: #498e75; /* Color on hover */
 }
