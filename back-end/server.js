@@ -14,7 +14,7 @@
   app.use('/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/supervisor', supervisorRoutes)
-  app.use('/api', studentRoutes )
+  app.use('/api/students', studentRoutes )
 
   app.get('/', (req, res) => res.send('Server OK'));
 
