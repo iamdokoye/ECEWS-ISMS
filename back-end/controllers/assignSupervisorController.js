@@ -19,9 +19,9 @@ const getUnitsFromExternal = async (req, res) => {
 const getUsersByUnitExternal = async (req, res) => {
   const { unit } = req.params;
   try {
-    const result = await externalPool.query('SELECT id, first_name, last_name FROM staff_ancillary WHERE position = $1', [unit]);
+    const result = await externalPool.query('SELECT staff_id, first_name, last_name FROM staff_ancillary WHERE position = $1', [unit]);
     const users = result.rows.map(user => ({
-      id: user.id,
+      id: user.staff_id,
       name: `${user.first_name} ${user.last_name}`
     }));
     res.status(200).json(users);
@@ -41,7 +41,7 @@ const assignSupervisor = async (req, res) => {
 
   try {
     // Fetch from external DB
-    const extUser = await externalPool.query('SELECT first_name, last_name, email, password FROM staff_ancillary WHERE id = $1', [supervisorId]);
+    const extUser = await externalPool.query('SELECT first_name, last_name, email, password FROM staff_ancillary WHERE staff_id = $1', [supervisorId]);
     if (extUser.rows.length === 0) {
       return res.status(404).json({ message: 'User not found in external DB' });
     }
