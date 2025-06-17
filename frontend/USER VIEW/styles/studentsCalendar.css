@@ -1,0 +1,1014 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   -webkit-user-drag: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: Nunito Sans;
+  src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+}
+
+
+ 
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* Hides horizontal overflow */
+  width: 100%; /* Ensures content fits the screen width */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  box-sizing: border-box; /* Includes padding & border in width calculation */
+
+}
+
+
+
+.mainNav {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 2vh 6vw 2vh 6vw;
+   
+  }
+
+.headerLogo{
+    width: 12%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.headerLogo img{
+    width: 100%;
+    display: flex;
+
+  }
+
+
+
+
+.profile{
+  height: 2rem;
+  width: auto;
+  display: flex;
+ 
+  }
+
+.pText{
+  height: 1.2rem;
+  width: 60%;
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 700;
+  align-self: center;
+  }
+
+  .pImg{
+  height: 100%;
+  width: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.6rem;
+  margin-right: 0.8rem;
+  /* background-color: #047c34; */
+  }
+
+  .pImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+  .pIcon{
+  height: auto;
+  width: auto;
+  align-self: center;
+  cursor: pointer;  
+  }
+
+  .pIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER *//* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER *//* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
+.dropDownMenu {
+    height: 6.5rem;
+    width: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    border-radius: 0.4rem 0.4rem 0 0;
+    background-color: #FFFFFF;
+    top: 4rem;
+    right: 5rem;
+    box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.16);
+  }
+
+.profileDrop {
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 400;
+    border-radius: 0.4rem 0.4rem 0 0;
+  }
+
+.profileDrop:hover{
+    background-color: #F3F3F3;
+  }
+
+
+
+  .signDrop {
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 400;
+  }
+
+.signDrop:hover{
+    background-color: #F3F3F3;
+  }
+
+
+
+
+
+
+.mainContainer {
+    height: auto; /* Restrict body height to viewport */
+    width: 100%;
+    padding: 0vh 6vw 0vh 6vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #F9F9F9;
+}
+
+
+.topSection {
+    height: 20vh; /* Restrict body height to viewport */
+    width: 100%;
+    display: flex;
+    padding-top: 4%;
+    padding-bottom: 1.5%;
+}
+
+  .ItHeader{
+    height: 70%;
+    width: 90% ;
+    justify-self: center;
+    font-size: 36px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+  }
+
+
+
+.viewLogContainer {
+    height: 7vh;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.addLogBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 2.6rem;
+  background-color: #0b6b46;
+  color: white;
+  padding: 0rem 1.4rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+.button-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+
+.addLogBtn:hover{
+    background-color: #6BA792;
+}
+
+
+
+
+
+
+
+
+
+
+.bodySection {
+    height: auto; /* Restrict body height to viewport */
+    width: 100%;
+    display: flex;
+}
+
+
+.calendarSec {
+    height: auto; /* Restrict body height to viewport */
+    width: 55%;
+    display: flex;
+    padding: 0rem 1rem 0rem 0rem;
+}
+
+
+.logSec {
+    height: auto; /* Restrict body height to viewport */
+    width: 45%;
+    display: flex;
+}
+
+
+
+
+
+
+.calendar {
+  border: 1px solid #eee;
+ 
+}
+
+
+.calendar-header button {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 0.20rem;
+  cursor: pointer;
+}
+
+.month-year-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+ 
+}
+
+#month-label {
+  min-width: 5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+#year {
+  width: 10rem; /* Increase this value as needed */
+  height: 2.5rem;
+  padding: 0rem 0rem 0rem 3.5rem;
+  font-size: 1rem;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 0.20rem;
+}
+
+
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #f5f5f5;
+  flex-wrap: wrap;
+}
+
+
+.calendar-header button {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 0.20rem;
+}
+
+.button-today {
+  height: 2.5rem;
+  width: 9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between text and icon */
+  border: 1px solid #000;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+.icon-img {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
+.button-today:hover {
+  background-color: #f9f9f9;
+}
+
+
+.today {
+  background-color: #0d9a5d; /* Bootstrap-style green */
+  color: white;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  font-weight: 800;
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-weight: 500;
+  gap: 0.5rem;
+
+  width: 13rem; /* Increase this value as needed */
+  height: 2.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.20rem;
+
+  font-size: 20px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+  /* background-color: #e90909; */
+}
+
+.month-selector span {
+  font-size: 1rem;
+}
+
+
+.month-selector button {
+  outline: none;
+  border: none; /* already applied if you removed borders */
+  background: transparent;
+}
+
+.month-selector button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+.year-selector {
+  position: relative;
+  display: inline-block;
+  width: 10rem; /* Adjust width as needed */
+}
+
+#year {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 0.4rem 1.5rem 0.4rem 0.5rem; /* space for icon */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.20rem;
+  background-color: white;
+  padding-left: 3rem;
+  cursor: pointer;
+  font-size: 36px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+.year-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 10rem;
+  margin-right: 1rem;
+  pointer-events: none; /* allow clicks to pass through */
+}
+
+#year:focus {
+  outline: none;
+  /* box-shadow: none; */
+  border-color: none; /* Optional: keeps border consistent */
+}
+
+
+.custom-year-selector {
+  position: relative;
+  width: 6rem;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 10rem;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+.selected-year {
+  height: 2.5rem;
+  padding: 0.45rem 3rem;
+  border: 1px solid #ccc;
+  border-radius: 0.20rem;
+  background-color: white;
+}
+
+.year-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: white;
+  z-index: 10;
+}
+
+.year-options li {
+  padding: 0.4rem 1rem;
+  list-style: none;
+}
+
+.year-options li:hover {
+  background-color: #e6f4ea; /* light green on hover */
+}
+
+.year-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: 1.1rem;
+  height: 10rem;
+  margin-right: 1rem;
+  pointer-events: none; /* allow clicks to pass through */
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+
+table {
+  width: 100%;
+  table-layout: fixed; /* Ensures equal cell widths */
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Nunito Sans;
+}
+
+th {
+  background: #eaeaea;
+  font-weight: bold;
+  padding: 1.25rem 0;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid #eaeaea; /* Match td border */
+}
+
+td {
+  position: relative;
+  width: 100%;
+  border: 1px solid #f5f5f5;
+  background: #fff;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center; /* Horizontal centering fallback */
+  transition: background-color 0.3s, color 0.3s;
+ 
+}
+
+td::before {
+  content: "";
+  display: block;
+  padding-top: 90%; /* Controls height */
+}
+
+td > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+}
+
+td:hover {
+  background-color: #F3F3F3;; /* Dark gray */
+  cursor: pointer; /* Optional: shows it's interactive */
+}
+
+/* Previous/next month day styles */
+.prev-month,
+.next-month {
+  color: #aaa;
+  background-color: #f8f8f8;
+}
+
+
+
+
+
+
+.log-container {
+  width: 100%;
+  margin-left: 2.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  font-family: Nunito Sans;
+}
+
+.log-header {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#log-date {
+  color: #222;
+}
+
+
+
+.log-body {
+  height: 80%; /* Or whatever space you want the log to fill */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.empty-log-message {
+  color: #9A9A9A;
+  font-size: 20px;
+  font-weight: 400;
+   
+}
+
+
+
+
+
+.footerSec {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;   /* Push content to the right */
+    align-items: center;         /* Optional: vertically center the button */
+    padding-bottom: 1.5%;
+}
+
+.submit-button {
+  height: 2.8rem;
+  background-color: #0b6b46;
+  color: white;
+  font-size: 16px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+.submit-button:hover {
+  background-color: #669784;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Backdrop Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.686); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Show Overlay */
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Feedback Form */
+ .feedbackForm {
+  display: flex;
+  flex-direction: column;
+  top: -4rem;
+  background: #F3F3F3;
+  padding: 1.5rem 2rem 2rem 2rem;
+  width: 70%;
+  /* max-width: 600px;  */
+  height: 75%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.6s ease, opacity 0.6s ease; /* Smooth animation */
+  transform: translateY(100%); /*Start hidden at the bottom */
+  position: relative; /* Ensure position context */
+ 
+}
+
+.feedbackHeading {
+  font-family: Nunito Sans;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+
+
+/* Slide in the form */
+.overlay.show .feedbackForm {
+  transform: translateY(3vw);
+}
+
+/* Close Button */
+.closeBtn {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
+
+
+.signature-container {
+  height: 75%;
+  width: 100%;
+  justify-self: center;
+  background-color: white;
+  margin-top: 1.5rem;
+}
+
+#signatureText {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 0.8rem 1rem 1.71rem 1rem;
+  font-size: 16px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+  line-height: 2.5rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff,
+    #fff 39px,
+    #eaeaea 40px
+  );
+  box-shadow: 0 0 0 1px #eee;
+  /* border-radius: 2px; */
+}
+
+
+
+.feedbackForm button:hover {
+  background-color: #669784;
+}
+
+
+
+
+/* Container for both buttons */
+.signature-buttons {
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+}
+
+
+.infoBox {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  padding: 1rem;
+  font-size: 16px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
+
+/* Container for both buttons */
+.buttonDiv {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+
+
+
+/* Save (solid button) */
+#sendFeedback {
+  height: 90%;
+  background-color: #0a6640;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Nunito Sans;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#sendFeedback:hover {
+  background-color: #669784;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === COMMON OVERLAY === */
+.overlay2, .overlay3, .overlay4, .overlay5 {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 9999;
+}
+
+/* Show states */
+.overlay2.show2, .overlay3.show3,
+.overlay4.show4, .overlay5.show5 {
+  opacity: 1; visibility: visible;
+}
+
+/* === DIALOGUE 2 & 4 SHARED STYLES === */
+.feedbackForm2 {
+  background: #fff;
+  border-radius: 0.3rem;
+  padding: 1rem 0rem;
+  height: 11rem;
+  width: 25rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  position: relative;
+  font-family: 'Satoshi-Regular', sans-serif;
+}
+.overlay2.show2 .feedbackForm2,
+.overlay4.show4 .feedbackForm2 {
+  transform: translateY(0);
+}
+
+/* Close Button (shared) */
+.closeBtn2 {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.closeBtn2 img {
+  height: auto;
+  width: auto;
+}
+
+/* Heading */
+.feedbackHeading2 {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 0 1rem;
+  padding-bottom: 0.5rem;
+}
+.feedbackHeading2::after {
+  content: '';
+  display: block;
+  height: 0.06vw;
+  background: #bdbcbcde;
+  margin-top: 0.5rem;
+  margin-left: -1rem;
+}
+
+/* Confirm Message */
+.confirmMessage {
+  font-family: Nunito Sans;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0.5rem 0rem 3rem 1rem;
+  color: #000000;
+}
+
+/* Confirm Action Buttons */
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin: 0rem 0.8rem;
+}
+.cancelBtn {
+  background: none;
+  border: none;
+  color: #096D49;
+  cursor: pointer;
+  font-family: Nunito Sans;
+  font-size: 14px;
+  font-weight: 600;
+}
+.proceedBtn {
+  background-color: #096D49;
+  border: none;
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 4px;
+  font-family: Nunito Sans;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.proceedBtn:hover {
+  background-color: #488d73;
+}
+
+/* === DIALOGUE 3 & 5 SHARED STYLES === */
+.feedbackForm3 {
+  background: white;
+  padding: 0.6rem 0rem 1rem 0rem;
+  border-radius: 0.4rem;
+  width: 25rem;
+  height: 13.6rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.6s ease;
+  position: relative;
+}
+
+.overlay3.show3 .feedbackForm3 {
+  transform: translateY(3vw);
+}
+
+.overlay5.show5 .feedbackForm3 {
+  transform: translateY(3vw); /* Slide it up like overlay3 */
+}
+
+.feedbackHeading3 {
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0rem 0rem 0rem 1rem;
+  padding-bottom: 0.5rem;
+}
+
+
+.feedbackHeading3::after {
+  content: '';
+  display:block;
+  width: auto;
+  height: 0.06vw;
+  background: #bdbcbceb; /* Line color */
+  margin-top: 0.5rem;
+  margin-left: -1rem;
+  margin-right: 0rem;
+  justify-content: center;
+  justify-items: center;
+}
+
+.checkmarkIcon {
+  margin: 0.8rem 0rem 1.3rem 0rem;
+  justify-self: center;
+}
+
+.checkmarkIcon img{
+  height: auto;
+  width: auto;
+}
+
+.successMessage {
+  font-size: 14px;
+  color: #111;
+  margin-bottom: 1.2rem;
+  justify-self: center;
+  font-family: Nunito Sans;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.okayBtn {
+  background-color: #166534; /* Tailwind's green-800 */
+  color: white;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  border-radius: 0.25rem;
+  font-family: Nunito Sans;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0rem 0.8rem 0rem 0rem;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-self: right;
+  transition: background-color 0.3s ease;
+}
+
+.okayBtn:hover {
+  background-color: #488d73;
+}
+
+
