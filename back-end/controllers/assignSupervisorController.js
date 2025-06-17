@@ -6,8 +6,8 @@ const externalPool = require('../db/externalDB');
 // 1. Fetch distinct unit names from external DB
 const getUnitsFromExternal = async (req, res) => {
   try {
-    const result = await externalPool.query('SELECT DISTINCT position FROM staff_ancillary WHERE unit IS NOT NULL');
-    const units = result.rows.map(row => row.unit);
+    const result = await externalPool.query('SELECT DISTINCT position FROM staff_ancillary WHERE position IS NOT NULL');
+    const units = result.rows.map(row => row.position);
     res.status(200).json(units);
   } catch (err) {
     console.error('Error fetching units from external DB:', err);
