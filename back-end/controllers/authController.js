@@ -18,6 +18,7 @@ const register = async (req, res) => {
     level,
     course_of_study,
     gender,
+    interest,
     supervisor
   } = req.body;
 
@@ -57,8 +58,10 @@ const register = async (req, res) => {
         added_by_hr: hrUserId,
         supervisor_id: supervisor,
         duration: chosenDuration,
+        name,
         institution,
         level,
+        interest,
         course_of_study,
         gender
       });
@@ -72,7 +75,7 @@ const register = async (req, res) => {
 };
 
 
-
+// Login
 const login = async (req, res) => {
   const { email, password } = req.body;
 

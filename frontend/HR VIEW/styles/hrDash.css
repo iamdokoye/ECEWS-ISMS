@@ -1212,13 +1212,15 @@
 }
 
 .studentsList{
-    height: 45px;
     width: 100%;
-    /* border: 1px solid red; */
     display: flex;
-    padding: 0vh 1vh;
+    flex-direction: column; /* stack students vertically */
     gap: 1vh;
+    padding: 0vh 1vh;
     background-color: #FFFFFF;
+    max-height: 100%; /* Optional: controls scroll if needed */
+    overflow-y: auto; /* Optional: adds scroll if content overflows */
+    /* height: 45px; */
 }
 
 .studPhoto{

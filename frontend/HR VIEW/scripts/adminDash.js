@@ -66,18 +66,25 @@ window.onload = async () => {
         // Populate Student Section
         const studentContainer = document.getElementById('studentList');
         studentContainer.innerHTML = '';
+
         data.students.forEach(student => {
+            // Create container div
             const studentDiv = document.createElement('div');
             studentDiv.classList.add('student');
 
+            // Name
             const nameDiv = document.createElement('div');
             nameDiv.classList.add('studentName');
-            nameDiv.textContent = student.name;
+            nameDiv.textContent = student.name || 'Unnamed';
 
+            // Interest + Unit
             const interestDiv = document.createElement('div');
             interestDiv.classList.add('studentInterest');
-            interestDiv.textContent = `${student.interest || 'Not specified'}, ${student.unit}`;
+            const interest = student.interest || 'Not specified';
+            const unit = student.unit || 'Unknown';
+            interestDiv.textContent = `${interest}, ${unit}`;
 
+            // Append to wrapper
             studentDiv.appendChild(nameDiv);
             studentDiv.appendChild(interestDiv);
             studentContainer.appendChild(studentDiv);
