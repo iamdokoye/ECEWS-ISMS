@@ -43,13 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const level = document.getElementById('studentLevel').value;
     const course_of_study = document.getElementById('studentCourse').value;
     const duration = document.getElementById('studentDuration').value;
-    const interest = document.getElementById('studentInterest').value;
     const unit = document.getElementById('studentUnit').value;
     const email = document.getElementById('studentEmail').value;
     const password = document.getElementById('studentPassword').value;
     const confirmPassword = document.getElementById('studentConfirmPassword').value;
+    const interest = document.getElementById('studentInterest')?.value || 'unspecified';
     const role = 'student';
-    const gender = 'unspecified'; // add input field if needed
+    const gender = 'unspecified';
+    const added_by_hr = localStorage.getItem('hrId');
 
     if (password !== confirmPassword) {
       alert('Passwords do not match');
@@ -59,22 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('http://localhost:5000/auth/register', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
           email,
           password,
           role,
           unit,
-          interest,
           duration,
           institution,
           level,
+          interest,
           course_of_study,
+          gender,
           supervisor: supervisorId,
-          gender
+          added_by_hr
         })
       });
 

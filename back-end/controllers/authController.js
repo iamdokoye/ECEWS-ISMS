@@ -43,7 +43,7 @@ const register = async (req, res) => {
       }
 
       const newUser = await getUserByEmailInternal(email);
-      const hrUserId = req.user?.id; // fallback HR ID
+      const hrUserId = req.body.added_by_hr || req.user?.id;
       const validDurations = [3, 6, 9, 12];
       const chosenDuration = Number(duration) || 6;
 

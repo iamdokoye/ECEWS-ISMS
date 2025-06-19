@@ -14,6 +14,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         console.log(response.data);
         if (response.status === 200) {
             const userData = response.data;
+            if (role === 'admin') {
+                localStorage.setItem('hrId', user.id);
+            }
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':

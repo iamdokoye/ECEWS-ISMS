@@ -64,7 +64,7 @@ window.onload = async () => {
         });
 
         // Populate Student Section
-        const studentContainer = document.getElementById('studentList');
+        const studentContainer = document.getElementById('lessBody');
         studentContainer.innerHTML = '';
 
         data.students.forEach(student => {
