@@ -1217,10 +1217,12 @@
     width: 100%;
     display: flex;
     gap: 1vh;
-    padding: 0vh 1vh;
+    /* padding: 0vh 1vh; */
     background-color: #FFFFFF;
     /* border: 1px solid red; */
     margin-top: 1vh;
+    font-family: Nunito Sans;
+    font-size: 16px;
 }
 
 .studPhoto{
