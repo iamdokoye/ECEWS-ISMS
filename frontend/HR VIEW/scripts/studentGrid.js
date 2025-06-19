@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.values(sections).forEach(container => container.innerHTML = '');
 
             students.forEach(student => {
+                console.log('Loaded student:', student);
                 const card = document.createElement('div');
                 card.className = 'studentsCard';
+                card.classList.add('studentsCard');
+                card.dataset.studentId = student.student_id;
 
                 card.innerHTML = `
           <div class="cardHead">
@@ -60,13 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
                 card.addEventListener('click', () => {
-                    window.location.href = `hrstudentProfile.html?id=${student.student_id}`;
+                    const id = card.dataset.student_id;
+                    window.location.href = `hrstudentProfile.html?id=${id}`;
                 });
 
                 sections.all.appendChild(card);
                 if (student.it_status === 'active') sections.present.appendChild(card.cloneNode(true));
                 else if (student.it_status === 'past') sections.past.appendChild(card.cloneNode(true));
-            });
+
+            });             
 
         })
         .catch(err => {

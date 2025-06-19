@@ -1,41 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   const unitInput = document.querySelector('#studentUnit');
-//   const unitDropdown = document.getElementById('unitDrop');
-//   const supervisorInput = document.getElementById('studentSupervisor');
-
-//   // Load units from backend
-//   fetch('http://localhost:5000/api/students/units')
-//     .then(res => res.json())
-//     .then(units => {
-//       unitDropdown.innerHTML = '';
-//       units.forEach(unit => {
-//         const div = document.createElement('div');
-//         div.classList.add('unitLIst');
-//         div.textContent = unit;
-//         div.addEventListener('click', () => {
-//           unitInput.value = unit;
-//           unitDropdown.classList.remove('show');
-//           fetch(`http://localhost:5000/api/students/supervisor/${encodeURIComponent(unit)}`)
-//             .then(res => res.json())
-//             .then(data => {
-//               supervisorInput.value = data.name || 'N/A';
-//             })
-//             .catch(err => {
-//               console.error('Failed to fetch supervisor:', err);
-//               supervisorInput.value = 'Not Found';
-//             });
-//         });
-//         unitDropdown.appendChild(div);
-//       });
-//     })
-//     .catch(err => console.error('Failed to fetch units:', err));
-
-//   document.getElementById('unitDisplay').addEventListener('click', () => {
-//     unitDropdown.classList.toggle('show');
-//   });
-// });
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const unitInput = document.querySelector('#studentUnit');
   const unitDropdown = document.getElementById('unitDrop');
@@ -97,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('http://localhost:5000/auth/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           name,
           email,
