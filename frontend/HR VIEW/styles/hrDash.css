@@ -225,13 +225,14 @@
     background-color: #FFFFFF;
 }
 
-.levelContain{
+.levelContain {
     height: 100%;
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #FFFFFF;
 }
 
 .NameFieldContain2 {
@@ -280,7 +281,7 @@
     background-color: #FFFFFF;
 }
 
-.checkBoxContain{
+.genderGroup {
     height: 48px;
     width: 29%;
     border: 1px solid #F5F5F5;
@@ -289,26 +290,53 @@
     align-items: center;
     background-color: #FFFFFF;
     margin-top: 1vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    gap: 1.5vh;
 }
 
-.maleCheck{
-    height: 80%;
-    width: 45%;
-    border: 1px solid black;
-    background-color: #FFFFFF;
-    margin-left: 1vh;
-    align-items: center;
+.customRadio {
+    position: relative;
     display: flex;
-    gap: 1vh;
+    align-items: center;
     font-family: Nunito Sans;
     font-size: 16px;
-    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    background-color: #FFFFFF;
 }
 
-#checkbox{
-    height: 100%;
+.customRadio input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.radioCircle {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #096D49;
+    /* Green border */
     border-radius: 50%;
-    text-decoration: none;
+    margin-right: 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radioCircle::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #096D49;
+    /* Green inner dot */
+    border-radius: 50%;
+    display: none;
+}
+
+.customRadio input[type="radio"]:checked+.radioCircle::after {
+    display: block;
 }
 
 .caretdown {
