@@ -84,7 +84,10 @@ const login = async (req, res) => {
     const userInternal = await getUserByEmailInternal(email);
     if (userInternal) {
       if (userInternal.password === password) {
-        return res.status(200).json({ ...userInternal, message: 'Login successful (internal)' });
+        return res.status(200).json({
+          message: 'Login successful (internal)',
+          user: userInternal
+        });
       } else {
         return res.status(401).json({ message: 'Invalid password' });
       }
@@ -93,7 +96,12 @@ const login = async (req, res) => {
     // Now we're in external zone
     const userExternal = await getUserByEmailExternal(email);
     if (userExternal && userExternal.password === password) {
-      return res.status(200).json({ ...userExternal, message: 'Login successful (external)' });
+      // Assign default role if missing
+      const role = userExternal.role || 'staff';
+      return res.status(200).json({
+        message: 'Login successful (external)',
+        user: { ...userExternal, role }
+      });
     } else {
       return res.status(404).json({ message: 'User not found or password incorrect in external DB' });
     }
