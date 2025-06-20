@@ -1,4 +1,3 @@
-// BACKEND: studentUnitController.js
 const pool = require('../db/internalDB');
 
 const getUnits = async (req, res) => {

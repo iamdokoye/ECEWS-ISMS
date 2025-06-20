@@ -3,8 +3,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
-    const { id } = response.data.user;
-    localStorage.setItem('userId', id);
+    
 
     try {
         const response = await axios.post("http://localhost:5000/auth/login", {
@@ -13,7 +12,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         });
         console.log(response.data);
         if (response.status === 200) {
-            const userData = response.data;
+            const userData = response.data.user;
+            localStorage.setItem('userId', userData.id);
+            localStorage.setItem('hrUser', JSON.stringify(user)); // Store the user id in local storage
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':

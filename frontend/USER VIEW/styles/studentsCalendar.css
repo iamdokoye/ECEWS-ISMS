@@ -563,8 +563,8 @@ td:hover {
 /* Previous/next month day styles */
 .prev-month,
 .next-month {
-  color: #aaa;
-  background-color: #f8f8f8;
+  color: #848484ad;
+  background-color: #fff;
 }
 
 
