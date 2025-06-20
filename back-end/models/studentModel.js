@@ -1,11 +1,35 @@
 const internalDb = require('../db/internalDB');
 
+
+
 // Create a new student record (called after HR adds a student user)
-const addStudent = async ({ student_id, supervisor_id = null, added_by_hr, duration = 6 }) => {
+
+const addStudent = async ({ 
+  student_id,
+  supervisor_id,
+  duration,
+  name,
+  institution,
+  level,
+  interest,
+  course_of_study,
+  gender
+
+ }) => {
   const result = await internalDb.query(
-    `INSERT INTO students (student_id, supervisor_id, added_by_hr, duration)
-     VALUES ($1, $2, $3, $4) RETURNING *`,
-    [student_id, supervisor_id, added_by_hr, duration]
+    `
+    INSERT INTO students (
+    student_id,
+    supervisor_id,
+    duration,
+    name,
+    institution,
+    level,
+    interest,
+    course_of_study,
+    gender
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+    [student_id, supervisor_id, duration, name, institution, level, interest, course_of_study, gender]
   );
   return result.rows[0];
 };
@@ -20,6 +44,11 @@ const getAllStudents = async () => {
       s.duration,
       s.it_status,
       s.created_at,
+      s.institution
+      s.level,
+      s.interest,
+      s.course_of_study
+      s.gender,
       sup.name AS supervisor_name,
       sup.email AS supervisor_email
     FROM students s

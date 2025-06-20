@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
           course_of_study,
           gender,
           supervisor: supervisorId,
-          added_by_hr
         })
       });
 

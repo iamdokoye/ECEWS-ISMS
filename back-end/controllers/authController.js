@@ -43,7 +43,6 @@ const register = async (req, res) => {
       }
 
       const newUser = await getUserByEmailInternal(email);
-      const hrUserId = req.body.added_by_hr || req.user?.id;
       const validDurations = [3, 6, 9, 12];
       const chosenDuration = Number(duration) || 6;
 
@@ -55,7 +54,6 @@ const register = async (req, res) => {
 
       await addStudent({
         student_id: newUser.id,
-        added_by_hr: hrUserId,
         supervisor_id: supervisor,
         duration: chosenDuration,
         name,
