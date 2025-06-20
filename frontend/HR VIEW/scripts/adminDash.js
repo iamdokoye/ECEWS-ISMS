@@ -65,30 +65,31 @@ window.onload = async () => {
 
         // Populate Student Section
         const studentContainer = document.getElementById('lessBody');
-        studentContainer.innerHTML = '';
+studentContainer.innerHTML = '';
 
-        data.students.forEach(student => {
-            // Create container div
-            const studentDiv = document.createElement('div');
-            studentDiv.classList.add('student');
+data.students.forEach(student => {
+    const studentsList = document.createElement('div');
+    studentsList.classList.add('studentsList');
 
-            // Name
-            const nameDiv = document.createElement('div');
-            nameDiv.classList.add('studentName');
-            nameDiv.textContent = student.name || 'Unnamed';
+    const nameUnitContain = document.createElement('div');
+    nameUnitContain.classList.add('nameUnitContain');
 
-            // Interest + Unit
-            const interestDiv = document.createElement('div');
-            interestDiv.classList.add('studentInterest');
-            const interest = student.interest || 'Not specified';
-            const unit = student.unit || 'Unknown';
-            interestDiv.textContent = `${interest}, ${unit}`;
+    const nameBox = document.createElement('div');
+    nameBox.classList.add('nameBox');
+    nameBox.textContent = student.name || 'Unnamed';
 
-            // Append to wrapper
-            studentDiv.appendChild(nameDiv);
-            studentDiv.appendChild(interestDiv);
-            studentContainer.appendChild(studentDiv);
-        });
+    const unitBox = document.createElement('div');
+    unitBox.classList.add('unitBox');
+    const interest = student.interest || 'Not specified';
+    const unit = student.unit || 'Unknown';
+    unitBox.textContent = `${interest}, ${unit}`;
+
+    nameUnitContain.appendChild(nameBox);
+    nameUnitContain.appendChild(unitBox);
+
+    studentsList.appendChild(nameUnitContain);
+    studentContainer.appendChild(studentsList);
+});
 
     } catch (error) {
         console.error('Error loading admin dashboard:', error);
