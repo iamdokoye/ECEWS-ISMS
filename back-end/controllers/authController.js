@@ -18,6 +18,7 @@ const register = async (req, res) => {
     level,
     course_of_study,
     gender,
+    interest,
     supervisor
   } = req.body;
 
@@ -42,7 +43,6 @@ const register = async (req, res) => {
       }
 
       const newUser = await getUserByEmailInternal(email);
-      const hrUserId = req.user?.id || 1; // fallback HR ID
       const validDurations = [3, 6, 9, 12];
       const chosenDuration = Number(duration) || 6;
 
@@ -54,11 +54,12 @@ const register = async (req, res) => {
 
       await addStudent({
         student_id: newUser.id,
-        added_by_hr: hrUserId,
         supervisor_id: supervisor,
         duration: chosenDuration,
+        name,
         institution,
         level,
+        interest,
         course_of_study,
         gender
       });
@@ -72,7 +73,7 @@ const register = async (req, res) => {
 };
 
 
-
+// Login
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -83,7 +84,7 @@ const login = async (req, res) => {
     const userInternal = await getUserByEmailInternal(email);
     if (userInternal) {
       if (userInternal.password === password) {
-        return res.status(200).json({ message: 'Login successful (internal)', user: userInternal });
+        return res.status(200).json({ ...userInternal, message: 'Login successful (internal)' });
       } else {
         return res.status(401).json({ message: 'Invalid password' });
       }
@@ -92,7 +93,7 @@ const login = async (req, res) => {
     // Now we're in external zone
     const userExternal = await getUserByEmailExternal(email);
     if (userExternal && userExternal.password === password) {
-      return res.status(200).json({ message: 'Login successful (external)', user: userExternal });
+      return res.status(200).json({ ...userExternal, message: 'Login successful (external)' });
     } else {
       return res.status(404).json({ message: 'User not found or password incorrect in external DB' });
     }

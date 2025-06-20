@@ -22,21 +22,22 @@ const getDashboardStats = async (req, res) => {
             count: parseInt(row.count, 10)
         }));
 
-        const maleResult = await pool.query("SELECT COUNT(*) FROM users WHERE role = 'student' AND gender = 'male'");
-        const femaleResult = await pool.query("SELECT COUNT(*) FROM users WHERE role = 'student' AND gender = 'female'");
+        const maleResult = await pool.query("SELECT COUNT(*) FROM students WHERE gender = 'male'");
+        const femaleResult = await pool.query("SELECT COUNT(*) FROM students WHERE gender = 'female'");
 
         const activeResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'active'");
         const pastResult = await pool.query("SELECT COUNT(*) FROM students WHERE it_status = 'past'");
 
         const studentListResult = await pool.query(`
-            SELECT name, unit, gender
-            FROM users
-            WHERE role = 'student'
+            SELECT u.name, u.unit, s.interest 
+            FROM users u JOIN students s 
+            ON u.id = s.student_id 
+            WHERE u.role = 'student'
             LIMIT 6
         `);
 
         const supervisorListResult = await pool.query(`
-            SELECT name, unit, photo
+            SELECT name, unit
             FROM users
             WHERE role = 'supervisor'
             LIMIT 6

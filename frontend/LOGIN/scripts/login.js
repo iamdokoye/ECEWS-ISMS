@@ -3,6 +3,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
+    
 
     try {
         const response = await axios.post("http://localhost:5000/auth/login", {
@@ -11,19 +12,21 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         });
         console.log(response.data);
         if (response.status === 200) {
-            const userData = response.data;
+            const userData = response.data.user;
+            localStorage.setItem('userId', userData.id);
+            localStorage.setItem('hrUser', JSON.stringify(user)); // Store the user id in local storage
 
-            switch (userData.role) {
-                case 'Student':
+            switch (userData.role?.toLowerCase()) {
+                case 'student':
                     window.location.href = "dashboard.html";
                     break;
-                case 'Supervisor':
+                case 'supervisor':
                     window.location.href = "../Supervisor VIEW/homeListView.html";
                     break;
-                case 'Admin':
+                case 'admin':
                     window.location.href = "../HR VIEW/hrDash.html";
                     break;
-                case 'Staff':
+                case 'staff':
                     window.location.href = "../Staff VIEW/homeGrid.html";
                     break;
                 default:

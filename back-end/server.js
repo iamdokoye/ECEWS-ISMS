@@ -6,6 +6,7 @@
   const adminRoutes = require('./routes/adminRoutes');
   const supervisorRoutes = require('./routes/assignSupervisorRoutes')
   const studentRoutes = require('./routes/studentUnitRoutes')
+  const studentViewRoutes = require('./routes/studentViewRoutes')
 
   const app = express();
   app.use(cors());
@@ -15,6 +16,7 @@
   app.use('/api/admin', adminRoutes);
   app.use('/api/supervisor', supervisorRoutes)
   app.use('/api/students', studentRoutes )
+  app.use('/api/students', studentViewRoutes)
 
   app.get('/', (req, res) => res.send('Server OK'));
 

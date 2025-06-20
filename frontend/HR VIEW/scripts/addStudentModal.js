@@ -1,41 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   const unitInput = document.querySelector('#studentUnit');
-//   const unitDropdown = document.getElementById('unitDrop');
-//   const supervisorInput = document.getElementById('studentSupervisor');
-
-//   // Load units from backend
-//   fetch('http://localhost:5000/api/students/units')
-//     .then(res => res.json())
-//     .then(units => {
-//       unitDropdown.innerHTML = '';
-//       units.forEach(unit => {
-//         const div = document.createElement('div');
-//         div.classList.add('unitLIst');
-//         div.textContent = unit;
-//         div.addEventListener('click', () => {
-//           unitInput.value = unit;
-//           unitDropdown.classList.remove('show');
-//           fetch(`http://localhost:5000/api/students/supervisor/${encodeURIComponent(unit)}`)
-//             .then(res => res.json())
-//             .then(data => {
-//               supervisorInput.value = data.name || 'N/A';
-//             })
-//             .catch(err => {
-//               console.error('Failed to fetch supervisor:', err);
-//               supervisorInput.value = 'Not Found';
-//             });
-//         });
-//         unitDropdown.appendChild(div);
-//       });
-//     })
-//     .catch(err => console.error('Failed to fetch units:', err));
-
-//   document.getElementById('unitDisplay').addEventListener('click', () => {
-//     unitDropdown.classList.toggle('show');
-//   });
-// });
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const unitInput = document.querySelector('#studentUnit');
   const unitDropdown = document.getElementById('unitDrop');
@@ -81,13 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const level = document.getElementById('studentLevel').value;
     const course_of_study = document.getElementById('studentCourse').value;
     const duration = document.getElementById('studentDuration').value;
-    const interest = document.getElementById('studentInterest').value;
     const unit = document.getElementById('studentUnit').value;
     const email = document.getElementById('studentEmail').value;
     const password = document.getElementById('studentPassword').value;
     const confirmPassword = document.getElementById('studentConfirmPassword').value;
+    const interest = document.getElementById('studentInterest')?.value || 'unspecified';
     const role = 'student';
-    const gender = 'unspecified'; // add input field if needed
+    const gender = 'unspecified';
+    const added_by_hr = localStorage.getItem('hrId');
 
     if (password !== confirmPassword) {
       alert('Passwords do not match');
@@ -104,13 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
           password,
           role,
           unit,
-          interest,
           duration,
           institution,
           level,
+          interest,
           course_of_study,
+          gender,
           supervisor: supervisorId,
-          gender
         })
       });
 

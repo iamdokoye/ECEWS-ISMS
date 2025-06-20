@@ -63,7 +63,7 @@
     user-select: none;
 }
 
-.addBtnContain{
+.addBtnContain {
     height: 40px;
     width: 26%;
     /* border: 1px solid blueviolet; */
@@ -71,7 +71,7 @@
     justify-content: space-between;
 }
 
-.addStudent{
+.addStudent {
     height: 100%;
     width: 43%;
     background-color: #096D49;
@@ -87,7 +87,7 @@
     cursor: pointer;
 }
 
-.assignSuper{
+.assignSuper {
     height: 100%;
     width: 51%;
     border: 1px solid #096D49;
@@ -225,7 +225,7 @@
     background-color: #FFFFFF;
 }
 
-.caretdown{
+.caretdown {
     height: 100%;
     width: 16%;
     /* border: 1px solid brown; */
@@ -236,14 +236,14 @@
     background-color: #FFFFFF;
 }
 
-.caretdown img{
+.caretdown img {
     -webkit-user-drag: none;
     background-color: #FFFFFF;
 }
 
 /* ------unit dropdown----- */
 
-.unitDrop{
+.unitDrop {
     height: 225px;
     width: 100%;
     background-color: #FFFFFF;
@@ -258,7 +258,7 @@
     align-items: center;
 }
 
-.unitLIst{
+.unitLIst {
     height: 45px;
     width: 100%;
     border-bottom: 1px solid #F5F5F5;
@@ -272,7 +272,7 @@
     background-color: #FFFFFF;
 }
 
-.unitLIst:hover{
+.unitLIst:hover {
     background-color: #F5F5F5;
 }
 
@@ -311,7 +311,7 @@
     z-index: 10;
 }
 
-.confirmModal{
+.confirmModal {
     height: 171px;
     width: 30%;
     background-color: #FFFFFF;
@@ -342,7 +342,7 @@
     background-color: #FFFFFF;
 }
 
-.confirmTxt{
+.confirmTxt {
     height: 87px;
     width: 100%;
     /* border: 1px solid black; */
@@ -356,7 +356,7 @@
     background-color: #FFFFFF;
 }
 
-.confirmBtnContain{
+.confirmBtnContain {
     height: 44px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -370,7 +370,7 @@
 
 }
 
-.cancelBtn{
+.cancelBtn {
     height: 32px;
     width: 20%;
     /* border: 1px solid green; */
@@ -384,7 +384,7 @@
     background-color: #FFFFFF;
 }
 
-.proceedBtn{
+.proceedBtn {
     height: 34px;
     width: 30%;
     background-color: #096D49;
@@ -398,6 +398,7 @@
     font-size: 14px;
     cursor: pointer;
 }
+
 /* ------------Success modal--- */
 .overlay3 {
     position: fixed;
@@ -410,7 +411,7 @@
     z-index: 10;
 }
 
-.successModal{
+.successModal {
     height: 210px;
     width: 30%;
     background-color: #FFFFFF;
@@ -418,7 +419,7 @@
     border-radius: 4px;
 }
 
-.modalHead3{
+.modalHead3 {
     height: 40px;
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
@@ -428,7 +429,7 @@
     background-color: #FFFFFF;
 }
 
-.modalBody{
+.modalBody {
     height: 128px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -441,7 +442,7 @@
 
 }
 
-.successImg{
+.successImg {
     height: 70px;
     width: 20%;
     /* border: 1px solid red; */
@@ -451,12 +452,12 @@
     background-color: #FFFFFF;
 }
 
-.successImg img{
+.successImg img {
     -webkit-user-drag: none;
     background-color: #FFFFFF;
 }
 
-.successTxt{
+.successTxt {
     height: 24px;
     width: 100%;
     /* border: 1px solid purple; */
@@ -470,7 +471,7 @@
     background-color: #FFFFFF;
 }
 
-.modalFooter{
+.modalFooter {
     height: 40px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -480,7 +481,7 @@
     background-color: #FFFFFF;
 }
 
-.okayBtn{
+.okayBtn {
     height: 34px;
     width: 20%;
     background-color: #096D49;
@@ -495,13 +496,13 @@
     cursor: pointer;
 }
 
-.okayBtn:hover{
+.okayBtn:hover {
     background-color: #aac8be;
 }
 
 /* ----------Assign Supervisor Modal---- */
 
-.superOverlay{
+.superOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -512,7 +513,7 @@
     z-index: 10;
 }
 
-.assignSuperModal{
+.assignSuperModal {
     height: 356px;
     width: 58%;
     background-color: #FFFFFF;
@@ -521,7 +522,7 @@
     padding: 2vw 2vw 0vw 2vw;
 }
 
-.superBody{
+.superBody {
     height: 216px;
     width: 100%;
     /* border: 1px solid brown; */
@@ -533,7 +534,7 @@
     background-color: #FFFFFF;
 }
 
-.superUnitContain{
+.superUnitContain {
     height: 60px;
     width: 100%;
     border: 1px solid #F5F5F5;
@@ -546,7 +547,7 @@
     background-color: #FFFFFF;
 }
 
-.superUnit{
+.superUnit {
     height: auto;
     width: auto;
     /* border: 1px solid blue; */
@@ -557,7 +558,7 @@
     background-color: #FFFFFF;
 }
 
-.superUnitDisplay{
+.superUnitDisplay {
     height: 24px;
     width: 75%;
     /* border: 1px solid red; */
@@ -566,7 +567,7 @@
     background-color: #FFFFFF;
 }
 
-.superUnitDisplay input{
+.superUnitDisplay input {
     height: 100%;
     width: 100%;
     border: none;
@@ -578,7 +579,7 @@
     background-color: #FFFFFF;
 }
 
-.superDrop{
+.superDrop {
     height: 225px;
     width: 100%;
     background-color: #FFFFFF;
@@ -593,7 +594,7 @@
     align-items: center;
 }
 
-.superDisplay{
+.superDisplay {
     height: 24px;
     width: 70%;
     /* border: 1px solid red; */
@@ -601,7 +602,7 @@
     align-items: center;
 }
 
-.superDisplay input{
+.superDisplay input {
     height: 100%;
     width: 100%;
     border: none;
@@ -613,7 +614,7 @@
     background-color: #FFFFFF;
 }
 
-.superFooter{
+.superFooter {
     height: 56px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -624,7 +625,7 @@
     background-color: #FFFFFF;
 }
 
-.superFooterTxt{
+.superFooterTxt {
     height: 100%;
     width: 70%;
     /* border: 1px solid green; */
@@ -636,7 +637,7 @@
     background-color: #FFFFFF;
 }
 
-.assignBtn{
+.assignBtn {
     height: 40px;
     width: 10%;
     background-color: #096D49;
@@ -653,7 +654,7 @@
 
 /* -----Hero section----- */
 
-.totesContain{
+.totesContain {
     height: 150px;
     width: 100%;
     background-color: #096D49;
@@ -665,7 +666,7 @@
     padding: 0vh 0vw 0vh 2vw;
 }
 
-.toteStudent{
+.toteStudent {
     height: 100%;
     width: 15%;
     /* border: 1px solid black; */
@@ -674,10 +675,10 @@
     align-items: center;
     justify-content: center;
     background-color: #096D49;
-    
+
 }
 
-.totesHeadTxt{
+.totesHeadTxt {
     height: 24px;
     width: 100%;
     /* border: 1px solid red; */
@@ -688,7 +689,7 @@
     background-color: #096D49;
 }
 
-.totesHeadNum{
+.totesHeadNum {
     height: 60px;
     width: 100%;
     /* border: 1px solid brown; */
@@ -701,7 +702,7 @@
     background-color: #096D49;
 }
 
-.topology{
+.topology {
     height: 100%;
     width: 54%;
     /* border: 1px solid white; */
@@ -709,7 +710,7 @@
     background-color: #096D49;
 }
 
-.topology img{
+.topology img {
     width: 100%;
     height: 100%;
     /* -webkit-user-drag: none; */
@@ -717,7 +718,7 @@
     /* border: 1px solid white; */
 }
 
-.totesGender{
+.totesGender {
     height: 100%;
     width: 30%;
     /* border: 1px solid red; */
@@ -726,7 +727,7 @@
     /* justify-content: space-between; */
 }
 
-.totesMale{
+.totesMale {
     height: 100%;
     width: 40%;
     /* border: 1px solid floralwhite; */
@@ -737,7 +738,7 @@
     background-color: #096D49;
 }
 
-.maleImg{
+.maleImg {
     height: 35%;
     width: auto;
     /* border: 1px solid red; */
@@ -747,7 +748,7 @@
     background-color: #096D49;
 }
 
-.maleImg img{
+.maleImg img {
     -webkit-user-drag: none;
     height: 50px;
     width: 51px;
@@ -755,14 +756,14 @@
 
 }
 
-.maleTxtContain{
+.maleTxtContain {
     height: auto;
     width: auto;
     /* border: 1px solid yellow; */
     background-color: #096D49;
 }
 
-.maleTxt{
+.maleTxt {
     height: auto;
     width: 100%;
     color: #FFFFFF;
@@ -775,7 +776,7 @@
     background-color: #096D49;
 }
 
-.maleNum{
+.maleNum {
     height: auto;
     width: 100%;
     /* border: 1px solid black; */
@@ -787,7 +788,7 @@
 }
 
 
-.totesFemale{
+.totesFemale {
     height: 100%;
     width: 40%;
     /* border: 1px solid floralwhite; */
@@ -797,9 +798,10 @@
     background-color: #096D49;
 
 }
+
 /* ----------End of hero section----- */
 
-.majorSect{
+.majorSect {
     height: 470px;
     width: 100%;
     /* border: 1px solid red; */
@@ -808,7 +810,7 @@
     justify-content: space-between;
 }
 
-.moreMajor{
+.moreMajor {
     height: 100%;
     width: 71%;
     /* border: 1px solid purple; */
@@ -817,7 +819,7 @@
     /* justify-content: space-between; */
 }
 
-.topMore{
+.topMore {
     height: 28%;
     width: 100%;
     /* border: 1px solid brown; */
@@ -825,7 +827,7 @@
     justify-content: space-between;
 }
 
-.superCard{
+.superCard {
     height: 100%;
     width: 32%;
     background-color: #FFFFFF;
@@ -835,7 +837,7 @@
     padding: 2vh;
 }
 
-.supercardHead{
+.supercardHead {
     height: 100%;
     width: 70%;
     /* border: 1px solid blue; */
@@ -843,7 +845,7 @@
     background-color: #FFFFFF;
 }
 
-.superHead{
+.superHead {
     height: auto;
     width: 100%;
     font-family: Nunito Sans;
@@ -854,7 +856,7 @@
 
 }
 
-.superHead2{
+.superHead2 {
     height: auto;
     width: 100%;
     font-family: Nunito Sans;
@@ -865,7 +867,7 @@
 
 }
 
-.superHead3{
+.superHead3 {
     height: auto;
     width: 100%;
     font-family: Nunito Sans;
@@ -876,7 +878,7 @@
 
 }
 
-.totesSuper{
+.totesSuper {
     height: auto;
     width: 100%;
     font-family: Nunito Sans;
@@ -889,7 +891,7 @@
     background-color: #FFFFFF;
 }
 
-.teacherContain{
+.teacherContain {
     height: 100%;
     width: 30%;
     /* border: 1px solid red; */
@@ -899,7 +901,7 @@
     background-color: #FFFFFF;
 }
 
-.radiusContain{
+.radiusContain {
     height: 41px;
     width: 80%;
     background-color: #FFFFFF;
@@ -911,12 +913,12 @@
     justify-content: center;
 }
 
-.radiusContain img{
+.radiusContain img {
     -webkit-user-drag: none;
     background-color: #FFFFFF;
 }
 
-.statCard{
+.statCard {
     height: 100%;
     width: 32%;
     background-color: #FFFFFF;
@@ -928,7 +930,7 @@
     padding: 2vh;
 }
 
-.statsbarContain{
+.statsbarContain {
     height: 78px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -939,7 +941,7 @@
 
 }
 
-.activeBarContain{
+.activeBarContain {
     height: 48%;
     width: 100%;
     /* border: 1px solid green; */
@@ -948,7 +950,7 @@
     background-color: #FFFFFF;
 }
 
-.activeBar{
+.activeBar {
     height: 100%;
     width: auto;
     background-color: #6BA792;
@@ -960,7 +962,7 @@
     padding: 0vh 1vh;
 }
 
-.activeNum{
+.activeNum {
     height: 100%;
     width: auto;
     /* border: 1px solid red; */
@@ -975,7 +977,7 @@
     background-color: #FFFFFF;
 }
 
-.pastBarContain{
+.pastBarContain {
     height: 48%;
     width: 100%;
     /* border: 1px solid green; */
@@ -985,7 +987,7 @@
 
 }
 
-.pastBar{
+.pastBar {
     height: 100%;
     width: auto;
     background-color: #F3F3F3;
@@ -997,7 +999,7 @@
     padding: 0vh 1vh;
 }
 
-.pastNum{
+.pastNum {
     height: 100%;
     width: auto;
     /* border: 1px solid red; */
@@ -1013,7 +1015,7 @@
 
 }
 
-.bottomMore{
+.bottomMore {
     height: 65%;
     width: 100%;
     /* border: 1px solid black; */
@@ -1022,7 +1024,7 @@
     margin-top: 2vh;
 }
 
-.unitsBarContain{
+.unitsBarContain {
     height: 100%;
     width: 49%;
     background-color: #FFFFFF;
@@ -1033,7 +1035,7 @@
     padding: 2vw 2vh;
 }
 
-.unitListContain{
+.unitListContain {
     height: 190px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -1044,7 +1046,7 @@
     background-color: #FFFFFF;
 }
 
-.units{
+.units {
     height: 35px;
     width: 100%;
     /* border: 1px solid red; */
@@ -1054,7 +1056,7 @@
     margin-top: 0.5vh;
 }
 
-.totesUnit{
+.totesUnit {
     height: 100%;
     width: auto;
     background-color: #EDE4CF;
@@ -1066,7 +1068,7 @@
     font-weight: 500;
 }
 
-.totesNum{
+.totesNum {
     height: 100%;
     width: auto;
     /* border: 1px solid red; */
@@ -1081,7 +1083,7 @@
     background-color: #FFFFFF;
 }
 
-.superList{
+.superList {
     height: 100%;
     width: 49%;
     background-color: #FFFFFF;
@@ -1089,7 +1091,7 @@
     padding: 2vw 2vh;
 }
 
-.supervisorsContain{
+.supervisorsContain {
     height: 195px;
     width: 100%;
     /* border: 1px solid red; */
@@ -1100,7 +1102,7 @@
     background-color: #FFFFFF;
 }
 
-.supervisor{
+.supervisor {
     height: 45px;
     width: 100%;
     /* border: 1px solid blue; */
@@ -1109,14 +1111,14 @@
     background-color: #FFFFFF;
 }
 
-.superPhoto{
+.superPhoto {
     height: 100%;
     width: 12%;
     /* border: 1px solid green; */
     border-radius: 50%;
 }
 
-.superPhoto img{
+.superPhoto img {
     height: 100%;
     width: 100%;
     /* object-fit: cover; */
@@ -1124,7 +1126,7 @@
     -webkit-user-drag: none;
 }
 
-.superName{
+.superName {
     height: 100%;
     width: 60%;
     /* border: 1px solid black; */
@@ -1136,7 +1138,7 @@
     background-color: #FFFFFF;
 }
 
-.supervisorUnit{
+.supervisorUnit {
     height: 100%;
     width: auto;
     /* border: 1px solid green; */
@@ -1150,7 +1152,7 @@
     background-color: #FFFFFF;
 }
 
-.lessMajor{
+.lessMajor {
     height: 96.5%;
     width: 28%;
     /* border: 1px solid blue; */
@@ -1159,19 +1161,18 @@
     padding: 2vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
-.lessHead{
+.lessHead {
     height: 10%;
     width: 100%;
-    /* background-color: blue; */
     display: flex;
     justify-content: space-between;
     background-color: #FFFFFF;
+    /* border: 1px solid blue; */
 }
 
-.studentHead{
+.studentHead {
     height: auto;
     width: auto;
     /* border: 1px solid red; */
@@ -1184,7 +1185,7 @@
     background-color: #FFFFFF;
 }
 
-.viewBtn{
+.viewBtn {
     height: 99%;
     width: 33%;
     border: 1px solid #096D49;
@@ -1201,34 +1202,52 @@
     background-color: #FFFFFF;
 }
 
-.lessBody{
-    height: 87%;
-    width: 100%;
+.lessBody {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: column;
-    background-color: #FFFFFF;
-}
-
-.studentsList{
-    height: 45px;
-    width: 100%;
-    /* border: 1px solid red; */
-    display: flex;
-    padding: 0vh 1vh;
     gap: 1vh;
+    background-color: #ffffff;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    padding: 0.5vh 1vh;
+}
+
+.studentsList {
+    width: 100%;
+    display: flex;
+    gap: 1vh;
+    padding: 0vh 1vh;
+    background-color: #FFFFFF;
+    /* border: 1px solid red; */
+    margin-top: 1vh;
+    /* font-family: Nunito Sans; */
+    font-size: 16px;
+    padding: 0.7vh 0;
+    line-height: 1.4;
+}
+
+.studentName {
+    font-size: 16px;
+    font-weight: 300;
+    color: black;
     background-color: #FFFFFF;
 }
 
-.studPhoto{
+.studentInterest {
+    font-size: 14px;
+    font-weight: 300;
+    color: #848484;
+    background-color: #FFFFFF
+}
+
+.studPhoto {
     height: 100%;
     width: 14%;
     /* border: 1px solid green; */
     border-radius: 50%;
 }
 
-.studPhoto img{
+.studPhoto img {
     height: 100%;
     width: 100%;
     /* object-fit: cover; */
@@ -1236,7 +1255,7 @@
     -webkit-user-drag: none;
 }
 
-.nameUnitContain{
+.nameUnitContain {
     height: 100%;
     width: 40%;
     /* border: 1px solid pink; */
@@ -1245,7 +1264,7 @@
     background-color: #FFFFFF;
 }
 
-.nameBox{
+.nameBox {
     height: 60%;
     width: 100%;
     /* background-color: blue; */
@@ -1255,7 +1274,7 @@
     background-color: #FFFFFF;
 }
 
-.unitBox{
+.unitBox {
     height: 40%;
     width: 100%;
     /* background-color: yellow; */
