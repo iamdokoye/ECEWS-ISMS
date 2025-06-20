@@ -1209,6 +1209,7 @@
 }
 
 .lessBody {
+    height: auto;
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
@@ -1221,14 +1222,11 @@
     width: 100%;
     display: flex;
     gap: 1vh;
-    padding: 0vh 1vh;
     background-color: #FFFFFF;
     /* border: 1px solid red; */
     margin-top: 1vh;
     /* font-family: Nunito Sans; */
     font-size: 16px;
-    padding: 0.7vh 0;
-    line-height: 1.4;
 }
 
 .studentName {
