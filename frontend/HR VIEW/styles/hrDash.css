@@ -1319,9 +1319,9 @@
 .lessBody {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  /* gap: 1vh; */
   width: 100%;
-  padding: 1vh 0;
+  padding-top: 1vh;
   background-color: white;
 }
 
