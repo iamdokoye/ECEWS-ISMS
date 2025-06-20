@@ -225,6 +225,12 @@
     background-color: #FFFFFF;
 }
 
+.checkboxContain{
+    height: 100%;
+    width: 10%;
+    border: 1px solid red;
+}
+
 .caretdown{
     height: 100%;
     width: 16%;
@@ -1209,7 +1215,7 @@
     flex-direction: column;
     background-color: #FFFFFF;
     /* border: 1px solid green; */
-    
+    margin-top: 0.5vh;
 
 }
 
@@ -1223,21 +1229,6 @@
     margin-top: 1vh;
     font-family: Nunito Sans;
     font-size: 16px;
-}
-
-.studPhoto{
-    height: 100%;
-    width: 14%;
-    /* border: 1px solid green; */
-    border-radius: 50%;
-}
-
-.studPhoto img{
-    height: 100%;
-    width: 100%;
-    /* object-fit: cover; */
-    border-radius: 50%;
-    -webkit-user-drag: none;
 }
 
 .nameUnitContain{
