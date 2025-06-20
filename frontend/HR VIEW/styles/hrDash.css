@@ -225,10 +225,90 @@
     background-color: #FFFFFF;
 }
 
-.checkboxContain{
+.levelContain{
     height: 100%;
-    width: 10%;
+    width: 100%;
     border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.NameFieldContain2 {
+    height: 48px;
+    width: 70%;
+    border: 1px solid #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    background-color: #FFFFFF;
+    margin-top: 1vh;
+    padding-left: 1vh;
+    gap: 1vh;
+}
+
+.NameFieldText2 {
+    height: 100%;
+    width: auto;
+    /* border: 1px solid purple; */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    color: #9A9A9A;
+    font-family: Nunito Sans;
+    font-weight: 500;
+    font-size: 16px;
+    user-select: none;
+    background-color: #FFFFFF;
+}
+
+.NameFieldInput2 {
+    height: 100%;
+    width: 75%;
+    /* border: 1px solid black; */
+    background-color: #FFFFFF;
+}
+
+.NameFieldInput2 input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-family: Nunito Sans;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: default;
+    background-color: #FFFFFF;
+}
+
+.checkBoxContain{
+    height: 48px;
+    width: 29%;
+    border: 1px solid #F5F5F5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    margin-top: 1vh;
+}
+
+.maleCheck{
+    height: 80%;
+    width: 45%;
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    margin-left: 1vh;
+    align-items: center;
+    display: flex;
+    gap: 1vh;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#checkbox{
+    height: 100%;
+    border-radius: 50%;
+    text-decoration: none;
 }
 
 .caretdown {
@@ -1134,8 +1214,8 @@
 
 .superName {
     height: 100%;
-    width: 60%;
-    /* border: 1px solid black; */
+    width: auto;
+    border: 1px solid black;
     display: flex;
     align-items: center;
     font-family: Nunito Sans;
@@ -1147,7 +1227,7 @@
 .supervisorUnit {
     height: 100%;
     width: auto;
-    /* border: 1px solid green; */
+    border: 1px solid green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1240,21 +1320,6 @@
     font-weight: 300;
     color: #848484;
     background-color: #FFFFFF
-}
-
-.studPhoto{
-    height: 100%;
-    width: 14%;
-    /* border: 1px solid green; */
-    border-radius: 50%;
-}
-
-.studPhoto img{
-    height: 100%;
-    width: 100%;
-    /* object-fit: cover; */
-    border-radius: 50%;
-    -webkit-user-drag: none;
 }
 
 .nameUnitContain {
