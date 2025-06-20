@@ -13,8 +13,6 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         console.log(response.data);
         if (response.status === 200) {
             const userData = response.data.user;
-            localStorage.setItem('userId', userData.id);
-            localStorage.setItem('hrUser', JSON.stringify(user)); // Store the user id in local storage
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':

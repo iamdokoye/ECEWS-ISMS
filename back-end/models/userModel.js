@@ -7,7 +7,7 @@ const getUserByEmailInternal = async (email) => {
 };
 
 const getUserByEmailExternal = async (email) => {
-  const res = await externalDb.query('SELECT * FROM users WHERE email = $1', [email]);
+  const res = await externalDb.query('SELECT * FROM staff_ancillary WHERE email = $1', [email]);
   return res.rows[0];
 };
 
