@@ -223,7 +223,7 @@
     width: 95%;
     font-size: 20px;
     font-family: Nunito Sans;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* Bio content */
@@ -266,7 +266,7 @@
     width: 95%;
     font-size: 24px;
     font-family: Nunito Sans;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* Info body container */
@@ -296,7 +296,7 @@
     align-items: center;
     font-size: 14px;
     font-family: Nunito Sans;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /* Info data text */
@@ -306,6 +306,6 @@
     display: flex;
     font-size: 24px;
     font-family: Nunito Sans;
-    font-weight: 700;
+    font-weight: 600;
 }
 
