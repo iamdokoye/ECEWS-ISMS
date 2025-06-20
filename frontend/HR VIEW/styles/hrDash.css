@@ -1215,7 +1215,7 @@
 .superName {
     height: 100%;
     width: auto;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     align-items: center;
     font-family: Nunito Sans;
@@ -1227,7 +1227,7 @@
 .supervisorUnit {
     height: 100%;
     width: auto;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     align-items: center;
     justify-content: center;
