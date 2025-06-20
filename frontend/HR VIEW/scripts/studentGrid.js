@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
         past: document.querySelector('#section3 .studentsGrid')
     };
 
+    let allCards = []; // Save references for search
+
     fetch('http://localhost:5000/api/students/all')
         .then(res => res.json())
         .then(students => {
@@ -14,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Loaded student:', student);
                 const card = document.createElement('div');
                 card.className = 'studentsCard';
-                card.classList.add('studentsCard');
                 card.dataset.studentId = student.student_id;
 
                 card.innerHTML = `
@@ -62,8 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="viewDetails">View Details <img src="./assets/CaretRight.png" alt=""></div>
           </div>
         `;
+
                 card.addEventListener('click', () => {
-                    const id = card.dataset.student_id;
+                    const id = card.dataset.studentId;
                     window.location.href = `hrstudentProfile.html?id=${id}`;
                 });
 
@@ -71,8 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (student.it_status === 'active') sections.present.appendChild(card.cloneNode(true));
                 else if (student.it_status === 'past') sections.past.appendChild(card.cloneNode(true));
 
-            });             
+                allCards.push(card);
+            });
 
+            // SEARCH FEATURE
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+
+            if (searchInput && searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    const query = searchInput.value.trim().toLowerCase();
+
+                    allCards.forEach(card => {
+                        const name = card.querySelector('.nameInfo')?.textContent.toLowerCase() || '';
+                        const interest = card.querySelector('.majorInfo')?.textContent.toLowerCase() || '';
+                        const email = card.querySelector('.uniContain:last-child .Uni')?.textContent.toLowerCase() || '';
+
+                        const match = name.includes(query) || interest.includes(query) || email.includes(query);
+                        card.style.display = match ? 'block' : 'none';
+                    });
+                });
+            }
         })
         .catch(err => {
             console.error('Error loading students:', err);

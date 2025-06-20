@@ -12,7 +12,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         });
         console.log(response.data);
         if (response.status === 200) {
-            const userData = response.data.user;
+            const userData = response.data;
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':

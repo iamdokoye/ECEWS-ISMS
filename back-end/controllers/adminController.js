@@ -33,7 +33,7 @@ const getDashboardStats = async (req, res) => {
             FROM users u JOIN students s 
             ON u.id = s.student_id 
             WHERE u.role = 'student'
-            LIMIT 6
+            LIMIT 7
         `);
 
         const supervisorListResult = await pool.query(`
