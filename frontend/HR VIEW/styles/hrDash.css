@@ -1289,11 +1289,12 @@
 }
 
 .lessBody {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  width: 100%;
+  padding: 1vh 0;
+  background-color: white;
 }
 
 .studentsList {
@@ -1323,31 +1324,23 @@
 }
 
 .nameUnitContain {
-    height: 100%;
-    width: 40%;
-    /* border: 1px solid pink; */
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
 .nameBox {
-    height: 60%;
-    width: 100%;
-    /* background-color: blue; */
-    font-family: Nunito Sans;
-    font-size: 16px;
-    font-weight: 300;
-    background-color: #FFFFFF;
+  font-weight: 300;
+  background-color: white;
+  font-size: 16px;
+  font-family: Nunito Sans;
 }
 
 .unitBox {
-    height: 40%;
-    width: 100%;
-    /* background-color: yellow; */
-    font-family: Nunito Sans;
-    font-size: 14px;
-    font-weight: 200;
-    color: #848484;
-    background-color: #FFFFFF;
+  color: #848484;
+  font-size: 14px;
+  margin-top: 2px;
+  background-color: white;
+  font-family: Nunito Sans;
+  font-weight: 200;
 }
