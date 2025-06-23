@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 card.addEventListener('click', () => {
                     const id = card.dataset.studentId;
-                    window.location.href = `hrstudentProfile.html?id=${id}`;
+                    window.location.href = `studentProfile.html?id=${id}`;
                 });
 
                 sections.all.appendChild(card);
