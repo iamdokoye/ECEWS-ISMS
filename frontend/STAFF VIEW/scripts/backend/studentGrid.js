@@ -24,13 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusDiv.className = student.it_status === 'past' ? 'statusPast' : 'status';
                 statusDiv.textContent = student.it_status === 'past' ? 'Past' : 'Present';
 
-                const dotsThree = document.createElement('div');
-                dotsThree.className = 'dotsThree';
-                const dotsImg = document.createElement('img');
-                dotsImg.src = './assets/DotsThree.png';
-                dotsImg.alt = '';
-                dotsThree.appendChild(dotsImg);
-
                 const editModal = document.createElement('div');
                 editModal.className = 'editModal';
                 ['Deactivate', 'Delete'].forEach(action => {
@@ -40,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     editModal.appendChild(actionDiv);
                 });
 
-                cardHead.append(statusDiv, dotsThree, editModal);
+                cardHead.append(statusDiv);
 
                 const cardPhoto = document.createElement('div');
                 cardPhoto.className = 'cardPhoto';
