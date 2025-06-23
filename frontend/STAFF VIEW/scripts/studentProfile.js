@@ -1,20 +1,39 @@
-// $(document).ready(function () {
-//     $('#uploadTrigger').on('click', function () {
-//       $('#selectImage').click();
-//     });
-  
-//     $('#selectImage').on('change', function (e) {
-//       const file = e.target.files[0];
-//       if (file) {
-//         const reader = new FileReader();
-//         reader.onload = function (e) {
-//           // Optional preview logic goes here
-//         //   console.log('Image selected:', e.target.result);
-//         $('.photoBox img').attr('src', e.target.result); // Preview
-//         };
-//         reader.readAsDataURL(file);
-//       }
-//     });
-//   });
+document.addEventListener('DOMContentLoaded', async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const studentId = urlParams.get('student_id');
 
-// <!-- REMOVED UPLOAD FIELD FOR STAFF VIEW -->
+  if (!studentId) {
+    alert('No student ID provided');
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:5000/api/students/${studentId}`);
+    if (!response.ok) throw new Error('Failed to fetch student details');
+    
+    const student = await response.json();
+
+    // ✅ Populate the page with the student's data
+    document.querySelector('.nameInfo').textContent = student.name || 'N/A';
+    document.querySelector('.majorInfo').textContent = student.interest || 'Not specified';
+    document.querySelector('.unitDisplay').textContent = student.unit || 'N/A';
+    document.querySelector('.durationDisplay').textContent = `${student.duration} Months`;
+    document.querySelector('.levelDisplay').textContent = student.level || 'N/A';
+    document.querySelector('.emailDisplay').textContent = student.email || 'N/A';
+    document.querySelector('.institutionDisplay').textContent = student.institution || 'N/A';
+    document.querySelector('.courseDisplay').textContent = student.course_of_study || 'N/A';
+    document.querySelector('.supervisorDisplay').textContent = student.supervisor || 'N/A';
+    document.querySelector('.joinedDate').textContent = new Date(student.created_at).toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+
+    // Optional: profile photo
+    if (student.photo) {
+      document.querySelector('.studentPhoto img').src = student.photo;
+    }
+
+  } catch (err) {
+    console.error('Error loading student details:', err);
+    alert('Could not load student profile');
+  }
+});
