@@ -56,3 +56,59 @@ $(document).ready(function () {
       e.stopPropagation();
     });
   });
+
+  $(document).ready(function () {
+    // Open Modal
+    $(".deactivate").click(function () {
+        $("#overlay2").fadeIn(200); // Show overlay
+        $("#confirmModal").fadeIn(200); // Show modal
+    });
+
+    // Close Modal
+    $("#closeDeactivateModal").click(function () {
+        $("#confirmModal").fadeOut(200);
+        $("#overlay2").delay(100).fadeOut(200); // Slight delay for smoother transition
+    });
+
+        // Close Modal
+        $("#cancelBtn").click(function () {
+            $("#confirmModal").fadeOut(200);
+            $("#overlay").fadeOut(200);
+            $("#overlay2").delay(100).fadeOut(200); // Slight delay for smoother transition
+        });
+
+    // Close Modal When Clicking Outside the Modal (on the overlay itself)
+    $("#overlay2").click(function (e) {
+        if (e.target === this) {
+            $("#confirmModal").fadeOut(200);
+            $("#overlay2").delay(100).fadeOut(200);
+        }
+    });
+});
+
+$(document).ready(function () {
+    // Open Modal
+    $("#proceedBtn").click(function () {
+        $("#overlay4").fadeIn(200); // Show overlay
+        $("#successModal2").fadeIn(200); // Show modal
+    });
+
+    // Close Modal
+    $("#okayBtn2").click(function () {
+        $("#successModal2").fadeOut(200);
+        $("#overlay2").fadeOut(200);
+        $("#overlay4").delay(100).fadeOut(200); // Slight delay for smoother transition
+    });
+
+    // Close Modal When Clicking Outside the Modal (on the overlay itself)
+    $("#overlay4").click(function (e) {
+        if (e.target === this) {
+            $("#successModal2").fadeOut(200);
+            $("#overlay4").delay(100).fadeOut(200);
+        }
+    });
+});  
+
+
+
+  

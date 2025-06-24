@@ -49,3 +49,16 @@ $(document).ready(function () {
 
     });
 });
+
+$(document).ready(function () {
+
+    $(".delete").click(function (e) {
+        e.preventDefault(); // Prevent default navigation
+        let targetURL = "hrstudentProfile.html";
+
+        $("body").fadeOut(300, function () {
+            window.location.href = targetURL; // Navigate after fade-out
+        });
+
+    });
+});
