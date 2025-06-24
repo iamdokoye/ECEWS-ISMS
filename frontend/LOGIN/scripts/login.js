@@ -16,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':
-                    window.location.href = "dashboard.html";
+                    window.location.href = "../User VIEW/studentCalendar.html";
                     break;
                 case 'supervisor':
                     window.location.href = "../Supervisor VIEW/homeListView.html";
