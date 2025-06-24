@@ -257,38 +257,59 @@
 /* ------Info Section------- */
 
 .majorContainer{
-    height: 435px;
+    height: 496px;
     width: 100%;
     /* border: 1px solid black; */
-    margin: 4vw  0vh 0vh 0vh;
+    margin: 2vw  0vh 0vh 0vh;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     user-select: none;
+    align-items:flex-end;
+
 }
 
 .personInfo{
-    height: 100%;
-    width: 49%;
+    height: 90%;
+    width: 100%;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
-    padding: 3vh 0vh;
+    padding: 3vh 2vh;
+}
+
+.titleEdit{
+    height: 34px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vh;
 }
 
 .infoTitle{
-    height: 33px;
-    width: 95%;
+    height: 100%;
+    width: auto;
     /* border: 1px solid blue; */
     font-size: 24px;
     font-family: Nunito Sans;
     font-weight: 400;
 }
 
+
+.infoBodyContain{
+    height: 94px;
+    width: 100%;
+    /* border: 1px solid green; */
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
 .infoBody{
     height: 94px;
-    width: 95%;
+    width: 49%;
     /* border: 1px solid purple; */
     display: flex;
     justify-content: space-between;
@@ -302,6 +323,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* border: 1px solid red; */
 }
 
 .infoLabel{
