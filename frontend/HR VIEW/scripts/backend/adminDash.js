@@ -65,31 +65,31 @@ window.onload = async () => {
 
         // Populate Student Section
         const studentContainer = document.getElementById('lessBody');
-studentContainer.innerHTML = '';
+        studentContainer.innerHTML = '';
 
-data.students.forEach(student => {
-    const studentsList = document.createElement('div');
-    studentsList.classList.add('studentsList');
+        data.students.forEach(student => {
+            const studentsList = document.createElement('div');
+            studentsList.classList.add('studentsList');
 
-    const nameUnitContain = document.createElement('div');
-    nameUnitContain.classList.add('nameUnitContain');
+            const nameUnitContain = document.createElement('div');
+            nameUnitContain.classList.add('nameUnitContain');
 
-    const nameBox = document.createElement('div');
-    nameBox.classList.add('nameBox');
-    nameBox.textContent = student.name || 'Unnamed';
+            const nameBox = document.createElement('div');
+            nameBox.classList.add('nameBox');
+            nameBox.textContent = student.name || 'Unnamed';
 
-    const unitBox = document.createElement('div');
-    unitBox.classList.add('unitBox');
-    const interest = student.interest || 'Not specified';
-    const unit = student.unit || 'Unknown';
-    unitBox.textContent = `${interest}, ${unit}`;
+            const unitBox = document.createElement('div');
+            unitBox.classList.add('unitBox');
+            const interest = student.interest || 'Not specified';
+            const unit = student.unit || 'Unknown';
+            unitBox.textContent = `${interest}, ${unit}`;
 
-    nameUnitContain.appendChild(nameBox);
-    nameUnitContain.appendChild(unitBox);
+            nameUnitContain.appendChild(nameBox);
+            nameUnitContain.appendChild(unitBox);
 
-    studentsList.appendChild(nameUnitContain);
-    studentContainer.appendChild(studentsList);
-});
+            studentsList.appendChild(nameUnitContain);
+            studentContainer.appendChild(studentsList);
+        });
 
     } catch (error) {
         console.error('Error loading admin dashboard:', error);

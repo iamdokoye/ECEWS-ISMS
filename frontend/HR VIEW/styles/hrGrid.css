@@ -658,7 +658,7 @@
     display: none;
 }
 
-.edit {
+.deactivate {
     height: 40px;
     width: 100%;
     display: flex;
@@ -670,7 +670,7 @@
     padding: 0vh 1vh;
 }
 
-.edit:hover {
+.deactivate:hover {
     background-color: #F3F3F3;
 }
 
