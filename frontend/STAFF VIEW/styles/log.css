@@ -18,6 +18,7 @@
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logoContain {
@@ -28,6 +29,46 @@
 
 .logoContain img {
     -webkit-user-drag: none;
+}
+
+.forMobile{
+    height: 100%;
+    width: 25%;
+    /* border: 1px solid green; */
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navHeadName{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-family: Nunito Sans;
+    font-size: 12px;
+    font-weight: 700;
+    user-select: none;
+}
+
+.navImg{
+    height: 75%;
+    width: 35%;
+    /* border: 1px solid blue; */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navImg img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    border-radius: 50%;
 }
 
 .bodyContain {
@@ -52,19 +93,6 @@
     /* background-color: yellow; */
     display: flex;
     align-items: center;
-}
-
-.backArrow {
-    height: 100%;
-    width: 8%;
-    /* border: 1px solid black; */
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.backArrow img {
-    -webkit-user-drag: none;
 }
 
 
@@ -100,6 +128,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
     gap: 1vh;
+}
+
+.activeBtnMobile{
+    display: none;
 }
 
 .btnContain {
@@ -402,11 +434,6 @@
     width: 90%;
 }
 
-/* .weekBtn.activeWeek {
-    border: 1px solid #096D49;
-    background-color: #6BA79233;
-} */
-
 .activeWeek{
     height: 574px;
     width: 100%;
@@ -566,4 +593,313 @@
     display: flex;
     align-items: center;
     justify-content: right;
+}
+
+@media screen and (max-width:450px) {
+    .header {
+        height: 60px;
+        padding: 1vh 3vh;
+    }
+    
+    .logoContain {
+        height: 32px;
+        width: 100px;
+        /* border: 1px solid green; */
+    }
+    
+    .logoContain img {
+        height: 100%;
+    }
+
+    .forMobile{
+        display: flex;
+    }
+    
+    .bodyContain {
+        padding: 2vh 3vh;
+    }
+    
+    .heading {
+        height: 46px;
+        margin-bottom: 1vh;
+    }
+    
+    .headingContain {
+        width: auto;
+    }
+    
+    .headTxt {
+        font-size: 20px;
+        font-weight: 600;
+        user-select: none;
+    }
+    
+    .homeBtn {
+        height: 80%;
+        width: 20%;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    
+    .activeBtnContainer {
+        display: none;
+    }
+
+    .activeBtnMobile{
+        height: 67px;
+        width: 100%;
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .monthContain{
+        height: 30px;
+        width: 20%;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .caretDown{
+        height: 100%;
+        width: 35%;
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .caretDown img{
+        height: 70%;
+        -webkit-user-drag: none;
+    }
+
+    .month1{
+        height: 100%;
+        width: 70%;
+        /* border: 1px solid blue; */
+        font-size: 11px;
+        font-family: Nunito Sans;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dropdownMonths{
+        height: 180px;
+        width: 23%;
+        background-color: #FFFFFF;
+        position: absolute;
+        z-index: 2;
+        /* border: 1px solid red; */
+        top: 22.5%;
+        display: none;
+        flex-direction: column;
+    }
+
+    .dropped{
+        height: 17%;
+        width: 100%;
+        border-bottom: 1px solid #F5F5F5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Nunito Sans;
+        font-size: 11px;
+        user-select: none;
+    }
+
+    .weekContain{
+        height: 30px;
+        width: 100%;
+        /* border: 1px solid black; */
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .week1Cont{
+        height: 100%;
+        width: 24%;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Nunito Sans;
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    .week1Cont p{
+        height: auto;
+        width: auto;
+        /* border-bottom: 1px solid #096D49; */
+    }
+    
+    
+    .profileCard {
+        display: none;
+    }
+    
+    .otherHero {
+        width: 100%;
+    }
+    
+    .activeWeekBtnContain {
+        display: none;
+    }
+    
+    .activeWeek{
+        height: auto;
+        width: 100%;
+        /* border: 1px solid blue; */
+        margin-top: 1vw;
+        display: flex;
+        flex-direction: column;
+        border-radius: 4px;
+    }
+    
+    .weekHead{
+        height: 60px;
+        width: 100%;
+        border-top: 1px solid #F5F5F5;
+        font-family: Nunito Sans;
+        font-size: 20px;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        padding-left: 1vw;
+    }
+    
+    .weekLabel{
+        display: none;
+    }
+    
+    .activeWeekData{
+        display: none;
+    }
+
+    .accordion{
+        height: auto;
+        /* border: 1px solid purple; */
+    }
+
+    .accordionItem {
+        border-bottom: 1px solid #F5F5F5;
+    }
+    
+    .accordionHeader {
+        cursor: pointer;
+        height: 35px;
+        width: 100%;
+        background-color: #FFFFFF;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mobileDay1{
+        height: 100%;
+        width: auto;
+        font-family: Nunito Sans;
+        font-size: 12px;
+        font-weight: 600;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0vh 2vh;
+    }
+
+    .caretDown2{
+        height: 100%;
+        width: 10%;
+        /* border: 1px solid pink; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .caretDown2 img {
+        width: 16px;
+        transition: transform 0.3s ease;
+        height: 80%;
+        -webkit-user-drag: none;
+    }
+    
+    .accordionContent {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+        width: 100%;
+        background-color: #FFFFFF;
+        padding: 0vh 1vh 0vh 2vh;
+    }
+
+    .date{
+        height: 100%;
+        width: auto;
+        /* border: 1px solid black; */
+        font-family: Nunito Sans;
+        font-size: 10px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .activity{
+        height: 100%;
+        width: 60%;
+        /* border: 1px solid blue; */
+        font-family: Nunito Sans;
+        font-size: 10px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .accordionItem.active .accordionContent {
+        display: flex;
+    }
+    
+    .accordionItem.active .caretDown2 img {
+        transform: rotate(180deg); /* Flips the caret when open */
+    }
+    
+    
+    .commentContain{
+        height: 264px;
+        width: 100%;
+        /* border: 1px solid blue; */
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 4vw 4vw 1vw 4vw;
+    }
+    
+    .superLabel{
+        margin-bottom: 3vh;
+        font-size: 18px;
+    }
+    
+    .actualComment{
+        height: 117px;
+        font-size: 11px;
+        /* border: 1px solid black; */
+        align-items: normal;
+    }
+    
+    .signature{
+        border-top: 1px solid #F5F5F5;
+    }
 }

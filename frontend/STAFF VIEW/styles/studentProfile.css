@@ -347,3 +347,147 @@
     font-family: Nunito Sans;
     font-weight: 600;
 }
+
+@media screen and (max-width:450px) {
+    .header {
+        height: 60px;
+        padding: 1vh 3vh;
+    }
+    
+    .logoContain {
+        height: 32px;
+        width: 100px;
+        /* border: 1px solid green; */
+    }
+    
+    .logoContain img {
+        height: 100%;
+    }
+    
+    .bodyContain {
+        padding: 2vh 3vh;
+    }
+    
+    /* <!-- -----------Header section------------ --> */
+    
+    .heading{
+        height: 46px;
+    }
+    
+    .headingContain{
+        width: auto;
+        gap: 2vh;
+    }
+    
+    .headTxt{
+        font-size: 20px;
+    }
+    
+    
+    .logBtn{
+        width: 23%;
+    }
+    
+    .logBtn:hover{
+        background-color: #6BA792;
+    }
+    
+    /* ------Hero section CSS-------- */
+    
+    .heroContain{
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+        /* border: 1px solid blue;  */
+        margin-bottom: 4vh;
+    }
+    
+    .photoNname{
+        height: 316px;
+        width: 100%;
+        flex-direction: column;
+        /* border: 1px solid black; */
+        gap: 3vh;
+    }
+    
+    .profilePhoto{
+        height: 221px;
+        width: 100%;
+    }
+    
+    .photoBox{
+        height: 100%;
+        width: 100%;
+    }
+    
+    
+    .nameInterest{
+        width: 100%;
+    }
+    
+    .johnDoe{
+        height: 50%;
+        width: 100%;
+        font-size: 25px;
+        font-weight: 600;
+    }
+    
+    .Interest{
+        height: 50%;
+    }
+    
+    .bioData{
+        height: 213px;
+        width: 100%;
+        margin-top: 2vh;
+        padding: 3vh 1vh;
+    }
+    
+    
+    .bioBody{
+        height: 75%;
+        width: 95%;
+        font-weight: 400;
+        font-size: 18px;
+    }
+    
+    /* ------Info Section------- */
+    
+    .majorContainer{
+        height: auto;
+        flex-direction: column;
+        align-items:flex-end;   
+    }
+
+    .personInfo{
+        padding: 3vh 3vh;
+    }
+    
+    .titleEdit{
+        margin-bottom: 3vh;
+    }
+    
+    .infoTitle{
+        font-weight: 500;
+    }
+    
+    .infoBodyContain{
+        height: 410px;
+        flex-direction: column;
+        margin-bottom: 1vh;
+    }
+    
+    .infoBody{
+        height: 200px;
+        width: 100%;
+        /* border: 1px solid purple; */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .halfInfo{
+        height: 48%;
+        width: 100%;
+    }
+
+}

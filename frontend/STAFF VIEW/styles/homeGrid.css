@@ -386,3 +386,83 @@
 .viewDetails img {
     -webkit-user-drag: none;
 }
+
+@media screen and (max-width: 450px) {
+    .header {
+        height: 60px;
+        padding: 1vh 3vh;
+    }
+    
+    .logoContain {
+        height: 32px;
+        width: 100px;
+        /* border: 1px solid green; */
+    }
+    
+    .logoContain img {
+        height: 100%;
+    }
+    
+    .bodyContain {
+        padding: 2vh 3vh;
+    }
+    
+    /* <!-- -----------Header section------------ --> */
+    
+    .headerText {
+        font-size: 32px;
+    }
+    
+    /* <!-- ------End of Header section------------ --> */
+    
+    
+    /* --------Hero section----- */
+    .heroSection {
+        height: 80px;
+        margin-top: 2vh;
+        flex-direction: column;
+    }
+    
+    .searchContain {
+        height: 50%;
+        width: 100%;
+    }
+    
+    .searchField {
+        width: 70%;
+    }
+    
+
+    .searchBtn {
+        height: 100%;
+        width: 22%;
+        border-radius: 4px;
+        background-color: #CEE2DB;
+        border: 1px solid #096D49;
+        color: #096D49;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Nunito Sans;
+        font-weight: 500;
+        font-size: 14px;
+        user-select: none;
+        cursor: pointer;
+    }
+    
+    .buttonContain {
+        height: 30%;
+        width: 50%;
+        align-self: first baseline;
+
+    }
+
+    .gridContain {
+        padding: 0vh 2vh;
+    }
+    
+    .studentPhoto {
+        width: 30%;
+    }
+    
+}
