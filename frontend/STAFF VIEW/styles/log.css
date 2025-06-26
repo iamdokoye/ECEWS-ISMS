@@ -455,6 +455,10 @@
     padding-left: 1vw;
 }
 
+.accordion{
+    display: none;
+}
+
 .weekLabel{
     height: 60px;
     width: 100%;
