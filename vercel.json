@@ -14,7 +14,7 @@
         {
             "src": "/(.*)",
             "status": 404,
-            "dest": "frontend/staff-view/homeGrid.html"
+            "dest": "frontend/staff-view/$1"
         }
     ]
 }
