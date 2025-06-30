@@ -20,6 +20,8 @@
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    position: relative;
 }
 
 .logoContain {
@@ -32,7 +34,76 @@
 .logoContain img {
     -webkit-user-drag: none;
     background-color: #FFFFFF;
+}
 
+.logoutContain{
+    height: 80%;
+    width: 9%;
+    /* border: 1px solid brown; */
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.navName{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid blue; */
+    background-color: #FFFFFF;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.navPic{
+    height: 45px;
+    width: 45px;
+    /* border: 1px solid purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.navPic img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.logoutDropdown{
+    height: 40px;
+    width: 8%;
+    /* border: 1px solid red; */
+    border-radius: 4px;
+    position: absolute;
+    right: 11vh;
+    top: 8vh;
+    background-color: #FFFFFF;
+    z-index: 2;
+    box-shadow: 0px 2px 10px 0px #00000029;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 200ms, opacity 200ms;
+}
+
+.logoutDropdown.show {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.logoutDropdown:hover{
+    background-color: #F9F9F9;
+    cursor: pointer;
 }
 
 .bodyContain {
@@ -1388,6 +1459,33 @@
 
     .logoContain img {
         height: 100%;
+    }
+
+    .logoutContain{
+        height: 80%;
+        width: 28%;
+        justify-content: center;
+        gap: 1vh;
+    }
+    
+    .navName{
+        font-size: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .navPic{
+        height: 40px;
+        width: 29px;
+    }
+    
+    
+    .logoutDropdown{
+        width: 22%;
+        right: 5vh;
+        top: 8vh;
     }
 
     .bodyContain {

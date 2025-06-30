@@ -37,3 +37,16 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+
+    $("#loginBtn").click(function (e) {
+        e.preventDefault(); // Prevent default navigation
+        let targetURL = "/frontend/LOGIN/login.html";
+
+        $("body").fadeOut(300, function () {
+            window.location.href = targetURL; // Navigate after fade-out
+        });
+
+    });
+});
+

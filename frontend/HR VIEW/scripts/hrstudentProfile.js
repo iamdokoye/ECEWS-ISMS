@@ -213,3 +213,16 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    $("#logoutDropdown").click(function (e) {
+        e.stopPropagation();
+        $("#logout").toggleClass("show");
+    });
+
+    $(document).click(function (e) {
+        if (!$(e.target).closest("#logoutDropdown, #logout").length) {
+            $("#logout").removeClass("show");
+        }
+    });
+});

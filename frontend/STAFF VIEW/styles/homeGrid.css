@@ -19,6 +19,7 @@
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logoContain {
@@ -36,6 +37,25 @@
     width: 100%;
     padding: 2vh 12vh;
     background-color: #F9F9F9;
+}
+
+.loginBtn{
+    height: 50%;
+    width: 6.5%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #096D49;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginBtn:hover{
+    background-color: #6BA792;
 }
 
 /* <!-- -----------Header section------------ --> */
@@ -401,6 +421,11 @@
     
     .logoContain img {
         height: 100%;
+    }
+
+    .loginBtn{
+        height: 75%;
+        width: 20%;
     }
     
     .bodyContain {
