@@ -2,12 +2,12 @@
     "routes": [
         {
             "src": "/",
-            "dest": "/frontend/STAFF-VIEW/homeGrid.html"
+            "dest": "/frontend/STAFF%20VIEW/homeGrid.html"
         },
         {
             "src": "/(.*)",
             "status": 404,
-            "dest": "frontend/STAFF-VIEW/homeGrid.html"
+            "dest": "frontend/STAFF%20VIEW/homeGrid.html"
         }
     ]
 }
