@@ -878,6 +878,8 @@
     justify-content: space-between;
     padding: 0vh 1vh;
     background-color: #FFFFFF;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .headText2 {
@@ -891,6 +893,19 @@
     font-size: 16px;
     font-weight: 400;
     background-color: #FFFFFF;
+}
+
+.closeBox{
+    height: 100%;
+    width: auto;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeBox img{
+    -webkit-user-drag: none;
 }
 
 .confirmTxt {
@@ -978,6 +993,8 @@
     justify-content: space-between;
     padding: 0vh 2vh;
     background-color: #FFFFFF;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .modalBody {
@@ -1049,4 +1066,100 @@
 
 .okayBtn2:hover {
     background-color: #aac8be;
+}
+
+@media screen and (max-width: 450px) {
+    .header {
+        height: 60px;
+        padding: 1vh 3vh;
+    }
+    
+    .logoContain {
+        height: 32px;
+        width: 100px;
+        /* border: 1px solid green; */
+    }
+    
+    .logoContain img {
+        height: 100%;
+    }
+    
+    .bodyContain {
+        padding: 2vh 3vh;
+    }
+    
+    /* <!-- -----------Header section------------ --> */
+    
+    .headerText {
+        font-size: 32px;
+        font-weight: 500;
+    }
+
+    .dashboardBtn{
+        height: 34px;
+        width: 23%;
+        font-size: 10px;
+        font-weight: 400;
+    }
+
+    /* <!-- ------End of Header section------------ --> */
+    
+    
+    /* --------Hero section----- */
+    .heroSection {
+        height: 80px;
+        margin-top: 2vh;
+        flex-direction: column;
+    }
+    
+    .searchContain {
+        height: 50%;
+        width: 100%;
+    }
+    
+    .searchField {
+        width: 70%;
+    }
+    
+    .searchInputContain input {
+        font-size: 10px;
+    }
+
+    .searchBtn {
+        width: 20%;
+        font-weight: 600;
+        font-size: 10px;
+    }
+    
+    .buttonContain {
+        height: 30%;
+        width: 50%;
+        align-self: first baseline;
+    }
+
+    .allStudents {
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .gridContain {
+        padding: 0vh 2vh;
+    }
+    
+    .studentPhoto {
+        width: 30%;
+    }
+
+    .confirmModal {
+        width: 90%;
+        background-color: #FFFFFF;
+        margin: 50vw auto;
+    }
+
+    .successModal2 {
+        width: 90%;
+        background-color: #FFFFFF;
+        margin: 50vw auto;
+    }
+    
 }
