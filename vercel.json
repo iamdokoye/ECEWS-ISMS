@@ -2,14 +2,8 @@
     "version": 2,
     "builds": [
         {
-            "src": "frontend/staff-view/index.html",
+            "src": "frontend/**",
             "use": "@vercel/static"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "frontend/staff-view/$1"
         }
     ]
 }
