@@ -5,5 +5,27 @@
             "src": "frontend/**",
             "use": "@vercel/static"
         }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/frontend/staff-view/index.html"
+        },
+        {
+            "src": "/staff-view/(.*)",
+            "dest": "/frontend/staff-view/$1"
+        },
+        {
+            "src": "/hr-view/(.*)",
+            "dest": "/frontend/hr-view/$1"
+        },
+        {
+            "src": "/supervisor-view/(.*)",
+            "dest": "/frontend/supervisor-view/$1"
+        },
+        {
+            "src": "/login/(.*)",
+            "dest": "/frontend/login/$1"
+        }
     ]
 }
