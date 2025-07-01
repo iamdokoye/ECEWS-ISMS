@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/",
-            "dest": "/frontend/staff-view/index.html"
+            "dest": "/frontend/staff-view/homeGrid.html"
         },
         {
             "src": "/staff-view/(.*)",
