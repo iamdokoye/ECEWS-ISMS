@@ -7,7 +7,7 @@
   <title>Students Calendar</title>
 
   <!-- External Stylesheet -->
-  <link rel="stylesheet" href="./styles/studentsCalendar.css" />
+  <link rel="stylesheet" href="/frontend/user-view/styles/studentsCalendar.css" />
 </head>
 
 <body>
@@ -17,17 +17,17 @@
 
     <!-- App Logo -->
     <div class="headerLogo">
-      <img src="./ASSETS/24388.svg" alt="App Logo" />
+      <img src="/frontend/user-view/ASSETS/24388.svg" alt="App Logo" />
     </div>
 
     <!-- User Profile Section -->
     <div class="profile" id="profile">
       <div class="pText" id="pText">John Doe</div>
       <div class="pImg">
-        <img src="./assets/johndoe.png" alt="User Image" />
+        <img src="/frontend/user-view/assets/johndoe.png" alt="User Image" />
       </div>
       <div class="pIcon">
-        <img src="./assets/arrow2Vector.svg" alt="Dropdown Icon" />
+        <img src="/frontend/user-view/assets/arrow2Vector.svg" alt="Dropdown Icon" />
       </div>
     </div>
 
@@ -49,14 +49,14 @@
       <div class="viewLogContainer">
         <button class="addLogBtn">
           <span>Add Log</span>
-          <img src="./assets/addLogVector.svg" alt="Calendar Icon" class="button-icon" />
+          <img src="/frontend/user-view/assets/addLogVector.svg" alt="Calendar Icon" class="button-icon" />
         </button>
 
         <!-- ========= DIALOGUE 1: Log Input ========= -->
         <div class="overlay" id="overlay">
           <div class="feedbackForm">
             <span class="closeBtn" id="closeBtn">
-              <img src="./assets/close2Vector.svg" alt="Close" />
+              <img src="/frontend/user-view/assets/close2Vector.svg" alt="Close" />
             </span>
             <div class="feedbackHeading">Document Today's Work</div>
             <div class="signature-container">
@@ -75,7 +75,7 @@
         <div class="overlay2" id="overlay2">
           <div class="feedbackForm2">
             <div class="closeBtn2" id="closeBtn2">
-              <img src="./assets/closeVector.svg" alt="Close" class="icon-img" />
+              <img src="/frontend/user-view/assets/closeVector.svg" alt="Close" class="icon-img" />
             </div>
             <div class="feedbackHeading2">Confirm Save</div>
             <div class="confirmMessage">Are you sure you want to save this log?</div>
@@ -91,7 +91,7 @@
           <div class="feedbackForm3">
             <div class="feedbackHeading3">Success!</div>
             <div class="checkmarkIcon">
-              <img src="./assets/successVector.svg" alt="Checkmark" class="icon-img" />
+              <img src="/frontend/user-view/assets/successVector.svg" alt="Checkmark" class="icon-img" />
             </div>
             <p class="successMessage">You’ve successfully saved your log.</p>
             <button class="okayBtn" id="okayBtn">Okay</button>
@@ -102,7 +102,7 @@
         <div class="overlay4" id="overlay4">
           <div class="feedbackForm2">
             <div class="closeBtn2" id="closeBtn4">
-              <img src="./assets/closeVector.svg" alt="Close" />
+              <img src="/frontend/user-view/assets/closeVector.svg" alt="Close" />
             </div>
             <div class="feedbackHeading2">Confirm Submission</div>
             <div class="confirmMessage">Are you sure you want to turn in your log?</div>
@@ -118,7 +118,7 @@
           <div class="feedbackForm3">
             <div class="feedbackHeading3">Submitted!</div>
             <div class="checkmarkIcon">
-              <img src="./assets/successVector.svg" alt="Success" />
+              <img src="/frontend/user-view/assets/successVector.svg" alt="Success" />
             </div>
             <p class="successMessage">You've successfully submitted your log</p>
             <button class="okayBtn" id="okayBtn5">Okay</button>
@@ -141,7 +141,7 @@
             <!-- Jump to Today Button -->
             <button class="button-today" onclick="goToToday()">
               Jump to today
-              <img src="./ASSETS/calendarIconVector.svg" alt="Today Icon" class="icon-img" />
+              <img src="/frontend/user-view/ASSETS/calendarIconVector.svg" alt="Today Icon" class="icon-img" />
             </button>
 
             <!-- Month and Year Controls -->
@@ -150,13 +150,13 @@
               <!-- Month Selector -->
               <div class="month-selector">
                 <button onclick="changeMonth(-1)">
-                  <img src="./ASSETS/caretLVector.svg" alt="Previous Month" class="month-icon" />
+                  <img src="/frontend/user-view/ASSETS/caretLVector.svg" alt="Previous Month" class="month-icon" />
                 </button>
 
                 <span id="month-label">June</span>
 
                 <button onclick="changeMonth(1)">
-                  <img src="./ASSETS/caretRVector.svg" alt="Next Month" class="month-icon" />
+                  <img src="/frontend/user-view/ASSETS/caretRVector.svg" alt="Next Month" class="month-icon" />
                 </button>
               </div>
 
@@ -164,7 +164,7 @@
               <div class="custom-year-selector">
                 <div class="selected-year" onclick="toggleYearDropdown()">2025</div>
                 <ul id="year-dropdown" class="year-options hidden"></ul>
-                <img src="./ASSETS/caretRVector.svg" alt="Dropdown Icon" class="year-icon" />
+                <img src="/frontend/user-view/ASSETS/caretRVector.svg" alt="Dropdown Icon" class="year-icon" />
               </div>
 
             </div>
@@ -216,9 +216,9 @@
   </div>
 
   <!-- ===================== JAVASCRIPT FILES ===================== -->
-  <script src="./scripts/studentCalendar.js"></script>
-  <script src="./routes/signout.js"></script>
-  <script src="./backend/studentCalendar.js"></script>
+  <script src="/frontend/user-view/scripts/studentCalendar.js"></script>
+  <script src="/frontend/user-view/routes/signout.js"></script>
+  <script src="/frontend/user-view/backend/studentCalendar.js"></script>
 
 </body>
 </html>
