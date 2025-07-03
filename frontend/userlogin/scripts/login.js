@@ -6,7 +6,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     
 
     try {
-        const response = await axios.post("http://localhost:5000/auth/login", {
+        const apiBase = process.env.API;
+        const response = await axios.post(`${apiBase}/auth/login`, {
             email,
             password
         });

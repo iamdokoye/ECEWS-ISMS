@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedSupervisorId = null;
 
     // 1. Fetch and populate units from external DB
-    fetch('http://localhost:5000/api/supervisor/units')
+    const apiBase = process.env.API;
+    fetch(`${apiBase}/supervisor/units`)
         .then(res => res.json())
         .then(units => {
             unitDropdown.innerHTML = '';
@@ -32,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Load users in the selected unit from external DB
     function loadSupervisors(unit) {
-        fetch(`http://localhost:5000/api/supervisor/users/by-unit/${encodeURIComponent(unit)}`)
+        const apiBase = process.env.API;
+        fetch(`${apiBase}/supervisor/users/by-unit/${encodeURIComponent(unit)}`)
             .then(res => res.json())
             .then(users => {
                 supervisorDropdown.innerHTML = '';

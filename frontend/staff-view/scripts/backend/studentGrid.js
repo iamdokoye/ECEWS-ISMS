@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let allCards = [];
-
-    fetch('api/api/students/all')
+    const apiBase = process.env.API;
+    fetch(`${apiBase}/students/all`)
         .then(res => res.json())
         .then(students => {
             Object.values(sections).forEach(container => container.innerHTML = '');

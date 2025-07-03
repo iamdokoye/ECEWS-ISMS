@@ -1,8 +1,9 @@
 const studentId = localStorage.getItem('studentId'); // Ensure this is set during login
 let logsMap = {};
+const apiBase = process.env.API;
 
 const fetchStudentLogs = async () => {
-  const res = await fetch(`http://localhost:5000/api/log/log/${studentId}`);
+  const res = await fetch(`${apiBase}/logs/${studentId}`);
   const logs = await res.json();
   logs.forEach(log => {
     logsMap[log.log_date] = log;
@@ -10,7 +11,7 @@ const fetchStudentLogs = async () => {
 };
 
 const saveLog = async (date, content) => {
-  const res = await fetch('http://localhost:5000/api/log/log', {
+  const res = await fetch(`${apiBase}/logs/create`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, log_date: date, content })
@@ -19,7 +20,7 @@ const saveLog = async (date, content) => {
 };
 
 const submitLog = async (date) => {
-  await fetch('http://localhost:5000/api/log/log/submit', {
+  await fetch(`${apiBase}/logs/submit`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ student_id: studentId, log_date: date })

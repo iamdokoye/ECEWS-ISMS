@@ -1,6 +1,7 @@
 window.onload = async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/admin/dashboard');
+        const apiBase = process.env.API;
+        const response = await fetch(`${apiBase}/admin/dashboard`);
         if (!response.ok) throw new Error('Failed to fetch dashboard stats');
 
         const data = await response.json();

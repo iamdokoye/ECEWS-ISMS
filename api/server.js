@@ -14,11 +14,11 @@
   app.use(express.json());
 
   app.use('/auth', authRoutes);
-  app.use('/api/admin', adminRoutes);
-  app.use('/api/supervisor', supervisorRoutes)
-  app.use('/api/students', studentRoutes )
-  app.use('/api/students', studentViewRoutes)
-  app.use('/api/logs', logsRoutes);
+  app.use('/admin', adminRoutes);
+  app.use('/supervisor', supervisorRoutes)
+  app.use('/students', studentRoutes )
+  app.use('/students', studentViewRoutes)
+  app.use('/logs', logsRoutes);
 
 
   app.get('/', (req, res) => res.send('Server OK'));

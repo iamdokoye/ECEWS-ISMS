@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let supervisorId = null;
 
   // Load units from backend
-  fetch('http://localhost:5000/api/students/units')
+  const apiBase = process.env.API;
+  fetch(`${apiBase}/students/units`)
     .then(res => res.json())
     .then(units => {
       unitDropdown.innerHTML = '';
