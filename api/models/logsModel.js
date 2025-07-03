@@ -1,4 +1,4 @@
-const internalDb = require('../db/internalDB');
+const internalDb = require('../db/database');
 
 // Add a new log
 const addLog = async ({ student_id, log_date, content }) => {
