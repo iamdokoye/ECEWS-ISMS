@@ -2,6 +2,11 @@
   "name": "back-end",
   "version": "1.0.0",
   "main": "server.js",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
     "accepts": "^2.0.0",
     "anymatch": "^3.1.3",
@@ -41,7 +46,6 @@
     "finalhandler": "^2.1.0",
     "forwarded": "^0.2.0",
     "fresh": "^2.0.0",
-    "fsevents": "^2.3.3",
     "function-bind": "^1.1.2",
     "get-intrinsic": "^1.3.0",
     "get-proto": "^1.0.1",
@@ -87,7 +91,6 @@
     "negotiator": "^1.0.0",
     "node-addon-api": "^8.3.1",
     "node-gyp-build": "^4.8.4",
-    "nodemon": "^3.1.10",
     "normalize-path": "^3.0.0",
     "object-assign": "^4.1.1",
     "object-inspect": "^1.13.4",
@@ -103,11 +106,7 @@
     "qs": "^6.14.0",
     "range-parser": "^1.2.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
