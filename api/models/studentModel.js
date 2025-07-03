@@ -1,4 +1,4 @@
-const internalDb = require('../db/internalDB');
+const internalDb = require('../db/database');
 
 
 

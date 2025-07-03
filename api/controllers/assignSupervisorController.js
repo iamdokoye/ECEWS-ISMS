@@ -1,6 +1,6 @@
 // controllers/assignSupervisorController.js
 
-const internalPool = require('../db/internalDB');
+const internalPool = require('../db/database');
 const externalPool = require('../db/externalDB');
 
 // 1. Fetch distinct unit names from external DB

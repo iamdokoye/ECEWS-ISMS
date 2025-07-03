@@ -1,4 +1,4 @@
-const internalDb = require('../db/internalDB');
+const internalDb = require('../db/database');
 const externalDb = require('../db/externalDB');
 
 const getUserByEmailInternal = async (email) => {
@@ -18,8 +18,14 @@ const createUserInternal = async ({ name, email, password, role, unit }) => {
   );
 };
 
+const getUserById = async (id) => {
+  const res = await internalDb.query('SELECT * FROM users WHERE id = $1', [id]);
+  return res.rows[0];
+};
+
 module.exports = {
   getUserByEmailInternal,
   getUserByEmailExternal,
   createUserInternal,
+  getUserById,
 };
