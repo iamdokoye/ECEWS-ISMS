@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`${apiBase}/students/all`)
         .then(res => res.json())
         .then(students => {
+            console.log("Students response:", students);
             Object.values(sections).forEach(container => container.innerHTML = '');
 
             students.forEach(student => {
