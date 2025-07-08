@@ -17,7 +17,7 @@ const apiBase = window.APP_CONFIG.API_BASE;
         div.addEventListener('click', () => {
           unitInput.value = unit;
           unitDropdown.classList.remove('show');
-          fetch(`http://localhost:5000/api/students/supervisor/${encodeURIComponent(unit)}`)
+          fetch(`${apiBase}/students/supervisor/${encodeURIComponent(unit)}`)
             .then(res => res.json())
             .then(data => {
               supervisorInput.value = data.name || 'N/A';
@@ -50,7 +50,7 @@ const apiBase = window.APP_CONFIG.API_BASE;
     const confirmPassword = document.getElementById('studentConfirmPassword').value;
     const interest = document.getElementById('studentInterest')?.value || 'unspecified';
     const role = 'student';
-    const gender = 'unspecified';
+    const gender = document.querySelector('input[name="gender"]:checked')?.value || 'unspecified';
     const added_by_hr = localStorage.getItem('hrId');
 
     if (password !== confirmPassword) {
@@ -59,7 +59,7 @@ const apiBase = window.APP_CONFIG.API_BASE;
     }
 
     try {
-      const res = await fetch('http://localhost:5000/auth/register', {
+      const res = await fetch(`${apiBase}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
