@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let supervisorId = null;
 
   // Load units from backend
-  const apiBase = process.env.API;
+const apiBase = window.APP_CONFIG.API_BASE;
   fetch(`${apiBase}/students/units`)
     .then(res => res.json())
     .then(units => {

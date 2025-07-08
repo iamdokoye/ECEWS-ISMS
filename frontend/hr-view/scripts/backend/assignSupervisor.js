@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedSupervisorId = null;
 
     // 1. Fetch and populate units from external DB
-    const apiBase = process.env.API;
+    const apiBase = window.APP_CONFIG.API_BASE;
     fetch(`${apiBase}/supervisor/units`)
         .then(res => res.json())
         .then(units => {

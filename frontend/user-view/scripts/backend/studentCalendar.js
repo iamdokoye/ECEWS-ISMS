@@ -1,6 +1,6 @@
 const studentId = localStorage.getItem('studentId'); // Ensure this is set during login
 let logsMap = {};
-const apiBase = process.env.API;
+const apiBase = window.APP_CONFIG.API_BASE;
 
 const fetchStudentLogs = async () => {
   const res = await fetch(`${apiBase}/logs/${studentId}`);

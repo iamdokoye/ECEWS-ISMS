@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // ✅ Fetch student details from the backend
-    const apiBase = process.env.API;
+    const apiBase = window.APP_CONFIG.API_BASE;
     const response = await fetch(`${apiBase}/students/${studentId}`);
     if (!response.ok) throw new Error('Failed to fetch student details');
     
