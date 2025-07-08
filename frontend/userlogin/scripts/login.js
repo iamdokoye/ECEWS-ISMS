@@ -17,16 +17,16 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
             switch (userData.role?.toLowerCase()) {
                 case 'student':
-                    window.location.href = "../User VIEW/studentCalendar.html";
+                    window.location.href = "../user-view/studentCalendar.html";
                     break;
                 case 'supervisor':
-                    window.location.href = "../Supervisor VIEW/homeListView.html";
+                    window.location.href = "../supervisor-view/homeListView.html";
                     break;
                 case 'admin':
-                    window.location.href = "../HR VIEW/hrDash.html";
+                    window.location.href = "../hr-view/hrDash.html";
                     break;
                 case 'staff':
-                    window.location.href = "../Staff VIEW/homeGrid.html";
+                    window.location.href = "../staff-view/homeGrid.html";
                     break;
                 default:
                     alert("Unknown role: " + userData.role);
