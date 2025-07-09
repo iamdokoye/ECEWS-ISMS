@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {
-  getUnitsFromExternal,
-  getUsersByUnitExternal,
+  getUnits,
+  getUsersByUnit,
   assignSupervisor
 } = require('../controllers/assignSupervisorController');
 
