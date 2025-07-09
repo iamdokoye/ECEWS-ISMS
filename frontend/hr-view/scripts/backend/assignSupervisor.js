@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch('http://localhost:5000/api/supervisor/assign', {
+        fetch(`${apiBase}/supervisor/assign`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
