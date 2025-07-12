@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allCards = [];
   // Fetch all students from the backend
-  const apiBase = window.APP_CONFIG.API_BASE;
-  fetch(`${apiBase}/students/all`)
+  fetch(`${window.API_BASE}/students/all`)
     .then(res => res.json())
     .then(students => {
       Object.values(sections).forEach(container => container.innerHTML = '');

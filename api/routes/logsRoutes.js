@@ -1,14 +1,14 @@
-// routes/logsRoutes.js
 const express = require('express');
 const router = express.Router();
-const {
-  createOrUpdateLog,
-  getAllLogsForStudent,
-  markLogAsSubmitted
-} = require('../controllers/logsController');
+const logsController = require('../controllers/logsController');
 
-router.post('/create', createOrUpdateLog); // Create or update a log
-router.get('/:student_id', getAllLogsForStudent); // Get all logs for a student
-router.put('/submit', markLogAsSubmitted); // Submit a log
+// POST: Save or update log for a student on a specific date
+router.post('/save', logsController.createOrUpdateLog);
+
+// GET: Fetch all logs for a specific student
+router.get('/:student_id', logsController.getAllLogsForStudent);
+
+// POST: Mark a log as submitted
+router.post('/submit', logsController.markLogAsSubmitted);
 
 module.exports = router;

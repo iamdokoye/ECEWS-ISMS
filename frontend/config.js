@@ -1,3 +1,1 @@
-window.APP_CONFIG = {
-    API_BASE: "https://ecews-isms.onrender.com"
-};
+window.API_BASE = 'http://localhost:5000';

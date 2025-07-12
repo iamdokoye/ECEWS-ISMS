@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let supervisorId = null;
 
   // Load units from backend
-const apiBase = window.APP_CONFIG.API_BASE;
-  fetch(`${apiBase}/students/units`)
+  fetch(`${window.API_BASE}/students/units`)
     .then(res => res.json())
     .then(units => {
       unitDropdown.innerHTML = '';
@@ -17,7 +16,7 @@ const apiBase = window.APP_CONFIG.API_BASE;
         div.addEventListener('click', () => {
           unitInput.value = unit;
           unitDropdown.classList.remove('show');
-          fetch(`${apiBase}/students/supervisor/${encodeURIComponent(unit)}`)
+          fetch(`${window.API_BASE}/students/supervisor/${encodeURIComponent(unit)}`)
             .then(res => res.json())
             .then(data => {
               supervisorInput.value = data.name || 'N/A';
@@ -59,7 +58,7 @@ const apiBase = window.APP_CONFIG.API_BASE;
     }
 
     try {
-      const res = await fetch(`${apiBase}/auth/register`, {
+      const res = await fetch(`${window.API_BASE}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
