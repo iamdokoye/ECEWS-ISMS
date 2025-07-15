@@ -1,144 +1,213 @@
-const studentId = localStorage.getItem('studentId'); // Ensure this is set during login
-let logsMap = {};
-const apiBase = window.API_BASE;
-
-const fetchStudentLogs = async () => {
-  if (!studentId) {
-    console.error("Student ID not found.");
-    return;
-  }
-
-  try {
-    const res = await fetch(`${apiBase}/logs/${studentId}`);
-    
-    // Check if response is successful
-    if (res.ok) {
-      const logs = await res.json();
-      logs.forEach(log => {
-        logsMap[log.log_date] = log; // Store logs by date for easy retrieval
-      });
-    } else {
-      console.error("Failed to fetch logs:", res.statusText);
-    }
-  } catch (err) {
-    console.error("Error fetching logs:", err);
-  }
-};
-
-const saveLog = async (date, content) => {
-  if (!date || !content) {
-    console.error("Date and content are required to save the log.");
-    return;
-  }
-
-  try {
-    const res = await fetch(`${apiBase}/logs/create`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ student_id: studentId, log_date: date, content })
-    });
-
-    // Handle response
-    if (res.ok) {
-      const savedLog = await res.json();
-      logsMap[date] = savedLog; // Save the newly created log
-      console.log('Log saved successfully:', savedLog);
-      return savedLog;
-    } else {
-      const error = await res.json();
-      console.error("Error saving log:", error.message);
-      return null;
-    }
-  } catch (err) {
-    console.error("Error while saving log:", err);
-  }
-};
-
-const submitLog = async (date) => {
-  if (!logsMap[date]) {
-    console.error("No log found to submit for this date.");
-    return;
-  }
-
-  try {
-    const res = await fetch(`${apiBase}/logs/submit`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ student_id: studentId, log_date: date })
-    });
-
-    if (res.ok) {
-      const updatedLog = await res.json();
-      logsMap[date] = updatedLog; // Update the log as submitted
-      console.log("Log successfully submitted:", updatedLog);
-    } else {
-      const error = await res.json();
-      console.error("Error submitting log:", error.message);
-    }
-  } catch (err) {
-    console.error("Error while submitting log:", err);
-  }
-};
-
-// Handle the click event on the calendar
-document.querySelectorAll('.calendar-day').forEach(dayElement => {
-  dayElement.addEventListener('click', async (event) => {
-    const selectedDate = event.target.dataset.date; // Get the date of the clicked cell
-    
-    if (!selectedDate) {
-      return;
-    }
-
-    // Check if the clicked date is in the future
-    const currentDate = new Date();
-    const clickedDate = new Date(selectedDate);
-    
-    if (clickedDate > currentDate) {
-      alert('You cannot add logs for future dates.');
-      return;
-    }
-
-    // If the date exists in logsMap, show the existing log for that day
-    if (logsMap[selectedDate]) {
-      document.getElementById('daily-log').querySelector('.log-body').innerHTML = logsMap[selectedDate].content;
-    } else {
-      document.getElementById('daily-log').querySelector('.log-body').innerHTML = 'You haven’t filled any log for today';
-    }
-
-    // Show the 'Add Log' modal
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarBody = document.getElementById('calendar-body');
+    const logDateLabel = document.getElementById('log-date');
+    const logContent = document.querySelector('.log-body p');
+    const addLogBtn = document.querySelector('.addLogBtn');
     const overlay = document.getElementById('overlay');
-    overlay.style.display = 'flex'; // Open the modal
+    const closeBtn = document.getElementById('closeBtn');
+    const sendFeedbackBtn = document.getElementById('sendFeedback');
+    const signatureText = document.getElementById('signatureText');
+    const yearDropdown = document.getElementById('year-dropdown');
+    const selectedYear = document.getElementById('selected-year');
 
-    // Handle saving the log
-    document.getElementById('sendFeedback').addEventListener('click', async () => {
-      const content = document.getElementById('signatureText').value;
-      
-      // If there's no content, alert the user
-      if (!content) {
-        alert('Please enter a log.');
-        return;
-      }
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    let selectedDate = null;
 
-      // Save the log
-      const savedLog = await saveLog(selectedDate, content);
+    const studentId = localStorage.getItem('studentId');
+    const apiBase = window.API_BASE;
 
-      // If log is saved successfully, show the confirmation modal
-      if (savedLog) {
-        const overlay2 = document.getElementById('overlay2');
-        overlay2.style.display = 'flex'; // Show the confirmation modal
+    // Fetch and display logs
+    const fetchLogs = async (date) => {
+        const res = await fetch(`${apiBase}/logs/${studentId}`);
+        const logs = await res.json();
+        const log = logs.find(log => log.log_date === date);
+        if (log) {
+            logContent.textContent = log.content || 'You haven’t filled any log for today';
+        } else {
+            logContent.textContent = 'You haven’t filled any log for today';
+        }
+    };
 
-        document.getElementById('proceedBtn').addEventListener('click', async () => {
-          await submitLog(selectedDate); // Submit the log after confirmation
-          overlay2.style.display = 'none'; // Close confirmation modal
-          overlay.style.display = 'none'; // Close the log input modal
-          alert('Your log has been saved and submitted successfully!');
+    // Render calendar based on current month and year
+    const renderCalendar = () => {
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // Get the first day of the month
+        const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate(); // Get the last date of the month
+        const prevMonthLastDate = new Date(currentYear, currentMonth, 0).getDate(); // Last date of the previous month
+
+        calendarBody.innerHTML = ''; // Clear previous calendar
+
+        let dayCounter = 1;
+        let row = document.createElement('div');
+        row.classList.add('calendar-row');
+        let cellCount = 0;
+
+        // Insert empty cells for the previous month's last few days
+        for (let i = 0; i < firstDay; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('calendar-cell', 'prev-month');
+            cell.textContent = prevMonthLastDate - (firstDay - i - 1);
+            row.appendChild(cell);
+            cellCount++;
+        }
+
+        // Insert current month's days
+        for (let i = firstDay; i < 7; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('calendar-cell');
+            cell.textContent = dayCounter;
+            cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${dayCounter}`);
+            if (dayCounter === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+                cell.classList.add('today');
+            }
+            cell.addEventListener('click', () => onDateClick(cell));
+            row.appendChild(cell);
+            dayCounter++;
+            cellCount++;
+
+            // If we have filled the first row, append it and reset the row
+            if (cellCount === 7) {
+                calendarBody.appendChild(row);
+                row = document.createElement('div');
+                row.classList.add('calendar-row');
+                cellCount = 0;
+            }
+        }
+
+        // Insert remaining days in the month
+        while (dayCounter <= lastDate) {
+            if (cellCount === 0) {
+                row = document.createElement('div');
+                row.classList.add('calendar-row');
+            }
+
+            const cell = document.createElement('div');
+            cell.classList.add('calendar-cell');
+            cell.textContent = dayCounter;
+            cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${dayCounter}`);
+            if (dayCounter === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+                cell.classList.add('today');
+            }
+            cell.addEventListener('click', () => onDateClick(cell));
+            row.appendChild(cell);
+            dayCounter++;
+            cellCount++;
+
+            // Once the row is filled, append it and reset for next
+            if (cellCount === 7 || dayCounter > lastDate) {
+                calendarBody.appendChild(row);
+                row = document.createElement('div');
+                row.classList.add('calendar-row');
+                cellCount = 0;
+            }
+        }
+
+        // If the last row has fewer than 7 cells, we fill the row with empty cells to complete the row.
+        if (cellCount > 0 && cellCount < 7) {
+            for (let i = cellCount; i < 7; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('calendar-cell', 'next-month');
+                row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
+        }
+    };
+
+    // Handle date click to select and display log
+    const onDateClick = (cell) => {
+        const date = cell.getAttribute('data-date');
+        selectedDate = date;
+        logDateLabel.textContent = `${new Date(date).toLocaleDateString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}`;
+        fetchLogs(date);
+        document.querySelectorAll('.calendar-cell').forEach(td => td.classList.remove('selected-date'));
+        cell.classList.add('selected-date');
+    };
+
+    // Add log button click handler
+    addLogBtn.addEventListener('click', () => {
+        if (!selectedDate) return alert('Please select a date');
+        overlay.classList.add('show');
+    });
+
+    // Save log content
+    sendFeedbackBtn.addEventListener('click', async () => {
+        const content = signatureText.value.trim();
+        if (content) {
+            const res = await fetch(`${apiBase}/logs/create`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ student_id: studentId, log_date: selectedDate, content })
+            });
+            const data = await res.json();
+            if (data.success) {
+                overlay.classList.remove('show');
+                fetchLogs(selectedDate); // Refresh the log content after saving
+            } else {
+                alert('Error saving log');
+            }
+        } else {
+            alert('Log content cannot be empty');
+        }
+    });
+
+    // Close modal on close button click
+    closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('show');
+    });
+
+    // Jump to today button
+    document.getElementById('todayBtn').addEventListener('click', () => {
+        currentMonth = new Date().getMonth();
+        currentYear = new Date().getFullYear();
+        renderCalendar();
+    });
+
+    // Month change button click handlers
+    document.getElementById('prev-month').addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar();
+    });
+
+    document.getElementById('next-month').addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar();
+    });
+
+    // Year dropdown toggle
+    selectedYear.addEventListener('click', () => {
+        yearDropdown.classList.toggle('visible');
+    });
+
+    // Handle year selection
+    const currentYearValue = new Date().getFullYear();
+    const startYear = currentYearValue - 10;
+    const endYear = currentYearValue + 10;
+
+    // Dynamically populate year dropdown with 10 years before and after the current year
+    yearDropdown.innerHTML = ''; // Clear any existing options
+    for (let year = startYear; year <= endYear; year++) {
+        const yearOption = document.createElement('li');
+        yearOption.textContent = year;
+        yearOption.addEventListener('click', (e) => {
+            const selectedYearText = e.target.textContent;
+            currentYear = parseInt(selectedYearText, 10);
+            selectedYear.textContent = selectedYearText;
+            yearDropdown.classList.remove('visible');
+            renderCalendar();
         });
-      }
-    });
+        yearDropdown.appendChild(yearOption);
+    }
+    yearDropdown.classList.remove('visible');
 
-    // Handle canceling the log creation
-    document.getElementById('closeBtn').addEventListener('click', () => {
-      overlay.style.display = 'none'; // Close the modal
-    });
-  });
+
+    // Initialize calendar
+    renderCalendar();
 });

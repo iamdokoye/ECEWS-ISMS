@@ -544,7 +544,7 @@ td {
 td::before {
   content: "";
   display: block;
-  padding-top: 90%; /* Controls height */
+  padding-top: 80%; /* Controls height */
 }
 
 td > span {
@@ -566,11 +566,6 @@ td:hover {
   color: #848484ad;
   background-color: #fff;
 }
-
-
-
-
-
 
 .log-container {
   width: 100%;
@@ -1011,4 +1006,103 @@ td:hover {
   background-color: #488d73;
 }
 
+.calendar-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    font-family: Nunito Sans;
+    background-color: #F9F9F9;
+}
 
+.calendar-row {
+    display: flex;
+    width: 100%;
+    height: 20%;
+}
+
+.calendar-cell {
+    width: calc(100% / 7);
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    border: 0.5px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: white;
+    font-family: Nunito Sans;
+}
+
+.calendar-cell:hover {
+    background-color: #f0f0f0;
+}
+
+/* Prevent hover effect on selected-date */
+.calendar-cell.selected-date:hover,
+.selected-date:hover {
+    background-color: #D0F0C0;
+    color: black;
+    transition: all;
+    transition-duration: background-color 1.3s ease;
+}
+
+.selected-date {
+  background-color: #D0F0C0;
+  color: black;
+}
+
+.prev-month, .next-month {
+    color: #ccc;
+    pointer-events: none; /* No hover effect for previous/next month cells */
+}
+
+.today {
+    color: #0d9a5d !important;
+    background-color: white !important;
+    font-size: 20px;
+    border-radius: 0px;
+}
+
+.today:hover {
+    background-color: #f0f0f0 !important;
+}
+
+/* Hide year dropdown by default */
+.year-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    z-index: 10;
+    display: none; /* Hide the dropdown by default */
+}
+
+.year-options li {
+    padding: 0.4rem 1rem;
+    list-style: none;
+    cursor: pointer;
+}
+
+.year-options li:hover {
+    background-color: #e6f4ea;
+}
+
+/* Show the year dropdown when it's toggled */
+.year-options.visible {
+    display: block;
+}
+
+.dropdown-icon img {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon img:hover {
+  transform: scale(1.1);
+}

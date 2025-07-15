@@ -8,6 +8,7 @@
 
   <!-- External Stylesheet -->
   <link rel="stylesheet" href="/frontend/user-view/styles/studentsCalendar.css" />
+
 </head>
 
 <body>
@@ -139,7 +140,7 @@
           <div class="calendar-header">
 
             <!-- Jump to Today Button -->
-            <button class="button-today" onclick="goToToday()">
+            <button class="button-today" id="todayBtn" onclick="goToToday()">
               Jump to today
               <img src="/frontend/user-view/ASSETS/calendarIconVector.svg" alt="Today Icon" class="icon-img" />
             </button>
@@ -149,45 +150,53 @@
 
               <!-- Month Selector -->
               <div class="month-selector">
-                <button onclick="changeMonth(-1)">
+                <button id="prev-month" onclick="changeMonth(-1)">
                   <img src="/frontend/user-view/ASSETS/caretLVector.svg" alt="Previous Month" class="month-icon" />
                 </button>
 
                 <span id="month-label">June</span>
 
-                <button onclick="changeMonth(1)">
+                <button id="next-month" onclick="changeMonth(1)">
                   <img src="/frontend/user-view/ASSETS/caretRVector.svg" alt="Next Month" class="month-icon" />
                 </button>
               </div>
 
               <!-- Custom Year Selector -->
-              <div class="custom-year-selector">
-                <div class="selected-year" onclick="toggleYearDropdown()">2025</div>
-                <ul id="year-dropdown" class="year-options hidden"></ul>
-                <img src="/frontend/user-view/ASSETS/caretRVector.svg" alt="Dropdown Icon" class="year-icon" />
-              </div>
+<div class="custom-year-selector">
+    <div class="selected-year" id="selected-year" onclick="toggleYearDropdown()">2025</div>
+    <ul id="year-dropdown" class="year-options hidden">
+        
+    </ul>
+    <div class="dropdown-icon">
+      <img src="/frontend/user-view/ASSETS/caretRVector.svg" alt="Dropdown Icon" class="year-icon" />
+    </div>
+</div>
+
 
             </div>
           </div>
 
           <!-- Calendar Table -->
-          <table>
-            <thead>
-              <tr>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-              </tr>
-            </thead>
-            <tbody id="calendar-body"></tbody>
-          </table>
+          <div class="calendar-container">
+            <div class="calendar-header">
+              <div>Sunday</div>
+              <div>Monday</div>
+              <div>Tuesday</div>
+              <div>Wednesday</div>
+              <div>Thursday</div>
+              <div>Friday</div>
+              <div>Saturday</div>
+            </div>
+
+            <div class="calendar-body" id="calendar-body">
+              <!-- Days will be dynamically generated here -->
+            </div>
+          </div>
 
         </div>
       </div>
+
+      <div id="calendar"></div>
 
       <!-- === Daily Log Section === -->
       <div class="logSec">
@@ -216,12 +225,10 @@
   </div>
 
   <!-- ===================== JAVASCRIPT FILES ===================== -->
-   <script src="/frontend/config.js"></script>
+  <script src="/frontend/config.js"></script>
   <script src="/frontend/user-view/scripts/studentCalendar.js"></script>
   <script src="/frontend/user-view/routes/signout.js"></script>
-  <script src="/frontend/user-view/backend/studentCalendar.js"></script>
-
+  <script src="/frontend/user-view/scripts/backend/a.js"></script>
 </body>
+
 </html>
-
-
