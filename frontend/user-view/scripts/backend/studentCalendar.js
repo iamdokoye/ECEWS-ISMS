@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    let selectedDate = null;
+    let selectedDate = `${currentYear}-${currentMonth + 1}-${new Date().getDate()}`;
 
     const apiBase = window.API_BASE;
+    const token = localStorage.getItem('token');
 
     window.addEventListener('DOMContentLoaded', async () => {
         try {
@@ -30,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('DOMContentLoaded', async () => {
         try {
             const res = await axios.get(`${apiBase}/auth/me`, {
-                withCredentials: true
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             const user = res.data.user;
@@ -41,8 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error('Failed to fetch user profile:', err);
             alert('Failed to fetch user profile. Please log in again.');
-            // optionally redirect to login
-            // window.location.href = '/frontend/userlogin/login.html';
+            window.location.href = '/frontend/userlogin/login.html';
         }
     });
 
@@ -242,4 +244,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize calendar
     renderCalendar();
+
 });

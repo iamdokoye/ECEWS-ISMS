@@ -12,11 +12,22 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         }, {
             withCredentials: true // Include credentials for cookie-based auth
             });
-        console.log(response.data);
+        console.log('Login response:', response.data);
         alert("Login successful: " + response.data.message);
 
         if (response.status === 200) {
             const userData = response.data.user;
+            const token = response.data.token;
+            console.log("User data:", userData);
+
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            if (!userData || !userData.role || !userData.id) {
+                alert("User data is incomplete. Please try again.");
+                console.error("Incomplete user data:", userData);
+                return;
+            }
 
             // Store user ID and other relevant info based on the user's role
             switch (userData.role?.toLowerCase()) {
