@@ -4,17 +4,21 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
     
-
     try {
-        const apiBase = window.APP_CONFIG.API_BASE;
+        const apiBase = window.API_BASE;
         const response = await axios.post(`${apiBase}/auth/login`, {
             email,
             password
-        });
+        }, {
+            withCredentials: true // Include credentials for cookie-based auth
+            });
         console.log(response.data);
+        alert("Login successful: " + response.data.message);
+
         if (response.status === 200) {
             const userData = response.data.user;
 
+            // Store user ID and other relevant info based on the user's role
             switch (userData.role?.toLowerCase()) {
                 case 'student':
                     window.location.href = "../user-view/studentCalendar.html";
@@ -31,6 +35,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
                 default:
                     alert("Unknown role: " + userData.role);
             }
+
             console.log("Login successful:", response.data);
         } else {
             console.error("Login failed with status:", response.status);

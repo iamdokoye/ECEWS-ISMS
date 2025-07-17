@@ -35,10 +35,10 @@ const createOrUpdateLog = async (req, res) => {
 
 // Fetch all logs for a specific student
 const getAllLogsForStudent = async (req, res) => {
-  const { student_id } = req.params;
+const { student_id } = req.params;
 
   // Check if the student_id is provided
-  if (!student_id) {
+  if (!student_id || student_id === 'undefined') {
     return res.status(400).json({ message: 'Missing student ID' });
   }
 

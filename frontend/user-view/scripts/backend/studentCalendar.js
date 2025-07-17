@@ -14,12 +14,44 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentYear = new Date().getFullYear();
     let selectedDate = null;
 
-    const studentId = localStorage.getItem('studentId');
     const apiBase = window.API_BASE;
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const res = await axios.get(`${apiBase}/auth/debug-token`, {
+                withCredentials: true
+            });
+            console.log('✅ User data from token:', res.data.user);
+        } catch (err) {
+            console.error('❌ Debug token failed:', err);
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const res = await axios.get(`${apiBase}/auth/me`, {
+                withCredentials: true
+            });
+
+            const user = res.data.user;
+
+            document.getElementById('pText').textContent = user.name;
+            localStorage.setItem('studentId', user.id); // store if needed elsewhere
+
+        } catch (err) {
+            console.error('Failed to fetch user profile:', err);
+            alert('Failed to fetch user profile. Please log in again.');
+            // optionally redirect to login
+            // window.location.href = '/frontend/userlogin/login.html';
+        }
+    });
+
 
     // Fetch and display logs
     const fetchLogs = async (date) => {
-        const res = await fetch(`${apiBase}/logs/${studentId}`);
+        const res = await fetch(`${apiBase}/logs/${studentId}`, {
+            credentials: 'include',
+        });
         const logs = await res.json();
         const log = logs.find(log => log.log_date === date);
         if (log) {

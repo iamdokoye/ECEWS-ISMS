@@ -1,36 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const { login } = require('../controllers/authController');
-const { getUserByEmailInternal } = require('../models/userModel');
+const authController = require('../controllers/authController');
+const verifyToken = require('../middleware/authMiddleware');
 
-// Register route stays the same
-router.post('/register', require('../controllers/authController').register);
+// Register a user
+router.post('/register', authController.register);
 
 // Login route
-router.post('/login', async (req, res) => {
-  const { email } = req.body;
+router.post('/login', authController.login);
 
-  try {
-    const internalUser = await getUserByEmailInternal(email);
+// Logout route
+router.post('/logout', authController.logout);
 
-    if (internalUser) {
-      // If found in internal DB (regardless of email), continue login
-      return require('../controllers/authController').login(req, res);
-    }
-
-    // Not found in internal DB
-    if (email.endsWith('@ecews.org')) {
-      // Only check external DB if email is @ecews.org
-      return require('../controllers/authController').login(req, res);
-    }
-
-    // Not in internal DB, and not an @ecews.org email
-    return res.status(404).json({ message: 'User not found in internal DB' });
-
-  } catch (error) {
-    console.error('Login route error:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+router.get('/protected', verifyToken, (req, res) => {
+  // Access the user info stored in JWT
+  if (req.user && req.user.name) {
+    res.status(200).json({ message: `Hello ${req.user.name}` });
+  } else {
+    res.status(401).json({ message: 'Unauthorized: User information not found.' });
   }
 });
 
+router.get('/me', verifyToken, authController.getprofile);
+
+router.get('/debug-token', verifyToken, (req, res) => {
+  console.log('✅ Reached protected route. Decoded user:', req.user);
+  res.json({
+    message: 'Token decoded successfully',
+    user: req.user
+  });
+});
+
+// Export the router
 module.exports = router;

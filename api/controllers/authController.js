@@ -5,7 +5,11 @@ const {
 } = require('../models/userModel');
 const { addStudent } = require('../models/studentModel');
 
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
+const { JWT_SECRET, JWT_EXPIRATION } = process.env;
 const register = async (req, res) => {
   const {
     name,
@@ -84,35 +88,69 @@ const login = async (req, res) => {
     const userInternal = await getUserByEmailInternal(email);
     if (userInternal) {
       if (userInternal.password === password) {
+        // Generate JWT token
+        const token = jwt.sign(
+          {
+            id: userInternal.id,
+            name: userInternal.name,
+            email: userInternal.email,
+            role: userInternal.role,
+            unit: userInternal.unit
+          },
+          JWT_SECRET,
+          { expiresIn: JWT_EXPIRATION }
+        );
+
+        // Attach token to response cookies
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: false, // Use secure cookies in production
+          sameSite: 'Lax',
+          maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        });
+
         return res.status(200).json({
-          message: 'Login successful (internal)',
-          user: userInternal
+          message: 'Login successful!', token, 
+          user: {
+            id: userInternal.id,
+            role: userInternal.role,
+            name: userInternal.name, // Ensure this is included
+            email: userInternal.email
+          }
         });
       } else {
         return res.status(401).json({ message: 'Invalid password' });
       }
-    }
-
-    // Now we're in external zone
-    const userExternal = await getUserByEmailExternal(email);
-    if (userExternal && userExternal.password === password) {
-      // Assign default role if missing
-      const role = userExternal.role || 'staff';
-      return res.status(200).json({
-        message: 'Login successful (external)',
-        user: { ...userExternal, role }
-      });
-    } else {
-      return res.status(404).json({ message: 'User not found or password incorrect in external DB' });
     }
   } catch (err) {
     console.error('Login error:', err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+const getprofile = (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  } else {
+    return res.status(200).json({
+      user: {
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role,
+        unit: req.user.unit
+      }
+    });
+  }
+};
 
+const logout = (req, res) => {
+  res.clearCookie('token');
+  return res.status(200).json({ message: 'Logged out successfully' });
+};
 
 module.exports = {
   register,
   login,
+  getprofile,
+  logout
 };

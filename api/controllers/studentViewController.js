@@ -29,6 +29,9 @@ const getAllStudents = async (req, res) => {
 
 const getStudentDetails = async (req, res) => {
     const { id } = req.params;
+    if (!id || id === 'undefined') {
+        return res.status(400).json({ message: 'Invalid student ID' });
+    }
     try {
         const result = await pool.query(`
             SELECT 
