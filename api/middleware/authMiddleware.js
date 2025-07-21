@@ -3,10 +3,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
+  const token = req.cookies.token || req.headers['authorization']?.split(' ')[1];;
 
   if (!token) {
-    console.log('❌ No token found in headers');
+    console.log('❌ No token found in cookies');
     return res.status(403).json({ message: 'No token provided' });
   }
 

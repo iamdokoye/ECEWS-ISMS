@@ -22,6 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(userData));
+            localStorage.setItem("userId", userData.id); // Store user ID for later use
 
             if (!userData || !userData.role || !userData.id) {
                 alert("User data is incomplete. Please try again.");

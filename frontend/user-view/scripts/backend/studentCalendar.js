@@ -1,3 +1,5 @@
+const studentId = localStorage.getItem("studentId");
+
 document.addEventListener('DOMContentLoaded', () => {
     const calendarBody = document.getElementById('calendar-body');
     const logDateLabel = document.getElementById('log-date');
@@ -5,28 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const addLogBtn = document.querySelector('.addLogBtn');
     const overlay = document.getElementById('overlay');
     const closeBtn = document.getElementById('closeBtn');
-    const sendFeedbackBtn = document.getElementById('sendFeedback');
-    const signatureText = document.getElementById('signatureText');
     const yearDropdown = document.getElementById('year-dropdown');
     const selectedYear = document.getElementById('selected-year');
+
+
+
+    const overlay2 = document.getElementById('overlay2');
+    const logTextArea = document.getElementById('signatureText');
+    const saveLogBtn = document.getElementById('sendFeedback');
+
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
     let selectedDate = `${currentYear}-${currentMonth + 1}-${new Date().getDate()}`;
 
+
     const apiBase = window.API_BASE;
     const token = localStorage.getItem('token');
-
-    window.addEventListener('DOMContentLoaded', async () => {
-        try {
-            const res = await axios.get(`${apiBase}/auth/debug-token`, {
-                withCredentials: true
-            });
-            console.log('✅ User data from token:', res.data.user);
-        } catch (err) {
-            console.error('❌ Debug token failed:', err);
-        }
-    });
 
     window.addEventListener('DOMContentLoaded', async () => {
         try {
@@ -52,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch and display logs
     const fetchLogs = async (date) => {
         const res = await fetch(`${apiBase}/logs/${studentId}`, {
-            credentials: 'include',
+            headers: { Authorization: `Bearer ${token}` }
         });
         const logs = await res.json();
         const log = logs.find(log => log.log_date === date);
@@ -68,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // Get the first day of the month
         const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate(); // Get the last date of the month
         const prevMonthLastDate = new Date(currentYear, currentMonth, 0).getDate(); // Last date of the previous month
+
 
         calendarBody.innerHTML = ''; // Clear previous calendar
 
@@ -163,27 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('show');
     });
 
-    // Save log content
-    sendFeedbackBtn.addEventListener('click', async () => {
-        const content = signatureText.value.trim();
-        if (content) {
-            const res = await fetch(`${apiBase}/logs/create`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ student_id: studentId, log_date: selectedDate, content })
-            });
-            const data = await res.json();
-            if (data.success) {
-                overlay.classList.remove('show');
-                fetchLogs(selectedDate); // Refresh the log content after saving
-            } else {
-                alert('Error saving log');
-            }
-        } else {
-            alert('Log content cannot be empty');
-        }
-    });
-
     // Close modal on close button click
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show');
@@ -241,8 +218,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     yearDropdown.classList.remove('visible');
 
-
     // Initialize calendar
     renderCalendar();
 
+    addLogBtn.addEventListener('click', () => {
+        overlay.classList.add('show');
+        // overlay2.classList.add('show');
+        // logTextArea.focus();
+    });
+
+    saveLogBtn.addEventListener('click', async () => {
+        const logContent = logTextArea.value.trim();
+        if (!logContent) {
+            alert('Log content cannot be empty');
+            // overlay.classList.add('show');
+        } else {
+            overlay.classList.remove('show');
+            overlay2.classList.add('show');
+        }
+
+
+    });
+
+    // Handle confirmation of log submission
+    document.getElementById('proceedBtn').addEventListener('click', async () => {
+        const logContent = logTextArea.value.trim();
+        try {
+            const response = await fetch(`${apiBase}/logs/save`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ student_id: studentId, log_date: selectedDate, content: logContent })
+            });
+            const data = await response.json();
+            if (data.success) {
+                overlay2.classList.remove('show');
+                alert('Log saved successfully');
+                fetchLogs(selectedDate); // Refresh logs after saving
+            } else {
+                alert('Error saving log: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while saving the log.');
+        }
+    });
+
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+        overlay2.classList.remove('show');
+    });
 });

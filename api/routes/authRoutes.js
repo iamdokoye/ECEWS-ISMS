@@ -21,6 +21,7 @@ router.get('/protected', verifyToken, (req, res) => {
   }
 });
 
+router.get('/profile', verifyToken, authController.getprofile);
 router.get('/me', verifyToken, authController.getprofile);
 
 router.get('/debug-token', verifyToken, (req, res) => {

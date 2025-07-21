@@ -100,15 +100,7 @@ const login = async (req, res) => {
           JWT_SECRET,
           { expiresIn: JWT_EXPIRATION }
         );
-
-        // Attach token to response cookies
-        res.cookie('token', token, {
-          httpOnly: true,
-          secure: false, // Use secure cookies in production
-          sameSite: 'Lax',
-          maxAge: 24 * 60 * 60 * 1000 // 24 hours
-        });
-
+        
         return res.status(200).json({
           message: 'Login successful!', token, 
           token: token,
@@ -134,6 +126,7 @@ const getprofile = (req, res) => {
   } else {
     return res.status(200).json({
       user: {
+        token: req.token,
         id: req.user.id,
         name: req.user.name,
         email: req.user.email,
