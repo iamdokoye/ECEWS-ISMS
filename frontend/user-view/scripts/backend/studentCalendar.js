@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    let selectedDate = `${currentYear}-${currentMonth + 1}-${new Date().getDate()}`;
-
 
     const apiBase = window.API_BASE;
     const token = localStorage.getItem('token');
+
+
 
     window.addEventListener('DOMContentLoaded', async () => {
         try {
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/frontend/userlogin/login.html';
         }
     });
-
 
     // Fetch and display logs
     const fetchLogs = async (date) => {
@@ -166,10 +165,32 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('show');
     });
 
+    // Select today's date on initial load
+    let selectedDate = null;
+    function selectTodayOnLoad() {
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0]; // "YYYY-MM-DD"
+        const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        logDateLabel.textContent = today.toLocaleDateString('en-GB', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+        fetchLogs(dateString);
+        // Highlight today's cell
+        const todayCell = calendarBody.querySelector(`.calendar-cell[data-date="${dateString}"]`);
+        if (todayCell) todayCell.classList.add('selected-date');
+        selectedDate = dateString;
+    }
+    selectTodayOnLoad();
+
     // Jump to today button
     document.getElementById('todayBtn').addEventListener('click', () => {
-        currentMonth = new Date().getMonth();
-        currentYear = new Date().getFullYear();
+        const today = new Date();
+        currentMonth = today.getMonth();
+        currentYear = today.getFullYear();
+        selectTodayOnLoad();
         renderCalendar();
     });
 
@@ -221,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize calendar
     renderCalendar();
 
+
     addLogBtn.addEventListener('click', () => {
         overlay.classList.add('show');
         // overlay2.classList.add('show');
@@ -236,8 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.classList.remove('show');
             overlay2.classList.add('show');
         }
-
-
     });
 
     // Handle confirmation of log submission
@@ -259,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fetchLogs(selectedDate); // Refresh logs after saving
             } else {
                 alert('Error saving log: ' + data.message);
+                console.log('Error details:', data);
             }
         } catch (error) {
             console.error('Error:', error);

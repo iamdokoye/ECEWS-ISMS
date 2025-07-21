@@ -9,6 +9,11 @@ const {
 const createOrUpdateLog = async (req, res) => {
   const { student_id, log_date, content } = req.body;
 
+  // Debug log to see if student_id is coming correctly
+  console.log("Received student_id:", student_id);
+  console.log("Received log_date:", log_date);
+  console.log("Received content:", content);
+
   // Check for missing fields
   if (!student_id || !log_date || !content) {
     return res.status(400).json({ message: 'Missing required fields' });
@@ -28,10 +33,14 @@ const createOrUpdateLog = async (req, res) => {
       return res.status(201).json(created);
     }
   } catch (err) {
+    // Log the error message for debugging
     console.error('Log create/update error:', err);
-    return res.status(500).json({ message: 'Internal server error' });
+    // Send a meaningful message back to the client
+    return res.status(500).json({ message: `Error saving log: ${err.message}` });
   }
 };
+
+
 
 // Fetch all logs for a specific student
 const getAllLogsForStudent = async (req, res) => {
