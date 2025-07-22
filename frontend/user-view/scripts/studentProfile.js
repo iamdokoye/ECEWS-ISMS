@@ -5,36 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
  
   if (button) {
     button.addEventListener('click', function () {
-      window.location.href = 'studentsCalendar.html';
+      window.location.href = '/frontend/user-view/studentCalendar.html';
     });
   }
 });
-
-
-
-
-
-// OPENS STUDENTSCALENDAR WHEN BACK ARROW IS CLICKED
-
-document.addEventListener('DOMContentLoaded', function () {
-  const button = document.querySelector('.backArrow');
- 
-  if (button) {
-    button.addEventListener('click', function () {
-      window.location.href = 'studentsCalendar.html';
-    });
-  }
-});
-
-
-
-
-
-
-
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", function() {

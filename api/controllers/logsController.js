@@ -1,5 +1,6 @@
 const {
   addLog,
+  getLogs,
   getLogsByStudent,
   getLogByDate,
   updateLog,
@@ -40,7 +41,19 @@ const createOrUpdateLog = async (req, res) => {
   }
 };
 
-
+// Fetch all logs
+const getAllLogs = async (req, res) => {
+  try {
+    const logs = await getLogs();
+    if (logs.length === 0) {
+      return res.status(404).json({ message: 'No logs found' });
+    }
+    return res.status(200).json(logs);
+  } catch (err) {
+    console.error('Get all logs error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 // Fetch all logs for a specific student
 const getAllLogsForStudent = async (req, res) => {
@@ -87,6 +100,7 @@ const markLogAsSubmitted = async (req, res) => {
 
 module.exports = {
   createOrUpdateLog,
+  getAllLogs,
   getAllLogsForStudent,
   markLogAsSubmitted
 };

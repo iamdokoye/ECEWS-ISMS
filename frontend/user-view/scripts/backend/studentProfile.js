@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('student_id');
+  const studentId = localStorage.getItem('studentId');
 
   if (!studentId) {
     alert('No student ID provided');

@@ -5,7 +5,7 @@ const verifyToken = require('../middleware/authMiddleware');
 
 
 // Get logs
-router.get('/logs', verifyToken, logsController.getAllLogsForStudent);
+router.get('/all', verifyToken, logsController.getAllLogs);
 // POST: Save or update log for a student on a specific date
 router.post('/save', verifyToken, logsController.createOrUpdateLog);
 

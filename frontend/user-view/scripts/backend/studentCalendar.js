@@ -3,29 +3,33 @@ const studentId = localStorage.getItem("studentId");
 document.addEventListener('DOMContentLoaded', () => {
     const calendarBody = document.getElementById('calendar-body');
     const logDateLabel = document.getElementById('log-date');
-    const logContent = document.querySelector('.log-body p');
     const addLogBtn = document.querySelector('.addLogBtn');
     const overlay = document.getElementById('overlay');
     const closeBtn = document.getElementById('closeBtn');
     const yearDropdown = document.getElementById('year-dropdown');
     const selectedYear = document.getElementById('selected-year');
-
-
-
     const overlay2 = document.getElementById('overlay2');
     const logTextArea = document.getElementById('signatureText');
     const saveLogBtn = document.getElementById('sendFeedback');
 
-
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
+    let selectedDate = null;
 
     const apiBase = window.API_BASE;
     const token = localStorage.getItem('token');
 
+    const pad = num => num.toString().padStart(2, '0');
 
+    // Helper function to format date as YYYY-MM-DD
+    const formatDate = (date) => {
+        const d = new Date(date);
+        // Use local date components instead of UTC
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    };
 
-    window.addEventListener('DOMContentLoaded', async () => {
+    // Fetch user profile
+    const fetchUserProfile = async () => {
         try {
             const res = await axios.get(`${apiBase}/auth/me`, {
                 headers: {
@@ -34,46 +38,63 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const user = res.data.user;
-
             document.getElementById('pText').textContent = user.name;
-            localStorage.setItem('studentId', user.id); // store if needed elsewhere
-
+            localStorage.setItem('studentId', user.id);
         } catch (err) {
             console.error('Failed to fetch user profile:', err);
             alert('Failed to fetch user profile. Please log in again.');
             window.location.href = '/frontend/userlogin/login.html';
         }
-    });
+    };
 
     // Fetch and display logs
     const fetchLogs = async (date) => {
-        const res = await fetch(`${apiBase}/logs/${studentId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        const logs = await res.json();
-        const log = logs.find(log => log.log_date === date);
-        if (log) {
-            logContent.textContent = log.content || 'You haven’t filled any log for today';
-        } else {
-            logContent.textContent = 'You haven’t filled any log for today';
+        try {
+            // Convert date to proper format (YYYY-MM-DD) if needed
+            const dateStr = formatDate(new Date(date));
+
+            const res = await fetch(`${apiBase}/logs/${studentId}?log_date=${dateStr}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const data = await res.json();
+
+            // API returns an array of logs for the student
+            // Find the log for a specific date
+            const logForDate = Array.isArray(data)
+                ? data.find(log => log.log_date === dateStr || log.log_date.split('T')[0] === dateStr)
+                : null;
+
+            const logContent = document.querySelector('.log-body p');
+
+            if (logForDate && logForDate.content) {
+                logContent.textContent = logForDate.content;
+            } else {
+                logContent.textContent = `No log entry for ${new Date(date).toDateString()}`;
+            }
+        } catch (error) {
+            console.error('Error fetching logs:', error);
+            document.querySelector('.log-body p').textContent = 'Error loading log data';
         }
     };
 
     // Render calendar based on current month and year
     const renderCalendar = () => {
-        const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // Get the first day of the month
-        const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate(); // Get the last date of the month
-        const prevMonthLastDate = new Date(currentYear, currentMonth, 0).getDate(); // Last date of the previous month
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const prevMonthLastDate = new Date(currentYear, currentMonth, 0).getDate();
 
-
-        calendarBody.innerHTML = ''; // Clear previous calendar
-
+        calendarBody.innerHTML = '';
         let dayCounter = 1;
         let row = document.createElement('div');
         row.classList.add('calendar-row');
         let cellCount = 0;
 
-        // Insert empty cells for the previous month's last few days
+        // Previous month's days
         for (let i = 0; i < firstDay; i++) {
             const cell = document.createElement('div');
             cell.classList.add('calendar-cell', 'prev-month');
@@ -82,21 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
             cellCount++;
         }
 
-        // Insert current month's days
+        // Current month's days
         for (let i = firstDay; i < 7; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('calendar-cell');
-            cell.textContent = dayCounter;
-            cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${dayCounter}`);
-            if (dayCounter === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
-                cell.classList.add('today');
-            }
-            cell.addEventListener('click', () => onDateClick(cell));
+            const dateStr = `${currentYear}-${pad(currentMonth + 1)}-${pad(dayCounter)}`;
+            const cell = createCalendarCell(dayCounter, dateStr);
             row.appendChild(cell);
             dayCounter++;
             cellCount++;
 
-            // If we have filled the first row, append it and reset the row
             if (cellCount === 7) {
                 calendarBody.appendChild(row);
                 row = document.createElement('div');
@@ -105,27 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Insert remaining days in the month
+        // Remaining days
         while (dayCounter <= lastDate) {
             if (cellCount === 0) {
                 row = document.createElement('div');
                 row.classList.add('calendar-row');
             }
 
-            const cell = document.createElement('div');
-            cell.classList.add('calendar-cell');
-            cell.textContent = dayCounter;
-            cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${dayCounter}`);
-            if (dayCounter === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
-                cell.classList.add('today');
-            }
-            cell.addEventListener('click', () => onDateClick(cell));
+            const dateStr = `${currentYear}-${pad(currentMonth + 1)}-${pad(dayCounter)}`;
+            const cell = createCalendarCell(dayCounter, dateStr);
             row.appendChild(cell);
             dayCounter++;
             cellCount++;
 
-            // Once the row is filled, append it and reset for next
-            if (cellCount === 7 || dayCounter > lastDate) {
+            if (cellCount === 7) {
                 calendarBody.appendChild(row);
                 row = document.createElement('div');
                 row.classList.add('calendar-row');
@@ -133,68 +140,93 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // If the last row has fewer than 7 cells, we fill the row with empty cells to complete the row.
+        // Next month's days
         if (cellCount > 0 && cellCount < 7) {
-            for (let i = cellCount; i < 7; i++) {
+            for (let i = 1; cellCount < 7; i++, cellCount++) {
                 const cell = document.createElement('div');
                 cell.classList.add('calendar-cell', 'next-month');
+                cell.textContent = i;
                 row.appendChild(cell);
             }
             calendarBody.appendChild(row);
         }
     };
 
-    // Handle date click to select and display log
+    // Helper function to create calendar cell
+    const createCalendarCell = (day, dateStr) => {
+        const cell = document.createElement('div');
+        cell.classList.add('calendar-cell');
+        cell.textContent = day;
+        cell.setAttribute('data-date', dateStr);
+
+        const today = new Date();
+        if (day === today.getDate() &&
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()) {
+            cell.classList.add('today');
+        }
+
+        cell.addEventListener('click', () => onDateClick(cell));
+        return cell;
+    };
+
+    // Handle date click
     const onDateClick = (cell) => {
         const date = cell.getAttribute('data-date');
         selectedDate = date;
-        logDateLabel.textContent = `${new Date(date).toLocaleDateString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}`;
-        fetchLogs(date);
+
+        // Update date label
+        logDateLabel.textContent = new Date(date).toLocaleDateString('en-GB', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+
+        // Update selection
         document.querySelectorAll('.calendar-cell').forEach(td => td.classList.remove('selected-date'));
         cell.classList.add('selected-date');
+
+        // Fetch logs
+        fetchLogs(date);
     };
 
-    // Add log button click handler
-    addLogBtn.addEventListener('click', () => {
-        if (!selectedDate) return alert('Please select a date');
-        overlay.classList.add('show');
-    });
-
-    // Close modal on close button click
-    closeBtn.addEventListener('click', () => {
-        overlay.classList.remove('show');
-    });
-
     // Select today's date on initial load
-    let selectedDate = null;
-    function selectTodayOnLoad() {
+    const selectTodayOnLoad = () => {
         const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0]; // "YYYY-MM-DD"
-        const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        const todayLocal = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const todayStr = formatDate(todayLocal);
+
         logDateLabel.textContent = today.toLocaleDateString('en-GB', {
             weekday: 'short',
             year: 'numeric',
             month: 'short',
             day: 'numeric'
         });
-        fetchLogs(dateString);
+
         // Highlight today's cell
-        const todayCell = calendarBody.querySelector(`.calendar-cell[data-date="${dateString}"]`);
-        if (todayCell) todayCell.classList.add('selected-date');
-        selectedDate = dateString;
-    }
+        const todayCell = calendarBody.querySelector(`.calendar-cell[data-date="${todayStr}"]`);
+        if (todayCell) {
+            todayCell.classList.add('selected-date');
+        }
+
+        selectedDate = todayStr;
+        fetchLogs(todayStr);
+    };
+
+    // Initialize
+    fetchUserProfile();
+    renderCalendar();
     selectTodayOnLoad();
 
-    // Jump to today button
+    // Event listeners
     document.getElementById('todayBtn').addEventListener('click', () => {
-        const today = new Date();
-        currentMonth = today.getMonth();
-        currentYear = today.getFullYear();
-        selectTodayOnLoad();
+        currentMonth = new Date().getMonth();
+        currentYear = new Date().getFullYear();
         renderCalendar();
+        selectTodayOnLoad();
     });
 
-    // Month change button click handlers
     document.getElementById('prev-month').addEventListener('click', () => {
         currentMonth--;
         if (currentMonth < 0) {
@@ -213,54 +245,45 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCalendar();
     });
 
-    // Year dropdown toggle
     selectedYear.addEventListener('click', () => {
         yearDropdown.classList.toggle('visible');
     });
 
-    // Handle year selection
+    // Populate year dropdown
     const currentYearValue = new Date().getFullYear();
     const startYear = currentYearValue - 10;
     const endYear = currentYearValue + 10;
 
-    // Dynamically populate year dropdown with 10 years before and after the current year
-    yearDropdown.innerHTML = ''; // Clear any existing options
+    yearDropdown.innerHTML = '';
     for (let year = startYear; year <= endYear; year++) {
         const yearOption = document.createElement('li');
         yearOption.textContent = year;
         yearOption.addEventListener('click', (e) => {
-            const selectedYearText = e.target.textContent;
-            currentYear = parseInt(selectedYearText, 10);
-            selectedYear.textContent = selectedYearText;
+            currentYear = parseInt(e.target.textContent, 10);
+            selectedYear.textContent = currentYear;
             yearDropdown.classList.remove('visible');
             renderCalendar();
         });
         yearDropdown.appendChild(yearOption);
     }
-    yearDropdown.classList.remove('visible');
 
-    // Initialize calendar
-    renderCalendar();
-
-
-    addLogBtn.addEventListener('click', () => {
-        overlay.classList.add('show');
-        // overlay2.classList.add('show');
-        // logTextArea.focus();
-    });
-
+    // Log submission
     saveLogBtn.addEventListener('click', async () => {
         const logContent = logTextArea.value.trim();
         if (!logContent) {
             alert('Log content cannot be empty');
-            // overlay.classList.add('show');
-        } else {
-            overlay.classList.remove('show');
-            overlay2.classList.add('show');
+            return;
         }
+
+        if (!selectedDate) {
+            alert('Please select a date');
+            return;
+        }
+
+        overlay.classList.remove('show');
+        overlay2.classList.add('show');
     });
 
-    // Handle confirmation of log submission
     document.getElementById('proceedBtn').addEventListener('click', async () => {
         const logContent = logTextArea.value.trim();
         try {
@@ -270,16 +293,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({ student_id: studentId, log_date: selectedDate, content: logContent })
+                body: JSON.stringify({
+                    student_id: studentId,
+                    log_date: selectedDate,
+                    content: logContent
+                })
             });
+
             const data = await response.json();
-            if (data.success) {
-                overlay2.classList.remove('show');
+            overlay2.classList.remove('show');
+            logTextArea.value = '';
+
+            if (response.ok) {
                 alert('Log saved successfully');
-                fetchLogs(selectedDate); // Refresh logs after saving
+                fetchLogs(selectedDate);
             } else {
-                alert('Error saving log: ' + data.message);
-                console.log('Error details:', data);
+                alert('Error saving log: ' + (data.message || 'Unknown error'));
             }
         } catch (error) {
             console.error('Error:', error);
@@ -289,5 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('cancelBtn').addEventListener('click', () => {
         overlay2.classList.remove('show');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('show');
     });
 });

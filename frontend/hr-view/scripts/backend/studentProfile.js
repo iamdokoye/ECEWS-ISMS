@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('student_id');
+  // Get studentId from localStorage (set during login)
+  const studentId = localStorage.getItem('student_id');
 
   if (!studentId) {
-    alert('No student ID provided');
+    alert('No student ID found. Please log in.');
+    // Optionally redirect to login page
+    // window.location.href = '/login.html';
     return;
   }
 
