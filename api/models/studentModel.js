@@ -4,7 +4,7 @@ const pool = require('../db/database');
 
 // Create a new student record (called after HR adds a student user)
 
-const addStudent = async ({ 
+const addStudent = async ({
   student_id,
   supervisor_id,
   duration,
@@ -15,7 +15,7 @@ const addStudent = async ({
   course_of_study,
   gender
 
- }) => {
+}) => {
   const result = await pool.query(
     `
     INSERT INTO students (
@@ -77,20 +77,22 @@ const getStudentsBySupervisor = async (supervisor_id) => {
   return result.rows;
 };
 
-const getStudentsByUnit = async (unit) => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM students s
-              JOIN users u ON s.student_id = u.id
-             WHERE unit = $1
-             ORDER BY s.created_at DESC`,
-            [unit]
-        );
-        return result.rows;
-    } catch (err) {
-        console.error('Error in getStudentsByUnit:', err);
-        throw err;
-    }
+const getStudentsByUnit = async (unit, page = 1, limit = 10) => {
+  try {
+    const offset = (page - 1) * limit;
+    const result = await pool.query(
+      `SELECT * FROM students s
+        JOIN users u ON s.student_id = u.id
+        WHERE unit = $1
+        ORDER BY s.created_at DESC,
+        LIMIT $2 OFFSET $3`,
+      [unit, limit, offset]
+    );
+    return result.rows;
+  } catch (err) {
+    console.error('Error in getStudentsByUnit:', err);
+    throw err;
+  }
 };
 
 // Update student IT status (active/inactive)
