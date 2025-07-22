@@ -1,4 +1,4 @@
-const internalDb = require('../db/database');
+const pool = require('../db/database');
 
 
 
@@ -16,7 +16,7 @@ const addStudent = async ({
   gender
 
  }) => {
-  const result = await internalDb.query(
+  const result = await pool.query(
     `
     INSERT INTO students (
     student_id,
@@ -36,7 +36,7 @@ const addStudent = async ({
 
 // Get all students (optionally join with supervisor info)
 const getAllStudents = async () => {
-  const result = await internalDb.query(`
+  const result = await pool.query(`
     SELECT 
       s.id,
       u.name AS student_name,
@@ -61,7 +61,7 @@ const getAllStudents = async () => {
 
 // Get students by supervisor
 const getStudentsBySupervisor = async (supervisor_id) => {
-  const result = await internalDb.query(`
+  const result = await pool.query(`
     SELECT 
       s.id,
       u.name AS student_name,
@@ -77,9 +77,25 @@ const getStudentsBySupervisor = async (supervisor_id) => {
   return result.rows;
 };
 
+const getStudentsByUnit = async (unit) => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM students s
+              JOIN users u ON s.student_id = u.id
+             WHERE unit = $1
+             ORDER BY s.created_at DESC`,
+            [unit]
+        );
+        return result.rows;
+    } catch (err) {
+        console.error('Error in getStudentsByUnit:', err);
+        throw err;
+    }
+};
+
 // Update student IT status (active/inactive)
 const updateStudentStatus = async (student_id, new_status) => {
-  const result = await internalDb.query(`
+  const result = await pool.query(`
     UPDATE students
     SET it_status = $1
     WHERE student_id = $2
@@ -92,5 +108,6 @@ module.exports = {
   addStudent,
   getAllStudents,
   getStudentsBySupervisor,
+  getStudentsByUnit,
   updateStudentStatus,
 };

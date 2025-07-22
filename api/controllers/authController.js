@@ -1,6 +1,5 @@
 const {
   getUserByEmailInternal,
-  getUserByEmailExternal,
   createUserInternal,
 } = require('../models/userModel');
 const { addStudent } = require('../models/studentModel');

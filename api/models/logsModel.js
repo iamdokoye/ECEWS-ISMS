@@ -100,11 +100,33 @@ const submitLog = async (student_id, log_date) => {
   }
 };
 
+const getUnsubmittedLogs = async (student_id) => {
+    const result = await pool.query(
+        `SELECT * FROM logs 
+         WHERE student_id = $1 AND is_submitted = false`,
+        [student_id]
+    );
+    return result.rows;
+};
+
+const submitAllUnsubmittedLogs = async (student_id) => {
+    const result = await pool.query(
+        `UPDATE logs 
+         SET is_submitted = true, submitted_at = NOW() 
+         WHERE student_id = $1 AND is_submitted = false
+         RETURNING *`,
+        [student_id]
+    );
+    return result;
+};
+
 module.exports = {
   addLog,
   getLogs,
   getLogsByStudent,
   getLogByDate,
   updateLog,
-  submitLog
+  submitLog,
+  getUnsubmittedLogs,
+  submitAllUnsubmittedLogs
 };

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const verifyToken = require('../middleware/authMiddleware');
+const { getStudentsForSupervisor } = require('../controllers/supervisorController');
 const {
   getUnits,
   getUsersByUnit,
@@ -14,5 +16,8 @@ router.get('/users/by-unit/:unit', getUsersByUnit);
 
 // POST /api/assign-supervisor - assign supervisor into internal DB
 router.post('/assign', assignSupervisor);
+
+router.get('/my-students', verifyToken, getStudentsForSupervisor);
+
 
 module.exports = router;

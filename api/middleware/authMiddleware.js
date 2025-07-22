@@ -22,4 +22,13 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-module.exports = verifyToken;
+const checkSupervisorRole = (req, res, next) => {
+    if (req.user.role !== 'supervisor') {
+        return res.status(403).json({ 
+            message: 'Access denied. Supervisor role required' 
+        });
+    }
+    next();
+};
+
+module.exports = verifyToken, checkSupervisorRole;

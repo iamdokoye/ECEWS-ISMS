@@ -1,11 +1,12 @@
 // controllers/assignSupervisorController.js
 
-const internalPool = require('../db/database');
+const pool = require('../db/database');
+const { getStudentsByUnit } = require('../models/studentModel');
 
 // 1. Fetch distinct unit names from internal DB (supervisors table)
 const getUnits = async (req, res) => {
   try {
-    const result = await internalPool.query('SELECT DISTINCT unit FROM supervisors WHERE unit IS NOT NULL');
+    const result = await pool.query('SELECT DISTINCT unit FROM supervisors WHERE unit IS NOT NULL');
     const units = result.rows.map(row => row.unit);
     res.status(200).json(units);
   } catch (err) {
@@ -18,7 +19,7 @@ const getUnits = async (req, res) => {
 const getUsersByUnit = async (req, res) => {
   const { unit } = req.params;
   try {
-    const result = await internalPool.query('SELECT supervisor_id, first_name, last_name FROM supervisors WHERE unit = $1', [unit]);
+    const result = await pool.query('SELECT supervisor_id, first_name, last_name FROM supervisors WHERE unit = $1', [unit]);
     const users = result.rows.map(user => ({
       id: user.supervisor_id,
       name: `${user.first_name} ${user.last_name}`
@@ -40,7 +41,7 @@ const assignSupervisor = async (req, res) => {
 
   try {
     // Fetch from internal DB (supervisors table)
-    const intUser = await internalPool.query(
+    const intUser = await pool.query(
       'SELECT first_name, last_name, email, password FROM supervisors WHERE supervisor_id = $1',
       [supervisorId]
     );
@@ -52,7 +53,7 @@ const assignSupervisor = async (req, res) => {
     const fullName = `${first_name} ${last_name}`;
 
     // Insert into users table with forced role = supervisor
-    await internalPool.query(
+    await pool.query(
       'INSERT INTO users (name, email, password, role, unit) VALUES ($1, $2, $3, $4, $5)',
       [fullName, email, password, 'supervisor', unit]
     );
@@ -64,8 +65,36 @@ const assignSupervisor = async (req, res) => {
   }
 };
 
+const getStudentsForSupervisor = async (req, res) => {
+    try {
+        // Get supervisor's unit from JWT or session
+        const supervisorUnit = req.user.unit; 
+        
+        if (!supervisorUnit) {
+            return res.status(403).json({ 
+                message: 'Supervisor unit not specified' 
+            });
+        }
+
+        const students = await getStudentsByUnit(supervisorUnit);
+        
+        res.status(200).json({
+            success: true,
+            data: students
+        });
+    } catch (err) {
+        console.error('Error in getStudentsForSupervisor:', err);
+        res.status(500).json({ 
+            success: false,
+            message: 'Failed to fetch students'
+        });
+    }
+};
+
+
 module.exports = {
   getUnits,
   getUsersByUnit,
-  assignSupervisor
+  assignSupervisor,
+  getStudentsForSupervisor
 };

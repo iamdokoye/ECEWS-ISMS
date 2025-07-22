@@ -4,7 +4,9 @@ const {
   getLogsByStudent,
   getLogByDate,
   updateLog,
-  submitLog
+  submitLog,
+  getUnsubmittedLogs,
+  submitAllUnsubmittedLogs
 } = require('../models/logsModel.js');
 
 const createOrUpdateLog = async (req, res) => {
@@ -98,9 +100,36 @@ const markLogAsSubmitted = async (req, res) => {
   }
 };
 
+const submitAllLogs = async (req, res) => {
+    try {
+        const student_id = req.user.id; // Assuming user ID is in the token
+        
+        // Get all unsubmitted logs for this student
+        const unsubmittedLogs = await getUnsubmittedLogs(student_id);
+        
+        if (unsubmittedLogs.length === 0) {
+            return res.status(200).json({ 
+                message: 'All logs were already submitted' 
+            });
+        }
+
+        // Submit all unsubmitted logs
+        const result = await submitAllUnsubmittedLogs(student_id);
+        
+        res.status(200).json({
+            message: `Successfully submitted ${result.rowCount} logs`,
+            count: result.rowCount
+        });
+    } catch (err) {
+        console.error('Submit all logs error:', err);
+        res.status(500).json({ message: 'Error submitting logs' });
+    }
+};
+
 module.exports = {
   createOrUpdateLog,
   getAllLogs,
   getAllLogsForStudent,
-  markLogAsSubmitted
+  markLogAsSubmitted,
+  submitAllLogs
 };

@@ -108,6 +108,15 @@ html, body {
   font-family: Nunito Sans;
 }
 
+.profilename {
+  height: 50%;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Nunito Sans;
+}
+
 /* ========== SEARCH BARS ========== */
 .searchBars {
   height: 50%;
@@ -220,4 +229,77 @@ html, body {
   justify-items: center;
 }
 
+/* Loading and error states */
+.loading, .no-students, .error {
+    padding: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    width: 100%;
+}
 
+.error {
+    color: #d32f2f;
+}
+
+/* Table rows container */
+.table-rows-container {
+    width: 100%;
+}
+
+/* Ensure table rows maintain your existing styling */
+.table-rows-container .tableRows {
+    height: 6vh;
+    width: 100%;
+    display: flex;
+    background-color: #FFFFFF;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 450;
+    font-family: Nunito Sans;
+    padding-top: 1%;
+    padding-left: 0.6rem;
+    cursor: pointer;
+}
+
+/* Maintain your existing hover effect */
+.table-rows-container .tableRows:hover {
+    background-color: #F3F3F3;
+}
+/* Loading and error states */
+.loading, .no-students, .error {
+    padding: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    width: 100%;
+}
+
+.error {
+    color: #d32f2f;
+}
+
+/* Table rows container */
+.table-rows-container {
+    width: 100%;
+}
+
+/* Ensure table rows maintain your existing styling */
+.table-rows-container .tableRows {
+    height: 6vh;
+    width: 100%;
+    display: flex;
+    background-color: #FFFFFF;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 450;
+    font-family: Nunito Sans;
+    padding-top: 1%;
+    padding-left: 0.6rem;
+    cursor: pointer;
+}
+
+/* Maintain your existing hover effect */
+.table-rows-container .tableRows:hover {
+    background-color: #F3F3F3;
+}

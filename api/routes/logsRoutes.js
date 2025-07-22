@@ -15,4 +15,6 @@ router.get('/:student_id', verifyToken, logsController.getAllLogsForStudent);
 // POST: Mark a log as submitted
 router.post('/submit', verifyToken, logsController.markLogAsSubmitted);
 
+router.post('/submit-all', verifyToken, logsController.submitAllLogs);
+
 module.exports = router;

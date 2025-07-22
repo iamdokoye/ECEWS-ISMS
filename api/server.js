@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const supervisorRoutes = require('./routes/assignSupervisorRoutes')
+const supervisorRoutes = require('./routes/supervisorRoutes')
+const assignSupervisorRoutes = require('./routes/assignSupervisorRoutes')
 const studentRoutes = require('./routes/studentUnitRoutes')
 const studentViewRoutes = require('./routes/studentViewRoutes')
 const logsRoutes = require('./routes/logsRoutes');

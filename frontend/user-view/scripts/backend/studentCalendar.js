@@ -3,7 +3,6 @@ const studentId = localStorage.getItem("studentId");
 document.addEventListener('DOMContentLoaded', () => {
     const calendarBody = document.getElementById('calendar-body');
     const logDateLabel = document.getElementById('log-date');
-    const addLogBtn = document.querySelector('.addLogBtn');
     const overlay = document.getElementById('overlay');
     const closeBtn = document.getElementById('closeBtn');
     const yearDropdown = document.getElementById('year-dropdown');
@@ -11,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay2 = document.getElementById('overlay2');
     const logTextArea = document.getElementById('signatureText');
     const saveLogBtn = document.getElementById('sendFeedback');
+    const submitBtn = document.getElementById('proceedBtn4')
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yearDropdown.appendChild(yearOption);
     }
 
-    // Log submission
+    // Add Log Submission
     saveLogBtn.addEventListener('click', async () => {
         const logContent = logTextArea.value.trim();
         if (!logContent) {
@@ -322,5 +322,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show');
+    });
+
+    // <!-- Submit your logs --!>
+    submitBtn.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`${apiBase}/logs/submit-all`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Log saved successfully');
+                fetchLogs(selectedDate);
+            } else {
+                alert('Error saving log: ' + (data.message || 'Unknown error'));
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while saving the log.');
+        }
     });
 });
