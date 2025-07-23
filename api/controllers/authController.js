@@ -21,6 +21,8 @@ const register = async (req, res) => {
     level,
     course_of_study,
     gender,
+    startDate,
+    endDate,
     interest,
     supervisor
   } = req.body;
@@ -41,7 +43,7 @@ const register = async (req, res) => {
     // Step 2: If role is student, enrich in students table
     if (role === 'student') {
       // Ensure student-specific fields are present
-      if (!institution || !level || !course_of_study || !gender || !supervisor) {
+      if (!institution || !level || !course_of_study || !gender || !supervisor || !startDate || !endDate) {
         return res.status(400).json({ message: 'Missing student-specific fields' });
       }
 
@@ -64,7 +66,9 @@ const register = async (req, res) => {
         level,
         interest,
         course_of_study,
-        gender
+        gender,
+        startDate,
+        endDate
       });
     }
 

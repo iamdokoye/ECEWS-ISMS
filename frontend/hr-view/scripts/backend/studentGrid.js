@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
       students.forEach(student => {
         const card = document.createElement('div');
         card.className = 'studentsCard';
+        card.addEventListener('click', () => {
+                // Store student ID in localStorage
+                localStorage.setItem('StudentId', student.student_id);
+                // Redirect to profile page
+                window.location.href = `/frontend/hr-view/hrstudentProfile.html?studentId=${encodeURIComponent(student.student_id)}`;
+            });
         card.dataset.studentId = student.student_id;
 
         // Create cardHead wrapper (if not already)
@@ -132,10 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.append(cardHead, cardPhoto, nameInfoContain, majorInfoContain, cardFooter);
 
-        card.addEventListener('click', () => {
-          const id = card.dataset.studentId;
-          window.location.href = `hrstudentProfile.html?id=${id}`;
-        });
+        // card.addEventListener('click', () => {
+        //   const id = card.dataset.studentId;
+        //   window.location.href = `hrstudentProfile.html?id=${id}`;
+        // });
 
         sections.all.appendChild(card);
         if (student.it_status === 'active') sections.present.appendChild(card.cloneNode(true));

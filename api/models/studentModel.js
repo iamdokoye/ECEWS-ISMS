@@ -13,7 +13,9 @@ const addStudent = async ({
   level,
   interest,
   course_of_study,
-  gender
+  gender,
+  startDate,
+  endDate
 
 }) => {
   const result = await pool.query(
@@ -27,9 +29,11 @@ const addStudent = async ({
     level,
     interest,
     course_of_study,
-    gender
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-    [student_id, supervisor_id, duration, name, institution, level, interest, course_of_study, gender]
+    gender,
+    startDate,
+    endDate
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+    [student_id, supervisor_id, duration, name, institution, level, interest, course_of_study, gender, startDate, endDate]
   );
   return result.rows[0];
 };
@@ -49,6 +53,8 @@ const getAllStudents = async () => {
       s.interest,
       s.course_of_study
       s.gender,
+      s.startDate,
+      s.endDate,
       sup.name AS supervisor_name,
       sup.email AS supervisor_email
     FROM students s
