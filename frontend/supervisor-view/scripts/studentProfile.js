@@ -8,15 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
-
-
-
-
-
-
-
-
 // OPENS LOGIN PAGE ON NEW TAB ON CLICKING SIGNOUT BUTTON
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
  
   if (button) {
     button.addEventListener('click', function () {
-      window.location.href = 'log.html';
+      window.location.href = '/frontend/supervisor-view/studentLog.html';
     });
   }
 });

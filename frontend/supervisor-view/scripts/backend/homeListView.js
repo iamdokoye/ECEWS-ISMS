@@ -105,9 +105,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Add click handler
             row.addEventListener('click', () => {
                 // Store student ID in localStorage
-                localStorage.setItem('selectedStudentId', student.id);
+                localStorage.setItem('StudentId', student.student_id);
                 // Redirect to log page
-                window.location.href = '/frontend/supervisor-view/studentLog.html';
+                window.location.href = `/frontend/supervisor-view/studentLog.html?studentId=${encodeURIComponent(student.student_id)}`;
             });
 
             // Add columns

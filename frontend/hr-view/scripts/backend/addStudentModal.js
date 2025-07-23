@@ -50,7 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const interest = document.getElementById('studentInterest')?.value || 'unspecified';
     const role = 'student';
     const gender = document.querySelector('input[name="gender"]:checked')?.value || 'unspecified';
+    const startDate = document.getElementById('studentStartDate').value;
     const added_by_hr = localStorage.getItem('hrId');
+    
+    if (!name || !email || !unit || !duration || !institution || !level || !course_of_study || !startDate) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    // Calculate endDate by adding duration (months) to startDate
+    let endDate = '';
+    if (startDate && duration) {
+      const start = new Date(startDate);
+      start.setMonth(start.getMonth() + Number(duration));
+      endDate = start.toISOString().split('T')[0];
+    }
 
     if (password !== confirmPassword) {
       alert('Passwords do not match');
@@ -73,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
           interest,
           course_of_study,
           gender,
+          startDate,
+          endDate,
           supervisor: supervisorId,
         })
       });
