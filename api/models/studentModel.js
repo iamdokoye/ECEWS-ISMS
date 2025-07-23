@@ -84,7 +84,7 @@ const getStudentsByUnit = async (unit, page = 1, limit = 10) => {
       `SELECT * FROM students s
         JOIN users u ON s.student_id = u.id
         WHERE unit = $1
-        ORDER BY s.created_at DESC,
+        ORDER BY s.created_at DESC
         LIMIT $2 OFFSET $3`,
       [unit, limit, offset]
     );
