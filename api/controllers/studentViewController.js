@@ -1,4 +1,55 @@
 const pool = require('../db/database');
+const { updateStudent, getStudentById } = require('../models/studentModel');
+
+// Update student information
+const updateStudentInfo = async (req, res) => {
+  const { student_id } = req.params;
+  const {
+    name,
+    institution,
+    level,
+    course_of_study,
+    gender,
+    startDate,
+    duration,
+    supervisor_id,
+    interest,
+    it_status
+  } = req.body;
+
+  try {
+    // Get existing student data
+    const existingStudent = await getStudentById(student_id);
+    if (!existingStudent) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    // Prepare update fields
+    const updateFields = {
+      name: name || undefined,
+      institution: institution || undefined,
+      level: level || undefined,
+      course_of_study: course_of_study || undefined,
+      gender: gender || undefined,
+      startDate: startDate || undefined,
+      duration: duration || undefined,
+      supervisor_id: supervisor_id || undefined,
+      interest: interest || undefined,
+      it_status: it_status || undefined
+    };
+
+    // Update student
+    const updatedStudent = await updateStudent(student_id, updateFields);
+
+    return res.status(200).json({
+      message: 'Student updated successfully',
+      student: updatedStudent
+    });
+  } catch (err) {
+    console.error('Error updating student:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 const getAllStudents = async (req, res) => {
     try {
@@ -51,4 +102,4 @@ const getStudentDetails = async (req, res) => {
     }
 };
 
-module.exports = { getAllStudents, getStudentDetails };
+module.exports = { getAllStudents, getStudentDetails, updateStudentInfo };

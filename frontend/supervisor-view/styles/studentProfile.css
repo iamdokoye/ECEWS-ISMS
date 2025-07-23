@@ -431,8 +431,9 @@
     width: 90%;
     /* border: 1px solid palevioletred; */
     display: flex;
+    flex-wrap: wrap;
     /* align-items: center; */
-    font-size: 24px;
+    font-size: 20px;
     font-family: Nunito Sans;
     font-weight: 600;
 }

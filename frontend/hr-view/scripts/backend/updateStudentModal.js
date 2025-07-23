@@ -1,112 +1,98 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const unitInput = document.querySelector('#studentUnit');
-  const unitDropdown = document.getElementById('unitDrop');
-  const supervisorInput = document.getElementById('studentSupervisor');
-  let supervisorId = null;
+// Function to update student information
+async function updateStudentInfo(studentId, updateData) {
+  try {
+    const response = await fetch(`${window.API_BASE}/students/${studentId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(updateData)
+    });
 
-  // Load units from backend
-  fetch(`${window.API_BASE}/students/units`)
-    .then(res => res.json())
-    .then(units => {
-      unitDropdown.innerHTML = '';
-      units.forEach(unit => {
-        const div = document.createElement('div');
-        div.classList.add('unitLIst');
-        div.textContent = unit;
-        div.addEventListener('click', () => {
-          unitInput.value = unit;
-          unitDropdown.classList.remove('show');
-          fetch(`${window.API_BASE}/students/supervisor/${encodeURIComponent(unit)}`)
-            .then(res => res.json())
-            .then(data => {
-              supervisorInput.value = data.name || 'N/A';
-              supervisorId = data.id;
-            })
-            .catch(err => {
-              console.error('Failed to fetch supervisor:', err);
-              supervisorInput.value = 'Not Found';
-            });
-        });
-        unitDropdown.appendChild(div);
-      });
-    })
-    .catch(err => console.error('Failed to fetch units:', err));
-
-  document.getElementById('unitDisplay').addEventListener('click', () => {
-    unitDropdown.classList.toggle('show');
-  });
-
-  // Handle Proceed Button to Register Student
-  document.getElementById('proceedBtn').addEventListener('click', async () => {
-    const name = document.getElementById('studentName').value;
-    const institution = document.getElementById('studentInstitution').value;
-    const level = document.getElementById('studentLevel').value;
-    const course_of_study = document.getElementById('studentCourse').value;
-    const duration = document.getElementById('studentDuration').value;
-    const unit = document.getElementById('studentUnit').value;
-    const email = document.getElementById('studentEmail').value;
-    const password = document.getElementById('studentPassword').value;
-    const confirmPassword = document.getElementById('studentConfirmPassword').value;
-    const interest = document.getElementById('studentInterest')?.value || 'unspecified';
-    const role = 'student';
-    const gender = document.querySelector('input[name="gender"]:checked')?.value || 'unspecified';
-    const startDate = document.getElementById('studentStartDate').value;
-    const added_by_hr = localStorage.getItem('hrId');
-    
-    if (!name || !email || !unit || !duration || !institution || !level || !course_of_study || !startDate) {
-      alert('Please fill in all required fields');
-      return;
+    const data = await response.json();
+    if (response.ok) {
+      return data;
+    } else {
+      throw new Error(data.message || 'Failed to update student');
     }
-    // Calculate endDate by adding duration (months) to startDate
-    let endDate = '';
-    if (startDate && duration) {
-      const start = new Date(startDate);
-      start.setMonth(start.getMonth() + Number(duration));
-      endDate = start.toISOString().split('T')[0];
-    }
+  } catch (error) {
+    console.error('Error updating student:', error);
+    throw error;
+  }
+}
 
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
-    try {
-      const res = await fetch(`${window.API_BASE}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          role,
-          unit,
-          duration,
-          institution,
-          level,
-          interest,
-          course_of_study,
-          gender,
-          startDate,
-          endDate,
-          supervisor: supervisorId,
-        })
-      });
-
-      const data = await res.json();
-      if (res.status === 201) {
-        document.getElementById('overlay3').style.display = 'flex';
-      } else {
-        alert(data.message || 'Error registering student');
+// Function to fetch student details
+async function getStudentDetails(studentId) {
+  try {
+    const response = await fetch(`${window.API_BASE}/students/${studentId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
-    } catch (err) {
-      console.error('Registration failed:', err);
-      alert('Server error');
-    }
-  });
+    });
 
-  // Handle Success Modal Close
-  document.getElementById('okayBtn').addEventListener('click', () => {
-    document.getElementById('overlay3').style.display = 'none';
-    location.reload();
-  });
+    const data = await response.json();
+    if (response.ok) {
+      return data;
+    } else {
+      throw new Error(data.message || 'Failed to fetch student details');
+    }
+  } catch (error) {
+    console.error('Error fetching student details:', error);
+    throw error;
+  }
+}
+
+// Example usage in your UI
+document.getElementById('updateStudentForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const studentId = document.getElementById('studentId').value;
+  const updateData = {
+    name: document.getElementById('name').value,
+    institution: document.getElementById('institution').value,
+    level: document.getElementById('level').value,
+    course_of_study: document.getElementById('course_of_study').value,
+    gender: document.getElementById('gender').value,
+    startDate: document.getElementById('startDate').value,
+    duration: document.getElementById('duration').value,
+    supervisor_id: document.getElementById('supervisor').value,
+    interest: document.getElementById('interest').value,
+    it_status: document.getElementById('it_status').value
+  };
+
+  try {
+    const result = await updateStudentInfo(studentId, updateData);
+    alert('Student updated successfully!');
+    console.log('Updated student:', result.student);
+  } catch (error) {
+    alert(error.message);
+  }
 });
+
+// Load student data when page loads
+async function loadStudentData(studentId) {
+  try {
+    const student = await getStudentDetails(studentId);
+    
+    // Populate form fields
+    document.getElementById('name').value = student.name || '';
+    document.getElementById('institution').value = student.institution || '';
+    document.getElementById('level').value = student.level || '';
+    document.getElementById('course_of_study').value = student.course_of_study || '';
+    document.getElementById('gender').value = student.gender || '';
+    document.getElementById('startDate').value = student.startDate || '';
+    document.getElementById('duration').value = student.duration || '';
+    document.getElementById('supervisor').value = student.supervisor_id || '';
+    document.getElementById('interest').value = student.interest || '';
+    document.getElementById('it_status').value = student.it_status || '';
+    
+    // Display calculated end date
+    document.getElementById('endDateDisplay').textContent = student.endDate || 'N/A';
+  } catch (error) {
+    console.error('Error loading student data:', error);
+  }
+}
+
+// Call this when the page loads with a specific student ID
+// loadStudentData('123');
