@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Student data:', student); // Debugging
         
         // Populate all fields - matching your HTML structure
+        // document.querySelector('.navName').textContent = user.name || 'N/A';
         document.querySelector('.johnDoe').textContent = student.name || 'N/A';
         document.querySelector('.Interest').textContent = student.interest || 'N/A';
         document.querySelector('.bioBody').textContent = student.bio || 'No bio available';
@@ -45,10 +46,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             infoDataElements[4].textContent = student.contact || 'N/A';
             infoDataElements[5].textContent = student.unit || 'N/A';
             infoDataElements[6].textContent = student.interest || 'N/A';
-            infoDataElements[7].textContent = student.startDate ? 
-                new Date(student.startDate).toLocaleDateString('en-GB') : 'N/A';
+            infoDataElements[7].textContent = student.startdate || 'N/A';
         }
         
+        document.getElementById('startdate').textContent = student.startdate || 'N/A';
         // Additional info
         document.querySelectorAll('.infoData')[8].textContent = student.duration ? 
             `${student.duration} Months` : 'N/A';

@@ -1,77 +1,83 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   -webkit-user-drag: none;
-    user-select: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 @font-face {
-    font-family: Nunito Sans;
+  font-family: Nunito Sans;
   src: url(../fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
 }
 
 
- 
-html, body {
+
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden; /* Hides horizontal overflow */
-  width: 100%; /* Ensures content fits the screen width */
-  margin: 0; /* Removes default margin */
-  padding: 0; /* Removes default padding */
-  box-sizing: border-box; /* Includes padding & border in width calculation */
+  overflow-x: hidden;
+  /* Hides horizontal overflow */
+  width: 100%;
+  /* Ensures content fits the screen width */
+  margin: 0;
+  /* Removes default margin */
+  padding: 0;
+  /* Removes default padding */
+  box-sizing: border-box;
+  /* Includes padding & border in width calculation */
 
 }
 
 
 
 .mainNav {
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 2vh 6vw 2vh 6vw;
-   
-  }
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 2vh 6vw 2vh 6vw;
 
-.headerLogo{
-    width: 12%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+}
 
-.headerLogo img{
-    width: 100%;
-    display: flex;
+.headerLogo {
+  width: 12%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  }
+.headerLogo img {
+  width: 100%;
+  display: flex;
 
-
+}
 
 
-.profile{
+
+
+.profile {
   height: 2rem;
   width: auto;
   display: flex;
- 
-  }
 
-.pText{
+}
+
+.pText {
   height: 1.2rem;
   width: 60%;
   font-family: Nunito Sans;
   font-size: 16px;
   font-weight: 700;
   align-self: center;
-  }
+}
 
-  .pImg{
+.pImg {
   height: 100%;
   width: auto;
   border-radius: 50%;
@@ -81,73 +87,75 @@ html, body {
   margin-left: 0.6rem;
   margin-right: 0.8rem;
   /* background-color: #047c34; */
-  }
-
-  .pImg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
-  .pIcon{
+.pImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pIcon {
   height: auto;
   width: auto;
   align-self: center;
-  cursor: pointer;  
-  }
+  cursor: pointer;
+}
 
-  .pIcon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.pIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 
-/* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER *//* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER *//* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
+/* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
+/* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
+/* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
 .dropDownMenu {
-    height: 6.5rem;
-    width: 9.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
-    border-radius: 0.4rem 0.4rem 0 0;
-    background-color: #FFFFFF;
-    top: 4rem;
-    right: 5rem;
-    box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.16);
-  }
+  height: 6.5rem;
+  width: 9.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  border-radius: 0.4rem 0.4rem 0 0;
+  background-color: #FFFFFF;
+  top: 4rem;
+  right: 5rem;
+  box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.16);
+}
 
 .profileDrop {
-    height: 50%;
-    width: 100%;
-    text-align: center;
-    align-content: center;
-    font-size: 16px;
-    font-family: Nunito Sans;
-    font-weight: 400;
-    border-radius: 0.4rem 0.4rem 0 0;
-  }
+  height: 50%;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  font-size: 16px;
+  font-family: Nunito Sans;
+  font-weight: 400;
+  border-radius: 0.4rem 0.4rem 0 0;
+}
 
-.profileDrop:hover{
-    background-color: #F3F3F3;
-  }
+.profileDrop:hover {
+  background-color: #F3F3F3;
+}
 
 
 
-  .signDrop {
-    height: 50%;
-    width: 100%;
-    text-align: center;
-    align-content: center;
-    font-size: 16px;
-    font-family: Nunito Sans;
-    font-weight: 400;
-  }
+.signDrop {
+  height: 50%;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  font-size: 16px;
+  font-family: Nunito Sans;
+  font-weight: 400;
+}
 
-.signDrop:hover{
-    background-color: #F3F3F3;
-  }
+.signDrop:hover {
+  background-color: #F3F3F3;
+}
 
 
 
@@ -155,40 +163,42 @@ html, body {
 
 
 .mainContainer {
-    height: auto; /* Restrict body height to viewport */
-    width: 100%;
-    padding: 0vh 6vw 0vh 6vw;
-    display: flex;
-    flex-direction: column;
-    background-color: #F9F9F9;
+  height: auto;
+  /* Restrict body height to viewport */
+  width: 100%;
+  padding: 0vh 6vw 0vh 6vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #F9F9F9;
 }
 
 
 .topSection {
-    height: 20vh; /* Restrict body height to viewport */
-    width: 100%;
-    display: flex;
-    padding-top: 4%;
-    padding-bottom: 1.5%;
+  height: 20vh;
+  /* Restrict body height to viewport */
+  width: 100%;
+  display: flex;
+  padding-top: 4%;
+  padding-bottom: 1.5%;
 }
 
-  .ItHeader{
-    height: 70%;
-    width: 90% ;
-    justify-self: center;
-    font-size: 36px;
-    font-family: Nunito Sans;
-    font-weight: 600;
-  }
+.ItHeader {
+  height: 70%;
+  width: 90%;
+  justify-self: center;
+  font-size: 36px;
+  font-family: Nunito Sans;
+  font-weight: 600;
+}
 
 
 
 .viewLogContainer {
-    height: 7vh;
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  height: 7vh;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .addLogBtn {
@@ -214,8 +224,8 @@ html, body {
 }
 
 
-.addLogBtn:hover{
-    background-color: #6BA792;
+.addLogBtn:hover {
+  background-color: #6BA792;
 }
 
 
@@ -228,24 +238,27 @@ html, body {
 
 
 .bodySection {
-    height: auto; /* Restrict body height to viewport */
-    width: 100%;
-    display: flex;
+  height: auto;
+  /* Restrict body height to viewport */
+  width: 100%;
+  display: flex;
 }
 
 
 .calendarSec {
-    height: auto; /* Restrict body height to viewport */
-    width: 55%;
-    display: flex;
-    padding: 0rem 1rem 0rem 0rem;
+  height: auto;
+  /* Restrict body height to viewport */
+  width: 55%;
+  display: flex;
+  padding: 0rem 1rem 0rem 0rem;
 }
 
 
 .logSec {
-    height: auto; /* Restrict body height to viewport */
-    width: 45%;
-    display: flex;
+  height: auto;
+  /* Restrict body height to viewport */
+  width: 45%;
+  display: flex;
 }
 
 
@@ -255,7 +268,7 @@ html, body {
 
 .calendar {
   border: 1px solid #eee;
- 
+
 }
 
 
@@ -277,7 +290,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
- 
+
 }
 
 #month-label {
@@ -290,7 +303,8 @@ html, body {
 }
 
 #year {
-  width: 10rem; /* Increase this value as needed */
+  width: 10rem;
+  /* Increase this value as needed */
   height: 2.5rem;
   padding: 0rem 0rem 0rem 3.5rem;
   font-size: 1rem;
@@ -327,7 +341,8 @@ html, body {
   width: 9rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between text and icon */
+  gap: 0.5rem;
+  /* Space between text and icon */
   border: 1px solid #000;
   background-color: white;
   cursor: pointer;
@@ -348,7 +363,8 @@ html, body {
 
 
 .today {
-  background-color: #0d9a5d; /* Bootstrap-style green */
+  background-color: #0d9a5d;
+  /* Bootstrap-style green */
   color: white;
   border-radius: 50%;
   width: 2rem;
@@ -380,7 +396,8 @@ html, body {
   font-weight: 500;
   gap: 0.5rem;
 
-  width: 13rem; /* Increase this value as needed */
+  width: 13rem;
+  /* Increase this value as needed */
   height: 2.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -399,7 +416,8 @@ html, body {
 
 .month-selector button {
   outline: none;
-  border: none; /* already applied if you removed borders */
+  border: none;
+  /* already applied if you removed borders */
   background: transparent;
 }
 
@@ -413,7 +431,8 @@ html, body {
 .year-selector {
   position: relative;
   display: inline-block;
-  width: 10rem; /* Adjust width as needed */
+  width: 10rem;
+  /* Adjust width as needed */
 }
 
 #year {
@@ -421,7 +440,8 @@ html, body {
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 100%;
-  padding: 0.4rem 1.5rem 0.4rem 0.5rem; /* space for icon */
+  padding: 0.4rem 1.5rem 0.4rem 0.5rem;
+  /* space for icon */
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 0.20rem;
@@ -441,13 +461,15 @@ html, body {
   width: 0.75rem;
   height: 10rem;
   margin-right: 1rem;
-  pointer-events: none; /* allow clicks to pass through */
+  pointer-events: none;
+  /* allow clicks to pass through */
 }
 
 #year:focus {
   outline: none;
   /* box-shadow: none; */
-  border-color: none; /* Optional: keeps border consistent */
+  border-color: none;
+  /* Optional: keeps border consistent */
 }
 
 
@@ -490,7 +512,8 @@ html, body {
 }
 
 .year-options li:hover {
-  background-color: #e6f4ea; /* light green on hover */
+  background-color: #e6f4ea;
+  /* light green on hover */
 }
 
 .year-icon {
@@ -501,7 +524,8 @@ html, body {
   width: 1.1rem;
   height: 10rem;
   margin-right: 1rem;
-  pointer-events: none; /* allow clicks to pass through */
+  pointer-events: none;
+  /* allow clicks to pass through */
 }
 
 
@@ -513,7 +537,8 @@ html, body {
 
 table {
   width: 100%;
-  table-layout: fixed; /* Ensures equal cell widths */
+  table-layout: fixed;
+  /* Ensures equal cell widths */
   border-collapse: collapse;
   text-align: center;
   font-family: Nunito Sans;
@@ -525,7 +550,8 @@ th {
   padding: 1.25rem 0;
   font-size: 16px;
   font-weight: 700;
-  border: 1px solid #eaeaea; /* Match td border */
+  border: 1px solid #eaeaea;
+  /* Match td border */
 }
 
 td {
@@ -536,18 +562,20 @@ td {
   padding: 0;
   font-size: 20px;
   font-weight: 400;
-  text-align: center; /* Horizontal centering fallback */
+  text-align: center;
+  /* Horizontal centering fallback */
   transition: background-color 0.3s, color 0.3s;
- 
+
 }
 
 td::before {
   content: "";
   display: block;
-  padding-top: 80%; /* Controls height */
+  padding-top: 80%;
+  /* Controls height */
 }
 
-td > span {
+td>span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -556,8 +584,11 @@ td > span {
 }
 
 td:hover {
-  background-color: #F3F3F3;; /* Dark gray */
-  cursor: pointer; /* Optional: shows it's interactive */
+  background-color: #F3F3F3;
+  ;
+  /* Dark gray */
+  cursor: pointer;
+  /* Optional: shows it's interactive */
 }
 
 /* Previous/next month day styles */
@@ -591,7 +622,8 @@ td:hover {
 
 
 .log-body {
-  height: 80%; /* Or whatever space you want the log to fill */
+  height: 80%;
+  /* Or whatever space you want the log to fill */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -602,7 +634,7 @@ td:hover {
   color: #9A9A9A;
   font-size: 20px;
   font-weight: 400;
-   
+
 }
 
 
@@ -610,12 +642,14 @@ td:hover {
 
 
 .footerSec {
-    height: 20vh;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;   /* Push content to the right */
-    align-items: center;         /* Optional: vertically center the button */
-    padding-bottom: 1.5%;
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  /* Push content to the right */
+  align-items: center;
+  /* Optional: vertically center the button */
+  padding-bottom: 1.5%;
 }
 
 .submit-button {
@@ -660,7 +694,8 @@ td:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.686); /* Dark semi-transparent background */
+  background: rgba(0, 0, 0, 0.686);
+  /* Dark semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -677,7 +712,7 @@ td:hover {
 }
 
 /* Feedback Form */
- .feedbackForm {
+.feedbackForm {
   display: flex;
   flex-direction: column;
   top: -4rem;
@@ -688,10 +723,13 @@ td:hover {
   height: 75%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  transition: transform 0.6s ease, opacity 0.6s ease; /* Smooth animation */
-  transform: translateY(100%); /*Start hidden at the bottom */
-  position: relative; /* Ensure position context */
- 
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  /* Smooth animation */
+  transform: translateY(100%);
+  /*Start hidden at the bottom */
+  position: relative;
+  /* Ensure position context */
+
 }
 
 .feedbackHeading {
@@ -736,17 +774,13 @@ td:hover {
   font-family: Nunito Sans;
   font-weight: 600;
   line-height: 2.5rem;
-  background: repeating-linear-gradient(
-    to bottom,
-    #fff,
-    #fff 39px,
-    #eaeaea 40px
-  );
+  background: repeating-linear-gradient(to bottom,
+      #fff,
+      #fff 39px,
+      #eaeaea 40px);
   box-shadow: 0 0 0 1px #eee;
   /* border-radius: 2px; */
 }
-
-
 
 .feedbackForm button:hover {
   background-color: #669784;
@@ -818,21 +852,32 @@ td:hover {
 
 
 /* === COMMON OVERLAY === */
-.overlay2, .overlay3, .overlay4, .overlay5 {
+.overlay2,
+.overlay3,
+.overlay4,
+.overlay5 {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex; justify-content: center; align-items: center;
-  opacity: 0; visibility: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
   z-index: 9999;
 }
 
 /* Show states */
-.overlay2.show2, .overlay3.show3,
-.overlay4.show4, .overlay5.show5 {
-  opacity: 1; visibility: visible;
+.overlay2.show2,
+.overlay3.show3,
+.overlay4.show4,
+.overlay5.show5 {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* === DIALOGUE 2 & 4 SHARED STYLES === */
@@ -842,12 +887,13 @@ td:hover {
   padding: 1rem 0rem;
   height: 11rem;
   width: 25rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(100%);
   transition: transform 0.4s ease;
   position: relative;
   font-family: 'Satoshi-Regular', sans-serif;
 }
+
 .overlay2.show2 .feedbackForm2,
 .overlay4.show4 .feedbackForm2 {
   transform: translateY(0);
@@ -860,6 +906,7 @@ td:hover {
   right: 1rem;
   cursor: pointer;
 }
+
 .closeBtn2 img {
   height: auto;
   width: auto;
@@ -873,6 +920,7 @@ td:hover {
   margin: 0 0 0 1rem;
   padding-bottom: 0.5rem;
 }
+
 .feedbackHeading2::after {
   content: '';
   display: block;
@@ -898,6 +946,7 @@ td:hover {
   gap: 1.5rem;
   margin: 0rem 0.8rem;
 }
+
 .cancelBtn {
   background: none;
   border: none;
@@ -907,6 +956,7 @@ td:hover {
   font-size: 14px;
   font-weight: 600;
 }
+
 .proceedBtn {
   background-color: #096D49;
   border: none;
@@ -918,6 +968,7 @@ td:hover {
   font-weight: 600;
   cursor: pointer;
 }
+
 .proceedBtn:hover {
   background-color: #488d73;
 }
@@ -940,7 +991,8 @@ td:hover {
 }
 
 .overlay5.show5 .feedbackForm3 {
-  transform: translateY(3vw); /* Slide it up like overlay3 */
+  transform: translateY(3vw);
+  /* Slide it up like overlay3 */
 }
 
 .feedbackHeading3 {
@@ -954,10 +1006,11 @@ td:hover {
 
 .feedbackHeading3::after {
   content: '';
-  display:block;
+  display: block;
   width: auto;
   height: 0.06vw;
-  background: #bdbcbceb; /* Line color */
+  background: #bdbcbceb;
+  /* Line color */
   margin-top: 0.5rem;
   margin-left: -1rem;
   margin-right: 0rem;
@@ -970,7 +1023,7 @@ td:hover {
   justify-self: center;
 }
 
-.checkmarkIcon img{
+.checkmarkIcon img {
   height: auto;
   width: auto;
 }
@@ -986,7 +1039,8 @@ td:hover {
 }
 
 .okayBtn {
-  background-color: #166534; /* Tailwind's green-800 */
+  background-color: #166534;
+  /* Tailwind's green-800 */
   color: white;
   border: none;
   padding: 0.6rem 1.6rem;
@@ -1007,45 +1061,45 @@ td:hover {
 }
 
 .calendar-header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    width: 100%;
-    font-family: Nunito Sans;
-    background-color: #F9F9F9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+  font-family: Nunito Sans;
+  background-color: #F9F9F9;
 }
 
 .calendar-row {
-    display: flex;
-    width: 100%;
-    height: 20%;
+  display: flex;
+  width: 100%;
+  height: 20%;
 }
 
 .calendar-cell {
-    width: calc(100% / 7);
-    height: 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    border: 0.5px solid #ddd;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: white;
-    font-family: Nunito Sans;
+  width: calc(100% / 7);
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 0.5px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: white;
+  font-family: Nunito Sans;
 }
 
 .calendar-cell:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 /* Prevent hover effect on selected-date */
 .calendar-cell.selected-date:hover,
 .selected-date:hover {
-    background-color: #D0F0C0;
-    color: black;
-    transition: all;
-    transition-duration: background-color 1.3s ease;
+  background-color: #D0F0C0;
+  color: black;
+  transition: all;
+  transition-duration: background-color 1.3s ease;
 }
 
 .selected-date {
@@ -1053,50 +1107,53 @@ td:hover {
   color: black;
 }
 
-.prev-month, .next-month {
-    color: #ccc;
-    pointer-events: none; /* No hover effect for previous/next month cells */
+.prev-month,
+.next-month {
+  color: #ccc;
+  pointer-events: none;
+  /* No hover effect for previous/next month cells */
 }
 
 .today {
-    color: #0d9a5d !important;
-    background-color: white !important;
-    font-size: 20px;
-    border-radius: 0px;
+  color: #0d9a5d !important;
+  background-color: white !important;
+  font-size: 20px;
+  border-radius: 0px;
 }
 
 .today:hover {
-    background-color: #f0f0f0 !important;
+  background-color: #f0f0f0 !important;
 }
 
 /* Hide year dropdown by default */
 .year-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    max-height: 150px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: white;
-    z-index: 10;
-    display: none; /* Hide the dropdown by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: white;
+  z-index: 10;
+  display: none;
+  /* Hide the dropdown by default */
 }
 
 .year-options li {
-    padding: 0.4rem 1rem;
-    list-style: none;
-    cursor: pointer;
+  padding: 0.4rem 1rem;
+  list-style: none;
+  cursor: pointer;
 }
 
 .year-options li:hover {
-    background-color: #e6f4ea;
+  background-color: #e6f4ea;
 }
 
 /* Show the year dropdown when it's toggled */
 .year-options.visible {
-    display: block;
+  display: block;
 }
 
 .dropdown-icon img {

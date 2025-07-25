@@ -5,171 +5,253 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Profile</title>
-
-  <!-- External Stylesheet -->
-  <link rel="stylesheet" href="/frontend/user-view/styles/studentProfile.css">
-
-  <!-- jQuery Library -->
-  <script src="/frontend/user-view/scripts/jQuery v3.7.1.js"></script>
+  <link rel="stylesheet" href="./styles/studentProfile.css">
+  <script src="./scripts/jQuery v3.7.1.js"></script>
 </head>
 
 <body>
+<nav class="mainNav">
 
-  <!-- ========================== NAVBAR ========================== -->
-  <nav class="header">
-    <div class="logoContain">
-      <img src="/frontend/user-view/assets/24388.svg" alt="Logo">
+    <!-- App Logo -->
+    <div class="headerLogo">
+      <img src="/frontend/user-view/ASSETS/24388.svg" alt="App Logo" />
     </div>
+
+    <!-- User Profile Section -->
+    <div class="profile" id="profile">
+      <div class="pText" id="pText">John Doe</div>
+      <div class="pImg">
+        <img src="/frontend/user-view/assets/johndoe.png" alt="User Image" />
+      </div>
+      <div class="pIcon">
+        <img src="/frontend/user-view/assets/arrow2Vector.svg" alt="Dropdown Icon" />
+      </div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropDownMenu">
+      <div class="profileDrop">View Profile</div>
+      <div id="signDrop" class="signDrop">Sign Out</div>
+    </div>
+
   </nav>
 
-  <!-- ========================== MAIN BODY ========================== -->
   <section class="bodyContain">
-
-    <!-- ======= Page Heading with Back Arrow ======= -->
     <div class="heading">
       <div class="headingContain">
         <div class="backArrow">
-          <img src="/frontend/user-view/assets/backVector.svg" alt="Back">
+          <img src="/frontend/supervisor-view/assets/backVector.svg" alt="Go Back">
         </div>
-        <div class="headTxt">Student Profile</div>
+        <div class="headTxt">
+          Student Profile
+
+        </div>
       </div>
     </div>
 
-    <!-- ========================== HERO SECTION ========================== -->
+    <!-- ------------------Hero section-------------- -->
     <div class="heroContain">
-
-      <!-- ---- Profile Picture and Name ---- -->
       <div class="photoNname">
-
-        <!-- Profile Picture Box -->
         <div class="profilePhoto">
           <div class="photoBox">
-            <img src="/frontend/user-view/assets/johndoe.svg" alt="Profile Picture">
-          </div>
+            <img src="/frontend/hr-view/assets/johndoe.png" alt="">
 
-          <!-- Upload Button Trigger -->
+          </div>
           <div class="uploadBox" id="uploadTrigger">
             <div class="imgBox">
-              <img src="/frontend/user-view/assets/picVector.png" alt="Upload Icon">
-            </div>
-            <div class="txtBox">Click to change Image</div>
-          </div>
+              <img src="/frontend/supervisor-view/assets/picVector.png" alt="Upload Icon">
 
-          <!-- Hidden File Input -->
-          <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+            <div class="txtBox">
+              Click to change Image
+            </div>
+          </div>
+          <input type="file" id="selectImage" accept="image/*">
+
         </div>
 
-        <!-- Name and Interest -->
+        <!--Student's Biodata-->
         <div class="nameInterest">
-          <div class="johnDoe">John Doe</div>
-          <div class="Interest">UI/UX Design</div>
+          <div class="johnDoe">
+            John Doe
+          </div>
+          <div class="Interest">
+            UI/UX Design
+          </div>
         </div>
       </div>
-
-      <!-- ---- Bio Section ---- -->
       <div class="bioData">
-        <div class="bioTitle">BIO</div>
+        <div class="bioTitle">
+          <div class="bioName">
+            BIO
+          </div>
+          <div class="bioImg">
+            <img src="/frontend/user-view/assets/editicon.svg" alt="Bio Icon">
+          </div>
+        </div>
+
         <div class="bioBody">
-          My name is Lucy. I’m a 300 level Computer Science student from the University of Uyo.
+          My name is Lucy. I’m a 300 level Computer science student from the University of Uyo.
           My hobbies are coding, reading and exercising. My area of interest is Web development.
         </div>
       </div>
     </div>
 
-    <!-- ========================== INTERNSHIP INFO SECTION ========================== -->
-    <div class="majorContainer">
-
-      <!-- ---- Internship Info ---- -->
-      <div class="personInfo">
-        <div class="infoTitle">Internship Information</div>
-
-        <div class="infoBody">
-          <div class="halfInfo">
-            <div class="infoLabel">Unit</div>
-            <div class="infoData">IT</div>
-          </div>
-
-          <div class="halfInfo">
-            <div class="infoLabel">Area Of Interest</div>
-            <div class="infoData">UI/UX Design</div>
-          </div>
+    <!-- Bio Edit Modal -->
+    <div class="overlay bio-overlay" id="bioOverlay" style="display: none;">
+      <div class="bio-modal">
+        <div class="modal-header">
+          <h3>Edit Bio</h3>
+          <span class="close-bio-modal">&times;</span>
         </div>
-
-        <div class="infoBody">
-          <div class="halfInfo">
-            <div class="infoLabel">Start Date</div>
-            <div class="infoData">01/05/2025</div>
-          </div>
-
-          <div class="halfInfo">
-            <div class="infoLabel">End Date</div>
-            <div class="infoData">01/11/2025</div>
-          </div>
+        <div class="modal-body">
+          <textarea id="bioTextarea" rows="6" placeholder="Enter your bio here..."></textarea>
         </div>
-
-        <div class="infoBody">
-          <div class="halfInfo">
-            <div class="infoLabel">Duration</div>
-            <div class="infoData">6 Months</div>
-          </div>
-
-          <div class="halfInfo">
-            <div class="infoLabel">Supervisor</div>
-            <div class="infoData">John Doe</div>
-          </div>
+        <div class="modal-footer">
+          <button class="save-bio-btn">Save</button>
         </div>
       </div>
+    </div>
 
-      <!-- ========================== PERSONAL INFO SECTION ========================== -->
+    <!-- new mondal -->
+     <div class="overlay" id="overlay">
+          <div class="feedbackForm">
+            <span class="closeBtn" id="closeBtn">
+              <img src="/frontend/user-view/assets/close2Vector.svg" alt="Close" />
+            </span>
+            <div class="feedbackHeading">Document Today's Work</div>
+            <div class="signature-container">
+              <textarea id="signatureText" rows="6" placeholder="Enter log here"></textarea>
+            </div>
+            <div class="signature-buttons">
+              <div class="infoBox">You can edit your log as long as you’ve not submitted yet.</div>
+              <div class="buttonDiv">
+                <button id="sendFeedback">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- ------------------Info Section---------- -->
+    <div class="majorContainer">
       <div class="personInfo">
-        <div class="infoTitle">Personal Information</div>
-
-        <div class="infoBody">
-          <div class="halfInfo">
-            <div class="infoLabel">First Name</div>
-            <div class="infoData">John</div>
+        <div class="titleEdit">
+          <div class="infoTitle">
+            BIODATA
           </div>
+        </div>
 
-          <div class="halfInfo">
-            <div class="infoLabel">Last Name</div>
-            <div class="infoData">Doe</div>
+        <div class="infoBodyContain">
+          <div class="infoBody">
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Full Name
+              </div>
+              <div class="infoData">
+                John Doe
+              </div>
+
+            </div>
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Institution
+              </div>
+              <div class="infoData">
+                Trevor High School
+              </div>
+            </div>
+
+          </div>
+          <div class="infoBody">
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Course Of Study
+              </div>
+              <div class="infoData">
+                Computer Science
+              </div>
+
+            </div>
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Email Address
+              </div>
+              <div class="infoData">
+                tranute@gmail.com
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="infoBodyContain">
+          <div class="infoBody">
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Contact
+              </div>
+              <div class="infoData">
+                0912345678
+              </div>
+
+            </div>
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Unit
+              </div>
+              <div class="infoData">
+                IT
+              </div>
+            </div>
+
+          </div>
+          <div class="infoBody">
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Area Of Interest
+              </div>
+              <div class="infoData">
+                UI/UX Design
+              </div>
+
+            </div>
+            <div class="halfInfo">
+              <div class="infoLabel">
+                Start Date
+              </div>
+              <div class="infoData">
+                01/05/2025
+              </div>
+            </div>
+
           </div>
         </div>
 
         <div class="infoBody">
           <div class="halfInfo">
-            <div class="infoLabel">Contact</div>
-            <div class="infoData">09123456789</div>
+            <div class="infoLabel">
+              Duration
+            </div>
+            <div class="infoData">
+              6 Months
+            </div>
           </div>
-
           <div class="halfInfo">
-            <div class="infoLabel">Email Address</div>
-            <div class="infoData">tranute@gmail.com</div>
-          </div>
-        </div>
-
-        <div class="infoBody">
-          <div class="halfInfo">
-            <div class="infoLabel">Course Of Study</div>
-            <div class="infoData">Computer Science</div>
-          </div>
-
-          <div class="halfInfo">
-            <div class="infoLabel">Institution</div>
-            <div class="infoData">Trevor High School</div>
+            <div class="infoLabel">
+              Supervisor
+            </div>
+            <div class="infoData">
+              John Doe
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
-
-  <!-- ========================== SCRIPTS ========================== -->
-   <script src="/frontend/config.js"></script>
+  <script src="/frontend/config.js"></script>
   <script src="/frontend/user-view/scripts/studentProfile.js"></script>
-  <script src="/frontend/user-view/routes/homeRoutes.js"></script>
   <script src="/frontend/user-view/scripts/backend/studentProfile.js"></script>
-
+  <script src="/frontend/user-view/routes/signout.js"></script>
 </body>
+
 </html>
-
-

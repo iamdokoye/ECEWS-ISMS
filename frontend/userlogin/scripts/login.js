@@ -3,7 +3,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
-    
+
     try {
         const apiBase = window.API_BASE;
         const response = await axios.post(`${apiBase}/auth/login`, {
@@ -11,7 +11,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             password
         }, {
             withCredentials: true // Include credentials for cookie-based auth
-            });
+        });
         console.log('Login response:', response.data);
         alert("Login successful: " + response.data.message);
 
@@ -33,16 +33,19 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             // Store user ID and other relevant info based on the user's role
             switch (userData.role?.toLowerCase()) {
                 case 'student':
+                    localStorage.setItem("user", JSON.stringify(userData));
+                    localStorage.setItem("studentId", userData.id); // Store user ID for later use
                     window.location.href = "../user-view/studentCalendar.html";
                     break;
                 case 'supervisor':
+                    localStorage.setItem("user", JSON.stringify(userData));
+                    localStorage.setItem("supervisorId", userData.id); // Store user ID for later use
                     window.location.href = "../supervisor-view/homeListView.html";
                     break;
                 case 'admin':
+                    localStorage.setItem("user", JSON.stringify(userData));
+                    localStorage.setItem("adminId", userData.id); // Store user ID for later use
                     window.location.href = "../hr-view/hrDash.html";
-                    break;
-                case 'staff':
-                    window.location.href = "../staff-view/homeGrid.html";
                     break;
                 default:
                     alert("Unknown role: " + userData.role);

@@ -30,12 +30,65 @@ const addStudent = async ({
     interest,
     course_of_study,
     gender,
-    startDate,
-    endDate
+    startdate,
+    enddate
     ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
     [student_id, supervisor_id, duration, name, institution, level, interest, course_of_study, gender, startDate, endDate]
   );
   return result.rows[0];
+};
+
+// Update student information
+const updateStudentRecord = async (studentId, updates) => {
+  // Filter out empty/undefined fields
+  try {
+  const validUpdates = Object.entries(updates).reduce((acc, [key, value]) => {
+    if (value !== undefined && value !== null && value !== '') acc[key] = value;
+    return acc;
+  }, {});
+
+  if (Object.keys(validUpdates).length === 0) {
+    throw new Error('No valid fields to update');
+  }
+
+  // Generate dynamic SET clause
+  const setClause = Object.keys(validUpdates)
+    .map((key, i) => `${key} = $${i + 1}`)
+    .join(', ');
+
+  const values = [...Object.values(validUpdates), studentId];
+
+  // Handle endDate calculation if relevant fields change
+  if (validUpdates.duration || validUpdates.startdate) {
+    const { rows: [student] } = await pool.query(
+      'SELECT startdate, duration FROM students WHERE student_id = $1', 
+      [studentId]
+    );
+
+    const startdate = validUpdates.startdate || student.startdate;
+    const duration = validUpdates.duration || student.duration;
+
+    if (startdate && duration) {
+      const enddate = new Date(startdate);
+      enddate.setMonth(enddate.getMonth() + Number(duration));
+      setClause += `, enddate = $${values.length + 1}`;
+      values.push(enddate.toISOString().split('T')[0]);
+    }
+  }
+
+  const query = `
+    UPDATE students
+    SET ${setClause}
+    WHERE student_id = $${values.length}
+    RETURNING *
+  `;
+
+  const { rows: [updatedStudent] } = await pool.query(query, values);
+  return updatedStudent;
+} catch (error) {
+    console.error('Error updating student record:', error);
+    throw error;
+  }
 };
 
 // Get all students (optionally join with supervisor info)
@@ -51,10 +104,10 @@ const getAllStudents = async () => {
       s.institution
       s.level,
       s.interest,
-      s.course_of_study
+      s.course_of_study,
       s.gender,
-      s.startDate,
-      s.endDate,
+      s.startdate,
+      s.enddate,
       sup.name AS supervisor_name,
       sup.email AS supervisor_email
     FROM students s
@@ -118,4 +171,5 @@ module.exports = {
   getStudentsBySupervisor,
   getStudentsByUnit,
   updateStudentStatus,
+  updateStudentRecord
 };

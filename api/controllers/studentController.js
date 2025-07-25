@@ -10,7 +10,7 @@ const updateStudentInfo = async (req, res) => {
     level,
     course_of_study,
     gender,
-    startDate,
+    startdate,
     duration,
     supervisor_id,
     interest,
@@ -31,7 +31,7 @@ const updateStudentInfo = async (req, res) => {
       level: level || undefined,
       course_of_study: course_of_study || undefined,
       gender: gender || undefined,
-      startDate: startDate || undefined,
+      startDate: startdate || undefined,
       duration: duration || undefined,
       supervisor_id: supervisor_id || undefined,
       interest: interest || undefined,
@@ -63,6 +63,8 @@ const getAllStudents = async (req, res) => {
             students.it_status,
             students.created_at,
             students.interest,
+            students.startdate,
+            students.enddate,
             users.name,
             users.email,
             users.unit
@@ -86,7 +88,7 @@ const getStudentDetails = async (req, res) => {
     try {
         const result = await pool.query(`
             SELECT 
-                u.name, u.email, u.unit, s.interest, s.level, s.institution, s.course_of_study, s.duration, s.created_at,
+                u.name, u.email, u.unit, s.interest, s.level, s.institution, s.course_of_study, s.duration, s.created_at, s.startdate, s.enddate,
                 sup.name AS supervisor
             FROM users u
             JOIN students s ON u.id = s.student_id
@@ -102,4 +104,63 @@ const getStudentDetails = async (req, res) => {
     }
 };
 
-module.exports = { getAllStudents, getStudentDetails, updateStudentInfo };
+const updateStudentInformation = async (req, res) => {
+  const { student_id } = req.params;
+  const {
+    name,
+    institution,
+    level,
+    course_of_study,
+    gender,
+    startDate,
+    duration,
+    supervisor_id,
+    interest,
+    it_status
+  } = req.body;
+
+  try {
+    // Input validation
+    if (!student_id) {
+      return res.status(400).json({ message: 'Student ID is required' });
+    }
+
+    // Prepare updates (controller decides what can be updated)
+    const updates = {
+      ...(name && { name }),
+      ...(institution && { institution }),
+      ...(level && { level }),
+      ...(course_of_study && { course_of_study }),
+      ...(gender && { gender }),
+      ...(startDate && { startDate }),
+      ...(duration && { duration }),
+      ...(supervisor_id && { supervisor_id }),
+      ...(interest && { interest }),
+      ...(it_status && { it_status })
+    };
+
+    // Call model function
+    const updatedStudent = await updateStudentRecord(student_id, updates);
+
+    // Format response
+    return res.status(200).json({
+      success: true,
+      data: {
+        id: updatedStudent.student_id,
+        name: updatedStudent.name,
+        institution: updatedStudent.institution,
+        // Include other relevant fields
+        endDate: updatedStudent.endDate // Important for frontend
+      }
+    });
+
+  } catch (error) {
+    console.error('Update error:', error);
+    return res.status(error.message.includes('No valid fields') ? 400 : 500).json({
+      success: false,
+      message: error.message || 'Update failed'
+    });
+  }
+};
+
+module.exports = { getAllStudents, getStudentDetails, updateStudentInfo, updateStudentInformation, updateStudent };

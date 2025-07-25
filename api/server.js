@@ -6,8 +6,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const supervisorRoutes = require('./routes/supervisorRoutes')
-const studentRoutes = require('./routes/studentUnitRoutes')
-const studentViewRoutes = require('./routes/studentViewRoutes')
+const studentRoutes = require('./routes/studentRoutes');
 const logsRoutes = require('./routes/logsRoutes');
 
 const app = express();
@@ -25,7 +24,7 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/supervisor', supervisorRoutes)
 app.use('/students', studentRoutes)
-app.use('/students', studentViewRoutes)
+app.use('/students', studentRoutes)
 app.use('/logs', logsRoutes);
 
 
