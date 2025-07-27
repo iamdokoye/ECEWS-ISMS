@@ -13,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             withCredentials: true // Include credentials for cookie-based auth
         });
         console.log('Login response:', response.data);
-        alert("Login successful: " + response.data.message);
+        alert("Login successful! Redirecting...");
 
         if (response.status === 200) {
             const userData = response.data.user;
@@ -33,19 +33,19 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             // Store user ID and other relevant info based on the user's role
             switch (userData.role?.toLowerCase()) {
                 case 'student':
-                    localStorage.setItem("user", JSON.stringify(userData));
-                    localStorage.setItem("studentId", userData.id); // Store user ID for later use
-                    window.location.href = "../user-view/studentCalendar.html";
+                    // localStorage.setItem("user", JSON.stringify(userData));
+                    // localStorage.setItem("studentId", userData.id); // Store user ID for later use
+                    window.location.href = "/frontend/user-view/studentCalendar.html";
                     break;
                 case 'supervisor':
-                    localStorage.setItem("user", JSON.stringify(userData));
-                    localStorage.setItem("supervisorId", userData.id); // Store user ID for later use
-                    window.location.href = "../supervisor-view/homeListView.html";
+                    // localStorage.setItem("user", JSON.stringify(userData));
+                    // localStorage.setItem("supervisorId", userData.id); // Store user ID for later use
+                    window.location.href = "/frontend/supervisor-view/homeListView.html";
                     break;
                 case 'admin':
-                    localStorage.setItem("user", JSON.stringify(userData));
-                    localStorage.setItem("adminId", userData.id); // Store user ID for later use
-                    window.location.href = "../hr-view/hrDash.html";
+                    // localStorage.setItem("user", JSON.stringify(userData));
+                    // localStorage.setItem("adminId", userData.id); // Store user ID for later use
+                    window.location.href = "/frontend/hr-view/hrDash.html";
                     break;
                 default:
                     alert("Unknown role: " + userData.role);

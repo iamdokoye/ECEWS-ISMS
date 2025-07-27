@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const user = res.data.user;
             document.getElementById('pText').textContent = user.name;
-            localStorage.setItem('studentId', user.id);
+            // localStorage.setItem('studentId', user.id);
         } catch (err) {
             console.error('Failed to fetch user profile:', err);
             alert('Failed to fetch user profile. Please log in again.');

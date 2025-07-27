@@ -1,55 +1,5 @@
 const pool = require('../db/database');
-const { updateStudent, getStudentById } = require('../models/studentModel');
-
-// Update student information
-const updateStudentInfo = async (req, res) => {
-  const { student_id } = req.params;
-  const {
-    name,
-    institution,
-    level,
-    course_of_study,
-    gender,
-    startdate,
-    duration,
-    supervisor_id,
-    interest,
-    it_status
-  } = req.body;
-
-  try {
-    // Get existing student data
-    const existingStudent = await getStudentById(student_id);
-    if (!existingStudent) {
-      return res.status(404).json({ message: 'Student not found' });
-    }
-
-    // Prepare update fields
-    const updateFields = {
-      name: name || undefined,
-      institution: institution || undefined,
-      level: level || undefined,
-      course_of_study: course_of_study || undefined,
-      gender: gender || undefined,
-      startDate: startdate || undefined,
-      duration: duration || undefined,
-      supervisor_id: supervisor_id || undefined,
-      interest: interest || undefined,
-      it_status: it_status || undefined
-    };
-
-    // Update student
-    const updatedStudent = await updateStudent(student_id, updateFields);
-
-    return res.status(200).json({
-      message: 'Student updated successfully',
-      student: updatedStudent
-    });
-  } catch (err) {
-    console.error('Error updating student:', err);
-    return res.status(500).json({ message: 'Internal server error' });
-  }
-};
+const { updateStudentRecord } = require('../models/studentModel');
 
 const getAllStudents = async (req, res) => {
     try {
@@ -65,6 +15,7 @@ const getAllStudents = async (req, res) => {
             students.interest,
             students.startdate,
             students.enddate,
+            students.gender,
             users.name,
             users.email,
             users.unit
@@ -88,7 +39,7 @@ const getStudentDetails = async (req, res) => {
     try {
         const result = await pool.query(`
             SELECT 
-                u.name, u.email, u.unit, s.interest, s.level, s.institution, s.course_of_study, s.duration, s.created_at, s.startdate, s.enddate,
+                u.name, u.email, u.unit, s.interest, s.level, s.institution, s.course_of_study, s.duration, s.created_at, s.startdate, s.enddate, s.gender, s.it_status, s.supervisor_id,
                 sup.name AS supervisor
             FROM users u
             JOIN students s ON u.id = s.student_id
@@ -106,61 +57,45 @@ const getStudentDetails = async (req, res) => {
 
 const updateStudentInformation = async (req, res) => {
   const { student_id } = req.params;
-  const {
-    name,
-    institution,
-    level,
-    course_of_study,
-    gender,
-    startDate,
-    duration,
-    supervisor_id,
-    interest,
-    it_status
-  } = req.body;
+  const updates = req.body;
 
   try {
-    // Input validation
     if (!student_id) {
-      return res.status(400).json({ message: 'Student ID is required' });
+      return res.status(400).json({ 
+        success: false,
+        message: 'Student ID is required' 
+      });
     }
 
-    // Prepare updates (controller decides what can be updated)
-    const updates = {
-      ...(name && { name }),
-      ...(institution && { institution }),
-      ...(level && { level }),
-      ...(course_of_study && { course_of_study }),
-      ...(gender && { gender }),
-      ...(startDate && { startDate }),
-      ...(duration && { duration }),
-      ...(supervisor_id && { supervisor_id }),
-      ...(interest && { interest }),
-      ...(it_status && { it_status })
-    };
+    // Format incoming dates
+    if (updates.startDate) {
+      updates.startDate = new Date(updates.startDate).toISOString();
+    }
 
-    // Call model function
     const updatedStudent = await updateStudentRecord(student_id, updates);
 
-    // Format response
     return res.status(200).json({
       success: true,
       data: {
         id: updatedStudent.student_id,
         name: updatedStudent.name,
+        email: updatedStudent.email,
         institution: updatedStudent.institution,
-        // Include other relevant fields
-        endDate: updatedStudent.endDate // Important for frontend
+        level: updatedStudent.level,
+        course_of_study: updatedStudent.course_of_study,
+        startDate: updatedStudent.startDate,
+        endDate: updatedStudent.endDate,
+        supervisor_id: updatedStudent.supervisor_id
       }
     });
 
   } catch (error) {
     console.error('Update error:', error);
-    return res.status(error.message.includes('No valid fields') ? 400 : 500).json({
+    return res.status(500).json({
       success: false,
-      message: error.message || 'Update failed'
+      message: error.message || 'Failed to update student record'
     });
   }
 };
 
-module.exports = { getAllStudents, getStudentDetails, updateStudentInfo, updateStudentInformation, updateStudent };
+module.exports = { getAllStudents, getStudentDetails, updateStudentInformation };

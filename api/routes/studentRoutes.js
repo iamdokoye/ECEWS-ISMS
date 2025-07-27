@@ -13,7 +13,6 @@ router.get('/supervisor/:unit', getSupervisorByUnit);
 //student routes
 router.get('/all', studentController.getAllStudents);
 router.get('/:id', studentController.getStudentDetails);
-router.put('/:student_id', studentController.updateStudentInfo);
-router.put('/update/:student_id', studentController.updateStudentInformation);
+router.put('/:student_id', studentController.updateStudentInformation);
 
 module.exports = router;

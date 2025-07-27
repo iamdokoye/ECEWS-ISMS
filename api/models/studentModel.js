@@ -38,57 +38,54 @@ const addStudent = async ({
   return result.rows[0];
 };
 
+const userFields = ['name', 'email', 'unit']; // Add all user table fields here
+const studentFields = [
+  'duration', 'institution', 'level', 'interest', 'course_of_study',
+  'gender', 'startDate', 'endDate', 'it_status', 'supervisor_id', 'name'
+  // Add all student table fields here
+];
+
 // Update student information
 const updateStudentRecord = async (studentId, updates) => {
-  // Filter out empty/undefined fields
-  try {
-  const validUpdates = Object.entries(updates).reduce((acc, [key, value]) => {
-    if (value !== undefined && value !== null && value !== '') acc[key] = value;
-    return acc;
-  }, {});
+  // Split updates into users and students fields
+  const userUpdates = {};
+  const studentUpdates = {};
 
-  if (Object.keys(validUpdates).length === 0) {
-    throw new Error('No valid fields to update');
+  for (const [key, value] of Object.entries(updates)) {
+    if (userFields.includes(key)) userUpdates[key] = value;
+    if (studentFields.includes(key)) studentUpdates[key] = value;
   }
 
-  // Generate dynamic SET clause
-  const setClause = Object.keys(validUpdates)
-    .map((key, i) => `${key} = $${i + 1}`)
-    .join(', ');
+  // Update users table if needed
+  if (Object.keys(userUpdates).length > 0) {
+    // Get user id from students table
+    const { rows } = await pool.query('SELECT student_id FROM students WHERE student_id = $1', [studentId]);
+    if (rows.length === 0) throw new Error('Student not found');
+    const userId = rows[0].student_id;
 
-  const values = [...Object.values(validUpdates), studentId];
-
-  // Handle endDate calculation if relevant fields change
-  if (validUpdates.duration || validUpdates.startdate) {
-    const { rows: [student] } = await pool.query(
-      'SELECT startdate, duration FROM students WHERE student_id = $1', 
-      [studentId]
+    const setClause = Object.keys(userUpdates).map((key, i) => `${key} = $${i + 1}`).join(', ');
+    const values = Object.values(userUpdates);
+    await pool.query(
+      `UPDATE users SET ${setClause} WHERE id = $${values.length + 1}`,
+      [...values, userId]
     );
-
-    const startdate = validUpdates.startdate || student.startdate;
-    const duration = validUpdates.duration || student.duration;
-
-    if (startdate && duration) {
-      const enddate = new Date(startdate);
-      enddate.setMonth(enddate.getMonth() + Number(duration));
-      setClause += `, enddate = $${values.length + 1}`;
-      values.push(enddate.toISOString().split('T')[0]);
-    }
   }
 
-  const query = `
-    UPDATE students
-    SET ${setClause}
-    WHERE student_id = $${values.length}
-    RETURNING *
-  `;
+  // Update students table if needed
+  if (Object.keys(studentUpdates).length > 0) {
+    const setClause = Object.keys(studentUpdates).map((key, i) => `${key} = $${i + 1}`).join(', ');
+    const values = Object.values(studentUpdates);
+    await pool.query(
+      `UPDATE students SET ${setClause} WHERE student_id = $${values.length + 1}`,
+      [...values, studentId]
+    );
+  }
 
-  const { rows: [updatedStudent] } = await pool.query(query, values);
+  // Optionally, return the updated student record
+  const { rows: [updatedStudent] } = await pool.query(
+    `SELECT * FROM students WHERE student_id = $1`, [studentId]
+  );
   return updatedStudent;
-} catch (error) {
-    console.error('Error updating student record:', error);
-    throw error;
-  }
 };
 
 // Get all students (optionally join with supervisor info)
