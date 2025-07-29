@@ -22,17 +22,16 @@ $(document).ready(function () {
 // -------------Script for week buttons-----  
 
 $(document).ready(function () {
-    $('.weekBtn').click(function () {
+    $('.weekTxt').click(function () {
         // Reset styles for all week buttons
-        $('.weekBtn').css({
-            'background-color': '#FFFFFF',
-            'border': '1px solid #F5F5F5'
+        $('.weekTxt').css({
+       
+            'border-bottom': 'none'
         });
 
         // Apply active style to the clicked week
         $(this).css({
-            'background-color': '#6BA79233',
-            'border': '1px solid #096D49'
+            'border-bottom': '2px solid #096D49'
         });
     });
 });

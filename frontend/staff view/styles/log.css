@@ -103,8 +103,8 @@
     display: flex;
     align-items: center;
     font-family: Nunito Sans;
-    font-size: 32px;
-    font-weight: 500;
+    font-size: 48px;
+    font-weight: 300;
     user-select: none;
 }
 
@@ -142,6 +142,7 @@
     align-items: center;
     justify-content: center;
     gap: 1vh;
+    cursor: pointer;
 }
 
 .btnContain:hover {
@@ -168,19 +169,6 @@
     
 }
 
-.checkBox {
-    height: 100%;
-    width: 11%;
-    /* border: 1px solid blue; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.checkBox img {
-    -webkit-user-drag: none;
-    width: 100%;
-}
 
 .heroContain {
     height: 100%;
@@ -398,6 +386,7 @@
     align-items: center;
     justify-content: center;
     gap: 1vh;
+    cursor: pointer;
     /* background-color: #096D49; */
 }
 
@@ -405,9 +394,13 @@
     background-color: #6BA79233;
 }
 
+.weekTxt:active{
+    border-bottom: 2px solid #096D49
+}
+
 .weekTxt {
     height: 100%;
-    width: auto;
+    width: 40%;
     /* border: 1px solid blue; */
     display: flex;
     align-items: center;
@@ -418,20 +411,6 @@
     user-select: none;
     /* color: #FFFFFF; */
     
-}
-
-.checkBox2 {
-    height: 100%;
-    width: 11%;
-    /* border: 1px solid blue; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.checkBox2 img {
-    -webkit-user-drag: none;
-    width: 90%;
 }
 
 .activeWeek{
