@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="./styles/hrstudentProfile.css">
+    <script src="./scripts/jQuery v3.7.1.js"></script>
+</head>
+
+<body>
+    <nav class="header">
+        <div class="logoContain">
+            <img src="./assets/24388.svg" alt="">
+        </div>
+        <div class="logoutContain" id="logoutDropdown">
+            <div class="navName">
+                John Doe
+            </div>
+            <div class="navPic">
+                <img src="./assets/johndoe.png" alt="">
+
+            </div>
+        </div>
+        <div class="logoutDropdown" id="logout">
+            Logout
+        </div>
+    </nav>
+    <section class="bodyContain">
+        <div class="heading">
+            <div class="headingContain">
+                <div class="backArrow">
+                    <img src="/frontend/hr-view/assets/Icons copy 3.svg" alt="">
+
+                </div>
+                <div class="headTxt">
+                    Student Profile
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------Hero section-------------- -->
+        <div class="heroContain">
+            <div class="photoNname">
+                <div class="profilePhoto">
+                    <div class="photoBox">
+                        <img src="./assets/johndoe.png" alt="">
+
+                    </div>
+                    <div class="uploadBox" id="uploadTrigger">
+                        <div class="imgBox">
+                            <img src="./assets/Vector copy 2.png" alt="">
+
+                        </div>
+                        <div class="txtBox">
+                            Click to change Image
+                        </div>
+                    </div>
+                    <input type="file" id="selectImage" accept="image/*">
+
+                </div>
+                <div class="nameInterest">
+                    <div class="johnDoe">
+                        John Doe
+                    </div>
+                    <div class="Interest">
+                        UI/UX Design
+                    </div>
+                </div>
+            </div>
+            <div class="bioData">
+                <div class="bioTitle">
+                    BIO
+
+                </div>
+                <div class="bioBody">
+                    My name is Lucy. I’m a 300 level Computer science student from the University of Uyo.
+                    My hobbies are coding, reading and exercising. My area of interest is Web development.
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- ------------------Info Section---------- -->
+        <div class="majorContainer">
+            <div class="personInfo">
+                <div class="titleEdit">
+                    <div class="infoTitle">
+                        BIODATA
+
+                    </div>
+                    <div class="editBio" id="editBio">
+                        Edit
+                    </div>
+                </div>
+                <!-- ----------Add student Modal-------- -->
+                <div class="overlay" id="overlay">
+                    <div class="addModal" id="addStudentModal">
+                        <div class="modalHead">
+                            <div class="headText">
+                                New Student
+                            </div>
+                            <div class="closeBox">
+                                <img src="./assets/close-circle.svg" alt="" id="closeModal">
+                            </div>
+                        </div>
+
+                        <div class="studentInfo">
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Name:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="text" id="studentName">
+                                </div>
+
+                            </div>
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Institution:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="text" id="studentInstitution">
+
+                                </div>
+
+                            </div>
+                            <div class="levelContain">
+                                <div class="NameFieldContain2">
+                                    <div class="NameFieldText2">
+                                        Level:
+                                    </div>
+                                    <div class="NameFieldInput2">
+                                        <input type="text" id="studentLevel">
+
+                                    </div>
+
+
+                                </div>
+                                <div class="genderGroup">
+                                    <label class="customRadio">
+                                        <input type="radio" name="gender" value="male">
+                                        <span class="radioCircle"></span>
+                                        Male
+                                    </label>
+                                    <label class="customRadio">
+                                        <input type="radio" name="gender" value="female">
+                                        <span class="radioCircle"></span>
+                                        Female
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Course of Study:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="text" id="studentCourse">
+
+                                </div>
+
+                            </div>
+                            <div class="durationContain">
+                            <div class="NameFieldContain3">
+                                <div class="NameFieldText3">
+                                    Duration:
+                                </div>
+                                <div class="NameFieldInput3">
+                                    <input type="text" id="studentDuration" placeholder="6 Months">
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain4">
+                                <div class="NameFieldText4">
+                                    Start Date:
+                                </div>
+                                <div class="NameFieldInput4">
+                                    <input type="date" id="studentStartDate" placeholder="DD/MM/YYYY">
+                                </div>
+                            </div>
+                        </div>
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Interest:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="text" id="studentInterest" placeholder="UI/UX">
+
+                                </div>
+
+                            </div>
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Unit:
+                                </div>
+                                <div class="NameFieldInput" id="unitDisplay">
+                                    <input type="text" id="studentUnit" readonly>
+                                </div>
+                                <div class="caretdown" id="caretdown">
+                                    <img src="./assets/CaretDown.svg" alt="">
+                                </div>
+
+                                <!-- ----------Unit dropdown -->
+                                <div class="unitDrop" id="unitDrop">
+                                    <div class="unitLIst">
+                                        Information Technology
+                                    </div>
+                                    <div class="unitLIst">
+                                        Communications
+                                    </div>
+                                    <div class="unitLIst">
+                                        Strategic Information
+                                    </div>
+                                    <div class="unitLIst">
+                                        Human Resources
+                                    </div>
+                                    <div class="unitLIst">
+                                        Administration
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Supervisor:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="text" id="studentSupervisor" readonly>
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Email:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="email" id="studentEmail">
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Password:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="password" id="studentPassword">
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain">
+                                <div class="NameFieldText">
+                                    Confirm Password:
+                                </div>
+                                <div class="NameFieldInput">
+                                    <input type="password" id="studentConfirmPassword">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="saveBtn" id="saveBtn">
+                            Save
+                        </div>
+                    </div>
+                </div>
+                <!-- -------------End of modal--------- -->
+
+                <!-- ---------- Mini Success Modal------------ -->
+                <div class="overlay3" id="overlay3">
+                    <div class="successModal" id="successModal">
+                        <div class="modalHead3">
+                            <div class="headText2">
+                                Success!
+                            </div>
+
+                        </div>
+                        <div class="modalBody">
+                            <div class="successImg">
+                                <img src="./assets/Vector copy 3.png" alt="">
+                            </div>
+                            <div class="successTxt">
+                                Success!
+                            </div>
+
+                        </div>
+                        <div class="modalFooter">
+                            <div class="okayBtn" id="okayBtn">
+                                Okay
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="infoBodyContain">
+                    <div class="infoBody">
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Full Name
+                            </div>
+                            <div class="infoData">
+                                John Doe
+                            </div>
+
+                        </div>
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Institution
+                            </div>
+                            <div class="infoData">
+                                Trevor High School
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="infoBody">
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Course Of Study
+                            </div>
+                            <div class="infoData">
+                                Computer Science
+                            </div>
+
+                        </div>
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Email Address
+                            </div>
+                            <div class="infoData">
+                                tranute@gmail.com
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="infoBodyContain">
+                    <div class="infoBody">
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Contact
+                            </div>
+                            <div class="infoData">
+                                0912345678
+                            </div>
+
+                        </div>
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Unit
+                            </div>
+                            <div class="infoData">
+                                IT
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="infoBody">
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Area Of Interest
+                            </div>
+                            <div class="infoData">
+                                UI/UX Design
+                            </div>
+
+                        </div>
+                        <div class="halfInfo">
+                            <div class="infoLabel">
+                                Start Date
+                            </div>
+                            <div id="startdate" class="infoData">
+                                01/05/2025
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="infoBody">
+                    <div class="halfInfo">
+                        <div class="infoLabel">
+                            Duration
+                        </div>
+                        <div class="infoData">
+                            6 Months
+                        </div>
+                    </div>
+                    <div class="halfInfo">
+                        <div class="infoLabel">
+                            Supervisor
+                        </div>
+                        <div class="infoData">
+                            John Doe
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="deactivateBtn" id="deactivate">
+                Deactivate
+            </div>
+
+            <!-- ------Mini Modal----- -->
+            <div class="overlay2" id="overlay2">
+                <div class="confirmModal" id="confirmModal">
+                    <div class="modalHead2">
+                        <div class="headText2">
+                            Confirm Deactivation
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="./assets/close-circle.svg" alt="" id="closeDeactivateModal">
+
+                        </div>
+
+                    </div>
+                    <div class="confirmTxt">
+                        Are you sure you want to deactivate this student?
+                    </div>
+                    <div class="confirmBtnContain">
+                        <div class="cancelBtn" id="cancelBtn">
+                            Cancel
+                        </div>
+                        <div class="proceedBtn" id="proceedBtn">
+                            Proceed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---------- Mini Success Modal------------ -->
+            <div class="overlay4" id="overlay4">
+                <div class="successModal2" id="successModal2">
+                    <div class="modalHead4">
+                        <div class="headText2">
+                            Deactivated!
+                        </div>
+
+                    </div>
+                    <div class="modalBody">
+                        <div class="successImg">
+                            <img src="./assets/Vector copy 4.png" alt="">
+                        </div>
+                        <div class="successTxt">
+                            You’ve successfully deactivated this student.
+                        </div>
+
+                    </div>
+                    <div class="modalFooter">
+                        <div class="okayBtn2" id="okayBtn2">
+                            Okay
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <script src="/frontend/config.js"></script>
+    <script src="./scripts/hrstudentProfile.js"></script>
+    <script src="./scripts/backend/hrstudentProfile.js"></script>
+    <script src="/frontend/hr-view/scripts/backend/updateStudentModal.js"></script>
+    <script src="./routes/hrDashRoute.js"></script>
+</body>
+
+</html>

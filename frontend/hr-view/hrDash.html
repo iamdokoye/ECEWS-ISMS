@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT DASHBOARD</title>
+    <link rel="stylesheet" href="/frontend/hr-view/styles/hrDash.css">
+    <script src="/frontend/hr-view/scripts/jQuery v3.7.1.js"></script>
+</head>
+
+<body>
+    <nav class="header">
+        <div class="logoContain">
+            <img src="/frontend/hr-view/assets/24388.svg" alt="">
+        </div>
+        <div class="logoutContain" id="logoutDropdown">
+            <div class="navName" id="navName">
+                John Doe
+            </div>
+            <div class="navPic">
+                <img src="/frontend/hr-view/assets/johndoe.png" alt="">
+
+            </div>
+        </div>
+        <div class="logoutDropdown" id="logout">
+            Logout
+        </div>
+    </nav>
+    <section class="bodyContain">
+
+        <!-- -----------Header section------------ -->
+        <div class="headerContain">
+            <div class="headerText">
+                IT Dashboard
+            </div>
+            <div class="addBtnContain">
+                <div class="addStudent" id="addNewStudent">
+                    &#43; Add Student
+                </div>
+                <div class="assignSuper" id="assignSupervisor">
+                    Assign Supervisor
+                </div>
+            </div>
+            <!-- ----------Add student Modal-------- -->
+            <div class="overlay" id="overlay">
+                <div class="addModal" id="addStudentModal">
+                    <div class="modalHead">
+                        <div class="headText">
+                            New Student
+                        </div>
+                        <div class="closeBox">
+                            <img src="/frontend/hr-view/assets/close-circle.svg" alt="" id="closeModal">
+                        </div>
+                    </div>
+
+                    <div class="studentInfo">
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Name:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" id="studentName">
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Institution:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" id="studentInstitution">
+
+                            </div>
+
+                        </div>
+                        <div class="levelContain">
+                            <div class="NameFieldContain2">
+                                <div class="NameFieldText2">
+                                    Level:
+                                </div>
+                                <div class="NameFieldInput2">
+                                    <input type="text" id="studentLevel">
+
+                                </div>
+
+
+                            </div>
+                            <div class="genderGroup">
+                                <label class="customRadio">
+                                    <input type="radio" name="gender" value="male">
+                                    <span class="radioCircle"></span>
+                                    Male
+                                </label>
+                                <label class="customRadio">
+                                    <input type="radio" name="gender" value="female">
+                                    <span class="radioCircle"></span>
+                                    Female
+                                </label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Course of Study:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" id="studentCourse">
+
+                            </div>
+
+                        </div>
+                        <div class="durationContain">
+                            <div class="NameFieldContain3">
+                                <div class="NameFieldText3">
+                                    Duration:
+                                </div>
+                                <div class="NameFieldInput3">
+                                    <input type="text" id="studentDuration" placeholder="6 Months">
+                                </div>
+                            </div>
+
+                            <div class="NameFieldContain4">
+                                <div class="NameFieldText4">
+                                    Start Date:
+                                </div>
+                                <div class="NameFieldInput4">
+                                    <input type="date" id="studentStartDate" placeholder="DD/MM/YYYY">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Interest:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" id="studentInterest" placeholder="UI/UX">
+
+                            </div>
+
+                        </div>
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Unit:
+                            </div>
+                            <div class="NameFieldInput" id="unitDisplay">
+                                <input type="text" id="studentUnit" readonly>
+                            </div>
+                            <div class="caretdown" id="caretdown">
+                                <img src="/frontend/hr-view/assets/CaretDown.svg" alt="">
+                            </div>
+
+                            <!-- ----------Unit dropdown -->
+                            <div class="unitDrop" id="unitDrop">
+                                <div class="unitLIst">
+                                    Information Technology
+                                </div>
+                                <div class="unitLIst">
+                                    Communications
+                                </div>
+                                <div class="unitLIst">
+                                    Strategic Information
+                                </div>
+                                <div class="unitLIst">
+                                    Human Resources
+                                </div>
+                                <div class="unitLIst">
+                                    Administration
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Supervisor:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="text" id="studentSupervisor" readonly>
+                            </div>
+                        </div>
+
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Email:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="email" id="studentEmail">
+                            </div>
+                        </div>
+
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Password:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="password" id="studentPassword">
+                            </div>
+                        </div>
+
+                        <div class="NameFieldContain">
+                            <div class="NameFieldText">
+                                Confirm Password:
+                            </div>
+                            <div class="NameFieldInput">
+                                <input type="password" id="studentConfirmPassword">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="saveBtn" id="saveBtn">
+                        Add
+                    </div>
+                </div>
+            </div>
+            <!-- -------------End of modal--------- -->
+            <!-- ------Mini Modal----- -->
+            <div class="overlay2" id="overlay2">
+                <div class="confirmModal" id="confirmModal">
+                    <div class="modalHead2">
+                        <div class="headText2">
+                            Confirm Addition
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="/frontend/hr-view/assets/close-circle.svg" alt="" id="closeConfirmModal">
+
+                        </div>
+
+                    </div>
+                    <div class="confirmTxt">
+                        Are you sure you want to add this student?
+                    </div>
+                    <div class="confirmBtnContain">
+                        <div class="cancelBtn" id="cancelBtn">
+                            Cancel
+                        </div>
+                        <div class="proceedBtn" id="proceedBtn">
+                            Proceed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ---------- Mini Success Modal------------ -->
+            <div class="overlay3" id="overlay3">
+                <div class="successModal" id="successModal">
+                    <div class="modalHead3">
+                        <div class="headText2">
+                            Success!
+                        </div>
+
+                    </div>
+                    <div class="modalBody">
+                        <div class="successImg">
+                            <img src="/frontend/hr-view/assets/Vector copy 3.png" alt="">
+                        </div>
+                        <div class="successTxt">
+                            You’ve successfully added a new student.
+                        </div>
+
+                    </div>
+                    <div class="modalFooter">
+                        <div class="okayBtn" id="okayBtn">
+                            Okay
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!----------Assign Supervisor Modal--  -->
+            <div class="superOverlay" id="superOverlay">
+                <div class="assignSuperModal" id="assignSuperModal">
+                    <div class="modalHead">
+                        <div class="headText">
+                            Assign Supervisor
+
+                        </div>
+                        <div class="closeBox">
+                            <img src="/frontend/hr-view/assets/close-circle.svg" alt="" id="closeSuperModal">
+
+                        </div>
+                    </div>
+                    <div class="superBody">
+                        <div class="superUnitContain" id="superUnit">
+                            <div class="superUnit">
+                                Unit:
+                            </div>
+                            <div class="superUnitDisplay" id="superUnitDisplay">
+                                <input type="text" readonly>
+                            </div>
+                            <div class="caretdown">
+                                <img src="/frontend/hr-view/assets/CaretDown.svg" alt="">
+                            </div>
+                            <!-- ----------Unit dropdown -->
+                            <div class="unitDrop" id="superUnitDrop">
+                                <div class="unitLIst">
+                                    Information Technology
+                                </div>
+                                <div class="unitLIst">
+                                    Communications
+                                </div>
+                                <div class="unitLIst">
+                                    Startegic Information
+                                </div>
+                                <div class="unitLIst">
+                                    Human Resources
+                                </div>
+                                <div class="unitLIst">
+                                    Administration
+                                </div>
+                            </div>
+                        </div>
+                        <div class="superUnitContain" id="super">
+                            <div class="superUnit">
+                                Supervisor:
+                            </div>
+                            <div class="superDisplay" id="superDisplay">
+                                <input type="text" readonly>
+                            </div>
+                            <div class="caretdown">
+                                <img src="/frontend/hr-view/assets/CaretDown.svg" alt="">
+                            </div>
+                            <!-- ----------Supervisor dropdown -->
+                            <div class="superDrop" id="superDrop">
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                                <div class="unitLIst">
+                                    John Doe
+                                </div>
+                            </div>
+                        </div>
+                        <div class="superFooter">
+                            <div class="superFooterTxt">
+                                By clicking ‘Assign’, you’re assigning a supervisor to the selected unit
+                            </div>
+                            <div class="assignBtn" id="assignBtn">
+                                Assign
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- --------------------- -->
+        </div>
+
+        <!-- ------End of header section------- -->
+
+        <!-- ---------Hero Section -->
+        <div class="totesContain">
+            <div class="toteStudent">
+                <div class="totesHeadTxt">
+                    Total IT Students
+                </div>
+                <div class="totesHeadNum" id="totalStudents">
+                    24
+                </div>
+            </div>
+            <div class="topology">
+                <img src="/frontend/hr-view/assets/Topology-1 (1) 1.svg" alt="">
+            </div>
+            <div class="totesGender">
+                <div class="totesMale">
+                    <div class="maleImg">
+                        <img src="/frontend/hr-view/assets/GenderMale 1.svg" alt="">
+                    </div>
+                    <div class="maleTxtContain">
+                        <div class="maleTxt">
+                            Male
+                        </div>
+                        <div class="maleNum" id="maleCount">
+                            15
+                        </div>
+
+                    </div>
+                </div>
+                <div class="totesFemale">
+                    <div class="totesMale">
+                        <div class="maleImg">
+                            <img src="/frontend/hr-view/assets/GenderFemale 1.svg" alt="">
+                        </div>
+                        <div class="maleTxtContain">
+                            <div class="maleTxt">
+                                Female
+                            </div>
+                            <div class="maleNum" id="femaleCount">
+                                9
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- --------End of hero section------- -->
+        <div class="majorSect">
+            <div class="moreMajor">
+                <div class="topMore">
+                    <div class="superCard">
+                        <div class="supercardHead">
+                            <div class="superHead">
+                                Supervisors
+                            </div>
+                            <div class="totesSuper" id="supervisorCount">
+                                10
+                            </div>
+                        </div>
+                        <div class="teacherContain">
+                            <div class="radiusContain">
+                                <img src="/frontend/hr-view/assets/chalkboardTeacher.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="superCard">
+                        <div class="supercardHead">
+                            <div class="superHead">
+                                Units
+                            </div>
+                            <div class="totesSuper" id="unitCount">
+                                4
+                            </div>
+                        </div>
+                        <div class="teacherContain">
+                            <div class="radiusContain">
+                                <img src="/frontend/hr-view/assets/usersfour.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statCard">
+                        <div class="superHead">
+                            Status
+                        </div>
+                        <div class="statsbarContain">
+                            <div class="activeBarContain">
+                                <div class="activeBar">
+                                    Active (Present)
+                                </div>
+                                <div class="activeNum" id="activeStudents">
+                                    8
+                                </div>
+                            </div>
+                            <div class="pastBarContain">
+                                <div class="pastBar">
+                                    Inactive (Past)
+                                </div>
+                                <div class="pastNum" id="pastStudents">
+                                    5
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bottomMore">
+                    <div class="unitsBarContain">
+                        <div class="superHead2">
+                            Units
+                        </div>
+                        <div class="unitListContain" id="unitListContainer">
+                            <div class="units">
+                                <div class="totesUnit">
+                                    Comms.
+                                </div>
+                                <div class="totesNum">
+                                    5
+                                </div>
+                            </div>
+                            <div class="units">
+                                <div class="totesUnit">
+                                    IT
+                                </div>
+                                <div class="totesNum">
+                                    7
+                                </div>
+                            </div>
+                            <div class="units">
+                                <div class="totesUnit">
+                                    SI
+                                </div>
+                                <div class="totesNum">
+                                    8
+                                </div>
+                            </div>
+                            <div class="units">
+                                <div class="totesUnit">
+                                    HR
+                                </div>
+                                <div class="totesNum">
+                                    4
+                                </div>
+                            </div>
+                            <div class="units">
+                                <div class="totesUnit">
+                                    Admin.
+                                </div>
+                                <div class="totesNum">
+                                    4
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="superList">
+                        <div class="superHead3">
+                            Supervisors
+
+                        </div>
+                        <div class="supervisorsContain" id="supervisorList">
+                            <div class="supervisor">
+                                <div class="superName">
+                                    Lanre Adams
+                                </div>
+                                <div class="supervisorUnit">
+                                    Information Technology
+                                </div>
+                            </div>
+                            <div class="supervisor">
+                                <div class="superName">
+                                    Esosuakpo Ogaga
+                                </div>
+                                <div class="supervisorUnit">
+                                    Communications
+                                </div>
+                            </div>
+                            <div class="supervisor">
+                                <div class="superName">
+                                    Lanre Adams
+                                </div>
+                                <div class="supervisorUnit">
+                                    Strategic Information
+                                </div>
+                            </div>
+                            <div class="supervisor">
+                                <div class="superName">
+                                    Lanre Adams
+                                </div>
+                                <div class="supervisorUnit">
+                                    IT
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lessMajor">
+                <div class="lessHead">
+                    <div class="studentHead">
+                        Students
+                    </div>
+                    <div class="viewBtn" id="viewBtn">
+                        View All
+                    </div>
+                </div>
+                <div class="lessBody" id="lessBody">
+                    <div class="studentsList" id="studentList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studentsList">
+                        <div class="nameUnitContain">
+                            <div class="nameBox">
+                                Okoye Daniel
+                            </div>
+                            <div class="unitBox">
+                                UI/UX, IT
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/frontend/config.js"></script>
+    <script src="/frontend/hr-view/routes/hrDashRoute.js"></script>
+    <script src="/frontend/hr-view/scripts/hrDash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/frontend/hr-view/scripts/backend/assignSupervisor.js"></script>
+    <script src="/frontend/hr-view/scripts/backend/addStudentModal.js"></script>
+    <script src="/frontend/hr-view/scripts/backend/adminDash.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+@font-face {
+    font-family: Nunito Sans;
+    src: url(/frontend/staff-view/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+}
+
+.header {
+    height: 80px;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 1vh 12vh;
+    margin-top: 0.2vh;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoContain {
+    height: auto;
+    width: auto;
+    /* border: 1px solid green; */
+}
+
+.logoContain img {
+    -webkit-user-drag: none;
+}
+
+.bodyContain {
+    height: 100%;
+    width: 100%;
+    padding: 2vh 12vh;
+    background-color: #F9F9F9;
+}
+
+.loginBtn{
+    height: 50%;
+    width: 6.5%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #096D49;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loginBtn:hover{
+    background-color: #6BA792;
+}
+
+/* <!-- -----------Header section------------ --> */
+
+
+.headerContain {
+    height: auto;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 2vh 0vh; */
+}
+
+.headerText {
+    height: auto;
+    width: auto;
+    /* border: 1px solid pink; */
+    font-size: 48px;
+    font-family: Nunito Sans;
+    user-select: none;
+}
+
+/* <!-- ------End of Header section------------ --> */
+
+
+/* --------Hero section----- */
+.heroSection {
+    height: 40px;
+    width: 100%;
+    /* border: 1px solid black; */
+    margin-top: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchContain {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: opacity 0.3s ease;
+}
+
+.searchField {
+    height: 100%;
+    width: 80%;
+    border: 1px solid #D9D9D9;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    height: 100%;
+    width: 10%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchIcon img {
+    -webkit-user-drag: none;
+}
+
+.searchInputContain {
+    height: 100%;
+    width: 89%;
+    /* border: 1px solid green; */
+}
+
+.searchInputContain input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-family: Nunito Sans;
+    font-size: 14px;
+}
+
+.searchBtn {
+    height: 100%;
+    width: 19%;
+    border-radius: 4px;
+    background-color: #CEE2DB;
+    border: 1px solid #096D49;
+    color: #096D49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-weight: 500;
+    font-size: 14px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.buttonContain {
+    height: 40px;
+    width: 23%;
+    /* background-color: blue; */
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+}
+
+.statusBtns {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid green; */
+}
+
+.allStudents {
+    height: 100%;
+    width: 30%;
+    background-color: #F3F3F3;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    user-select: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+/* --------Grid CSS------ */
+#grid {
+    cursor: pointer;
+    -webkit-user-drag: none;
+}
+
+.gridContain {
+    height: 80vh;
+    width: 100%;
+    /* border: 1px solid green; */
+    margin-top: 3vh;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.studentsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3vh;
+}
+
+.studentsCard {
+    height: 342px;
+    background-color: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.cardHead {
+    height: 24px;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.status {
+    height: 100%;
+    width: 20%;
+    background-color: #19C98A;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 8px;
+    user-select: none;
+    color: #FFFFFF;
+}
+
+.statusPast {
+    height: 100%;
+    width: 15%;
+    background-color: #9A9A9A;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Nunito Sans;
+    font-size: 8px;
+    user-select: none;
+    color: #FFFFFF;
+}
+
+#section2 {
+    display: none;
+}
+
+#section3 {
+    display: none;
+}
+
+.cardPhoto {
+    height: 100px;
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-top: 0.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.studentPhoto {
+    height: 100%;
+    width: 40%;
+    border-radius: 50%;
+    /* border: 1px solid blue; */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.studentPhoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+.nameInfoContain {
+    height: auto;
+    width: 100%;
+    /* border: 1px solid purple; */
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.nameInfo {
+    height: auto;
+    width: auto;
+    /* border: 1px solid blueviolet; */
+    font-family: Nunito Sans;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.majorInfo {
+    height: auto;
+    width: auto;
+    /* border: 1px solid blueviolet; */
+    font-family: Nunito Sans;
+    font-weight: 600;
+    font-size: 12px;
+    color: #A79F9F;
+}
+
+.majorInfoContain {
+    height: 92px;
+    width: 100%;
+    background-color: #F9F9F9;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uniContain {
+    height: 16px;
+    width: 90%;
+    /* border: 1px solid blue; */
+    margin-top: 0.5vh;
+    display: flex;
+    align-items: center;
+}
+
+.uniIcon {
+    height: 100%;
+    width: 10%;
+}
+
+.uniIcon img {
+    -webkit-user-drag: none;
+}
+
+.Uni {
+    height: auto;
+    width: auto;
+    /* border: 1px solid red; */
+    font-family: Nunito Sans;
+    font-weight: 400;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cardFooter {
+    height: 24px;
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-top: 1vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dateJoined {
+    width: auto;
+    color: #9A9A9A;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.viewDetails {
+    height: 100%;
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    font-family: Nunito Sans;
+    font-weight: 400;
+    font-size: 12px;
+    user-select: none;
+}
+
+.viewDetails img {
+    -webkit-user-drag: none;
+}
+
+@media screen and (max-width: 450px) {
+    .header {
+        height: 60px;
+        padding: 1vh 3vh;
+    }
+    
+    .logoContain {
+        height: 32px;
+        width: 100px;
+        /* border: 1px solid green; */
+    }
+    
+    .logoContain img {
+        height: 100%;
+    }
+
+    .loginBtn{
+        height: 75%;
+        width: 20%;
+    }
+    
+    .bodyContain {
+        padding: 2vh 3vh;
+    }
+    
+    /* <!-- -----------Header section------------ --> */
+    
+    .headerText {
+        font-size: 32px;
+        font-weight: 500;
+    }
+    
+    /* <!-- ------End of Header section------------ --> */
+    
+    
+    /* --------Hero section----- */
+    .heroSection {
+        height: 80px;
+        margin-top: 2vh;
+        flex-direction: column;
+    }
+    
+    .searchContain {
+        height: 50%;
+        width: 100%;
+    }
+    
+    .searchField {
+        width: 70%;
+    }
+    
+    .searchBtn {
+        width: 20%;
+        font-weight: 600;
+        font-size: 10px;
+    }
+    
+    .buttonContain {
+        height: 30%;
+        width: 50%;
+        align-self: first baseline;
+    }
+
+    .allStudents {
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .gridContain {
+        padding: 0vh 2vh;
+    }
+    
+    .studentPhoto {
+        width: 30%;
+    }
+    
+}

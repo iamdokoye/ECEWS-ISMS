@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homeList View</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/frontend/supervisor-view/styles/homeListView.css">
+</head>
+
+<body>
+
+    <!-- =======================
+         Navigation Bar Section
+    ========================== -->
+    <nav class="mainNav">
+        <!-- Logo -->
+        <div class="headerLogo">
+            <img src="/frontend/supervisor-view/ASSETS/24388.svg" alt="App Logo">
+        </div>
+
+        <!-- Sign Out Button -->
+        <div class="signout" id="signout">
+            <div class="sText" id="sText">Sign Out</div>
+            <div class="sIcon">
+                <img src="/frontend/supervisor-view/assets/logbntsvg.svg" alt="Logout Icon">
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =======================
+         Main Container Section
+    ========================== -->
+    <div class="mainContainer">
+
+        <!-- ===== Top Section: Header + Search Bars ===== -->
+        <div class="topSection">
+
+            <!-- IT Students Heading -->
+             <div id="profilename" class="profilename">
+                Welcome, Supervisor
+            </div>
+
+            <div class="ItHeader">
+                IT Students
+            </div>
+
+            
+            
+            <!-- ===== Search Bar Section ===== -->
+            <div class="searchBars">
+
+                <!-- Search by Name -->
+                <div class="searchName">
+                    <div class="searchIcon">
+                        <img src="/frontend/supervisor-view/assets/MagnifyingGlass.png" alt="Search Icon">
+                    </div>
+                    <div class="searchText">
+                        <input class="searchField" type="search" placeholder="Search by Name" id="searchField">
+                    </div>
+                </div>
+
+                <!-- Search by Institution -->
+                <div class="searchInstit">
+                    <div class="searchIcon">
+                        <img src="/frontend/supervisor-view/assets/MagnifyingGlass.png" alt="Search Icon">
+                    </div>
+                    <div class="searchText">
+                        <input class="searchField" type="search" placeholder="Search by institution" id="searchField">
+                    </div>
+                </div>
+
+                <!-- Search by Area of Interest -->
+                <div class="searchInterest">
+                    <div class="searchIcon">
+                        <img src="/frontend/supervisor-view/assets/MagnifyingGlass.png" alt="Search Icon">
+                    </div>
+                    <div class="searchText">
+                        <input class="searchField" type="search" placeholder="Search by Area of Interest" id="searchField">
+                    </div>
+                </div>
+
+            </div> <!-- End of searchBars -->
+
+        </div> <!-- End of topSection -->
+
+
+        <!-- ===== Table Section: Header + Rows ===== -->
+        <div class="table">
+
+            <!-- Table Headers -->
+            <div class="tableHeaders">
+                <div class="c1">S/N</div>
+                <div class="c2">Name</div>
+                <div class="c3">Institution</div>
+                <div class="c4">Email</div>
+                <div class="c5">Contact</div>
+                <div class="c6">Area of Interest</div>
+            </div>
+
+            <!-- Table Row 1 -->
+            <div class="tableRows">
+                <div class="c1">1</div>
+                <div class="c2">Ralph Edwards</div>
+                <div class="c3">Universal Technical Institute</div>
+                <div class="c4">danghoang87hl@gmail.com</div>
+                <div class="c5">096919566</div>
+                <div class="c6">Meditation</div>
+            </div>
+
+            <!-- Divider -->
+            <div class="straightLines"></div>
+
+            <!-- Table Row 2 -->
+            <div class="tableRows">
+                <div class="c1">2</div>
+                <div class="c2">Ronald Richards</div>
+                <div class="c3">Tennessee College of Applied Technology</div>
+                <div class="c4">tranthuy.nute@gmail.com</div>
+                <div class="c5">090429467</div>
+                <div class="c6">Art</div>
+            </div>
+
+            <!-- Divider -->
+            <div class="straightLines"></div>
+
+        </div> <!-- End of table -->
+
+    </div> <!-- End of mainContainer -->
+
+
+    <!-- =======================
+         External JavaScript Files
+    ========================== -->
+    <script src="/frontend/config.js"></script>
+    <script src="/frontend/supervisor-view/scripts/homeListView.js"></script>
+    <script src="/frontend/supervisor-view/scripts/backend/homeListView.js"></script>
+
+</body>
+
+</html>
