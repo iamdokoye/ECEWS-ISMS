@@ -186,7 +186,8 @@
                                 Email:
                             </div>
                             <div class="NameFieldInput">
-                                <input type="email" id="studentEmail">
+                                <input type="email" id="studentEmail" autocomplete="off" readonly
+                                    onfocus="this.removeAttribute('readonly')">
                             </div>
                         </div>
 
@@ -195,7 +196,8 @@
                                 Password:
                             </div>
                             <div class="NameFieldInput">
-                                <input type="password" id="studentPassword">
+                                <input type="password" id="studentPassword" autocomplete="new-password" readonly
+                                    onfocus="this.removeAttribute('readonly')">
                             </div>
                         </div>
 

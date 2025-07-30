@@ -10,11 +10,14 @@ router.get('/all', verifyToken, logsController.getAllLogs);
 router.post('/save', verifyToken, logsController.createOrUpdateLog);
 
 // GET: Fetch all logs for a specific student
-router.get('/:student_id', verifyToken, logsController.getAllLogsForStudent);
+router.get('/', verifyToken, logsController.getAllLogsForStudent);
 
 // POST: Mark a log as submitted
 router.post('/submit', verifyToken, logsController.markLogAsSubmitted);
 
 router.post('/submit-all', verifyToken, logsController.submitAllLogs);
+
+// For supervisors to view specific student logs
+router.get('/student/:studentId', verifyToken, logsController.getLogsForSpecificStudent);
 
 module.exports = router;

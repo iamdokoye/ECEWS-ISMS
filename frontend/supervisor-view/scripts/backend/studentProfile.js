@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.johnDoe').textContent = student.name || 'N/A';
         document.querySelector('.Interest').textContent = student.interest || 'N/A';
         document.querySelector('.bioBody').textContent = student.bio || 'No bio available';
-        
+        document.querySelector('.imgBox').textContent = student.photo || 'No photo available';
+
         // Info section
         const infoDataElements = document.querySelectorAll('.infoData');
         if (infoDataElements.length >= 8) {

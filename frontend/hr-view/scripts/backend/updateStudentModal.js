@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('studentInterest').value = student.interest || '';
             document.getElementById('studentUnit').value = student.unit || '';
-            document.getElementById('studentEmail').value = student.student_email || '';
+            document.getElementById('studentEmail').value = student.email || '';
 
             // Set gender radio button
             if (student.gender) {

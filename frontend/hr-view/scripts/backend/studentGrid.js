@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardFooter.className = 'cardFooter';
         const dateJoined = document.createElement('div');
         dateJoined.className = 'dateJoined';
-        dateJoined.textContent = `Joined on ${new Date(student.created_at).toLocaleDateString('en-GB', {
+        dateJoined.textContent = `Joined on ${new Date(student.startdate).toLocaleDateString('en-GB', {
           day: '2-digit', month: 'long', year: 'numeric'
         })}`;
         const viewDetails = document.createElement('div');
@@ -154,15 +154,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const searchBtn = document.getElementById('searchBtn');
 
       if (searchInput && searchBtn) {
-        searchBtn.addEventListener('click', () => {
-          const query = searchInput.value.trim().toLowerCase();
-          allCards.forEach(card => {
-            const name = card.querySelector('.nameInfo')?.textContent.toLowerCase() || '';
-            const interest = card.querySelector('.majorInfo')?.textContent.toLowerCase() || '';
-            const email = card.querySelector('.uniContain:last-child .Uni')?.textContent.toLowerCase() || '';
-            const match = name.includes(query) || interest.includes(query) || email.includes(query);
-            card.style.display = match ? 'block' : 'none';
-          });
+        // Search on button click
+        searchBtn.addEventListener('click', handleSearch);
+
+        // Search as user types
+        searchInput.addEventListener('input', handleSearch);
+      }
+
+      function handleSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        allCards.forEach(card => {
+          const name = card.querySelector('.nameInfo')?.textContent.toLowerCase() || '';
+          const interest = card.querySelector('.majorInfo')?.textContent.toLowerCase() || '';
+          const email = card.querySelector('.uniContain:last-child .Uni')?.textContent.toLowerCase() || '';
+          const match = name.includes(query) || interest.includes(query) || email.includes(query);
+          card.style.display = match ? 'block' : 'none';
         });
       }
     })

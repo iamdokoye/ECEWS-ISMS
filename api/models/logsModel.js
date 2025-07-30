@@ -2,25 +2,42 @@ const pool = require('../db/database');
 
 // Add a new log
 const addLog = async ({ student_id, log_date, content }) => {
+  const client = await pool.connect();
   try {
-    // Check if the studentIdInt exists in the students table
-    const studentIdInt = student_id;
-    const studentCheck = await pool.query('SELECT 1 FROM students WHERE student_id = $1', [studentIdInt]);
+    await client.query('BEGIN');
+    
+    // Validate student exists
+    const studentCheck = await client.query(
+      'SELECT 1 FROM students WHERE student_id = $1', 
+      [student_id]
+    );
+    
     if (studentCheck.rowCount === 0) {
-      throw new Error(`Student with ID ${studentIdInt} does not exist`);
+      throw new Error('Student not found');
     }
 
-    // Proceed with adding the log
-    const result = await pool.query(
-      'INSERT INTO logs (student_id, log_date, content) VALUES ($1, $2, $3) RETURNING *',
-      [student_id, log_date, content]
+    // Validate date
+    const parsedDate = new Date(log_date);
+    if (isNaN(parsedDate.getTime())) {
+      throw new Error('Invalid date format');
+    }
+
+    // Insert log
+    const result = await client.query(
+      `INSERT INTO logs (student_id, log_date, content)
+       VALUES ($1, $2, $3)
+       RETURNING *`,
+      [student_id, parsedDate.toISOString(), content]
     );
-    console.log('Log added successfully:', result.rows[0]);
-    console.log("addLog called with:", { student_id, log_date, content });
+
+    await client.query('COMMIT');
     return result.rows[0];
   } catch (err) {
-    console.error('Error inserting log:', err);
+    await client.query('ROLLBACK');
+    console.error('Database error:', err);
     throw err;
+  } finally {
+    client.release();
   }
 };
 

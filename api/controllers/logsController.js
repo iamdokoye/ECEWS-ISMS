@@ -10,36 +10,39 @@ const {
 } = require('../models/logsModel.js');
 
 const createOrUpdateLog = async (req, res) => {
-  const { student_id, log_date, content } = req.body;
+  const { log_date, content } = req.body;
+  const student_id = req.user.id; // Get from auth token
 
-  // Debug log to see if student_id is coming correctly
-  console.log("Received student_id:", student_id);
-  console.log("Received log_date:", log_date);
-  console.log("Received content:", content);
-
-  // Check for missing fields
-  if (!student_id || !log_date || !content) {
+  if (!log_date || !content) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
   try {
-    // Check if the log already exists for this student and date
+    // Validate date format
+    if (isNaN(new Date(log_date).getTime())) {
+      return res.status(400).json({ message: 'Invalid date format' });
+    }
+
     const existingLog = await getLogByDate(student_id, log_date);
     
     if (existingLog) {
-      // If log exists, update it
-      const updated = await updateLog({ student_id, content, log_date });
+      const updated = await updateLog({ 
+        student_id, 
+        content, 
+        log_date: new Date(log_date).toISOString() 
+      });
       return res.status(200).json(updated);
     } else {
-      // If no log exists, create a new one
-      const created = await addLog({ student_id, log_date, content });
+      const created = await addLog({ 
+        student_id, 
+        log_date: new Date(log_date).toISOString(), 
+        content 
+      });
       return res.status(201).json(created);
     }
   } catch (err) {
-    // Log the error message for debugging
-    console.error('Log create/update error:', err);
-    // Send a meaningful message back to the client
-    return res.status(500).json({ message: `Error saving log: ${err.message}` });
+    console.error('Log error:', err);
+    return res.status(500).json({ message: 'Error processing log' });
   }
 };
 
@@ -59,18 +62,15 @@ const getAllLogs = async (req, res) => {
 
 // Fetch all logs for a specific student
 const getAllLogsForStudent = async (req, res) => {
-const { student_id } = req.params;
-
-  // Check if the student_id is provided
-  if (!student_id || student_id === 'undefined') {
-    return res.status(400).json({ message: 'Missing student ID' });
-  }
-
   try {
-    const logs = await getLogsByStudent(student_id);
-    if (logs.length === 0) {
-      return res.status(404).json({ message: 'No logs found for this student' });
+    // Get student_id from authenticated user instead of params
+    const student_id = req.user.id;
+    
+    if (!student_id) {
+      return res.status(400).json({ message: 'Missing student ID' });
     }
+
+    const logs = await getLogsByStudent(student_id);
     return res.status(200).json(logs);
   } catch (err) {
     console.error('Get logs error:', err);
@@ -126,10 +126,28 @@ const submitAllLogs = async (req, res) => {
     }
 };
 
+const getLogsForSpecificStudent = async (req, res) => {
+  try {
+    const { studentId } = req.params; // Get studentId from URL parameter
+    
+    if (!studentId) {
+      return res.status(400).json({ message: 'Missing student ID' });
+    }
+
+    const logs = await getLogsByStudent(studentId);
+    return res.status(200).json(logs);
+  } catch (err) {
+    console.error('Get student logs error:', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
 module.exports = {
   createOrUpdateLog,
   getAllLogs,
   getAllLogsForStudent,
+  getLogsForSpecificStudent,
   markLogAsSubmitted,
   submitAllLogs
 };

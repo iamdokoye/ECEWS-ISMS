@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Convert date to proper format (YYYY-MM-DD) if needed
             const dateStr = formatDate(new Date(date));
 
-            const res = await fetch(`${apiBase}/logs/${studentId}?log_date=${dateStr}`, {
+            const res = await fetch(`${apiBase}/logs?student_id=${studentId}&date=${dateStr}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
