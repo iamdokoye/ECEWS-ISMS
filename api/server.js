@@ -8,6 +8,8 @@ const adminRoutes = require('./routes/adminRoutes');
 const supervisorRoutes = require('./routes/supervisorRoutes')
 const studentRoutes = require('./routes/studentRoutes');
 const logsRoutes = require('./routes/logsRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+
 
 const app = express();
 app.use(cookieParser());
@@ -26,6 +28,7 @@ app.use('/supervisor', supervisorRoutes)
 app.use('/students', studentRoutes)
 app.use('/students', studentRoutes)
 app.use('/logs', logsRoutes);
+app.use('/images', uploadRoutes);
 
 
 app.get('/', (res) => res.send('Server OK'));

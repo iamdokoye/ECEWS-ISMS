@@ -1,4 +1,4 @@
-const internalDb = require('../db/database');
+const internalDb = require('../config/database');
 
 const addAdmin = async ({ user_id, access_level }) => {
   const result = await internalDb.query(

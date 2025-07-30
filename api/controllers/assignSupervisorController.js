@@ -1,6 +1,6 @@
 // controllers/assignSupervisorController.js
 
-const pool = require('../db/database');
+const pool = require('../config/database');
 const { getStudentsByUnit } = require('../models/studentModel');
 
 // 1. Fetch distinct unit names from internal DB (supervisors table)

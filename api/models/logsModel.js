@@ -1,4 +1,4 @@
-const pool = require('../db/database');
+const pool = require('../config/database');
 
 // Add a new log
 const addLog = async ({ student_id, log_date, content }) => {

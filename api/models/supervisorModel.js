@@ -1,4 +1,4 @@
-const internalDb = require('../db/database');
+const internalDb = require('../config/database');
 
 const addSupervisor = async ({ user_id, specialization, office, phone_number }) => {
   const result = await internalDb.query(

@@ -1,4 +1,4 @@
-const pool = require('../db/database');
+const pool = require('../config/database');
 
 
 
