@@ -188,7 +188,7 @@
 
 .photoNname{
     height: 221px;
-    width: 35%;
+    width: 45%;
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
@@ -198,7 +198,7 @@
 
 .profilePhoto{
     height: 221px;
-    width: 50%;
+    width: 40%;
     /* border: 1px solid #D9D9D9; */
     /* border: 1px solid purple; */
     border-radius: 4px;
@@ -264,7 +264,7 @@
 
 .nameInterest{
     height: 90px;
-    width: 40%;
+    width: 60%;
     /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
@@ -435,6 +435,7 @@
     font-size: 20px;
     font-family: Nunito Sans;
     font-weight: 600;
+    flex-wrap: wrap;
 }
 
 /* ---------Add student Modal------ */
