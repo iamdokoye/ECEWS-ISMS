@@ -397,7 +397,7 @@
 }
 
 .infoBody{
-    height: 94px;
+    height: 98px;
     width: 49%;
     /* border: 1px solid purple; */
     display: flex;
@@ -435,7 +435,8 @@
     font-size: 20px;
     font-family: Nunito Sans;
     font-weight: 600;
-    flex-wrap: wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ---------Add student Modal------ */
