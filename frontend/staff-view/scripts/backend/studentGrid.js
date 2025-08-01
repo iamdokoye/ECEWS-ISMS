@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let allCards = [];
-    const apiBase = window.APP_CONFIG.API_BASE;
+    const apiBase = window.API_BASE;
     fetch(`${apiBase}/students/all`)
         .then(res => res.json())
         .then(students => {

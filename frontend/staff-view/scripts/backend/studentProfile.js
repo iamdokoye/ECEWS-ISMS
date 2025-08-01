@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('student_id');
+  const studentId = urlParams.get('id');
+  const apiBase = window.API_BASE;
 
   if (!studentId) {
     alert('No student ID provided');
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    const response = await fetch(`api/students/${studentId}`);
+    const response = await fetch(`${apiBase}/students/${studentId}`);
     if (!response.ok) throw new Error('Failed to fetch student details');
     
     const student = await response.json();

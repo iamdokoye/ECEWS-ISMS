@@ -173,6 +173,7 @@ const login = async (req, res) => {
           { expiresIn: JWT_EXPIRATION }
         );
         console.log('token:', token);
+        console.log('user:', userInternal);
         return res.status(200).json({
           message: 'Login successful!', token,
           user: {

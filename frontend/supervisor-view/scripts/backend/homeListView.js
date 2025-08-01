@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // DOM Elements
     const unitHeader = document.querySelector('.ItHeader');
     const profileName = document.getElementById('profilename');
-    const signoutBtn = document.getElementById('signout');
+    const signoutBtn = document.getElementById('logout');
     const searchNameInput = document.querySelector('.searchName .searchField');
     const searchInstitInput = document.querySelector('.searchInstit .searchField');
     const searchInterestInput = document.querySelector('.searchInterest .searchField');

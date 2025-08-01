@@ -2,9 +2,9 @@
 $(document).ready(function() {
   $('#signDrop').on('click', function() {
     // Clear all localStorage data
-    localStorage.clear();
+    // localStorage.clear();
     
     // Redirect to login page
-    window.location.href = '/login.html';
+    window.location.href = '/frontend/userlogin/login.html';
   });
 });

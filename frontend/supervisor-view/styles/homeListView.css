@@ -50,8 +50,8 @@ html, body {
   display: flex;
 }
 
-/* Signout Section */
-.signout {
+/* Logout Section */
+.logout {
   height: 2rem;
   width: auto;
   display: flex;
