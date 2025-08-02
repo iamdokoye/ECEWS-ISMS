@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (elements.uniElements.length >= 4) {
             elements.uniElements[0].textContent = student.institution || 'N/A';
             elements.uniElements[1].textContent = student.level || 'N/A';
-            elements.uniElements[2].textContent = student.duration || 'N/A';
+            elements.uniElements[2].textContent = `${student.duration} Months` || 'N/A';
             elements.uniElements[3].textContent = student.email || 'N/A';
         }
         
@@ -227,16 +227,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     console.log('Displaying week data for:', { month, week, dates: weekData.dates });
 
+    // Get today's date for highlighting
+    const today = new Date().toISOString().split('T')[0];
+
     // Fetch logs for this week's dates
     const logData = await fetchLogData(weekData.dates);
     console.log('Received log data:', logData);
     
-    // Create a map of logs by date for easy lookup - FIXED BOOLEAN VERSION
+    // Create a map of logs by date for easy lookup
     const logMap = {};
     logData.forEach(log => {
-        console.log('Processing log:', log);
-        
-        // Handle the log_date field from your backend
         let logDate;
         if (log.log_date) {
             logDate = new Date(log.log_date).toISOString().split('T')[0];
@@ -246,27 +246,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             logDate = new Date(log.created_at).toISOString().split('T')[0];
         }
         
-        console.log('Extracted log date:', logDate);
-        console.log('is_submitted value:', log.is_submitted, 'type:', typeof log.is_submitted);
-        
-        // FIX: Handle PostgreSQL boolean values (string 't'/'f' or boolean true/false)
         const isSubmitted = log.is_submitted === true || log.is_submitted === 't' || log.is_submitted === 'true';
-        
-        console.log('Processed isSubmitted:', isSubmitted);
         
         if (logDate && isSubmitted) {
             logMap[logDate] = log;
-            console.log('Added to logMap:', logDate, '→', log.content);
         }
     });
 
     console.log('Log map created:', logMap);
-    console.log('Log map keys:', Object.keys(logMap));
 
     // Reset all fields first
     elements.workDataElements.forEach(el => {
         el.textContent = '';
         el.style.color = '#999';
+        el.style.backgroundColor = ''; // Reset background
+        el.style.border = ''; // Reset border
+    });
+    
+    elements.dateDataElements.forEach(el => {
+        el.style.backgroundColor = '';
+        el.style.border = '';
+        el.style.fontWeight = '';
     });
     
     // Populate with calendar dates and corresponding logs
@@ -275,18 +275,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Set the actual calendar date
             elements.dateDataElements[index].textContent = dateInfo.displayDate;
             
+            // Highlight today's date
+            if (dateInfo.date === today) {
+                elements.dateDataElements[index].style.backgroundColor = '#e3f2fd';
+                elements.dateDataElements[index].style.border = '2px solid #2196f3';
+                elements.dateDataElements[index].style.fontWeight = 'bold';
+                elements.workDataElements[index].style.backgroundColor = '#e3f2fd';
+                elements.workDataElements[index].style.border = '2px solid #2196f3';
+            }
+            
             // Check if there's a submitted log for this date
             const log = logMap[dateInfo.date];
-            console.log(`Checking date ${dateInfo.date}:`, log ? 'FOUND' : 'NOT FOUND');
             
             if (log) {
-                // Display the log content in work done field
                 const workContent = log.content || log.work_done || log.description || 'Log submitted';
                 elements.workDataElements[index].textContent = workContent;
                 elements.workDataElements[index].style.color = '#000';
                 elements.workDataElements[index].style.fontWeight = 'normal';
                 elements.workDataElements[index].style.fontStyle = 'normal';
-                console.log(`Set content for ${dateInfo.date}:`, workContent);
+                
+                // Add a subtle indicator for days with logs
+                if (dateInfo.date !== today) { // Don't override today's highlighting
+                    elements.workDataElements[index].style.backgroundColor = '#f8f9fa';
+                    elements.dateDataElements[index].style.backgroundColor = '#f8f9fa';
+                }
             } else {
                 elements.workDataElements[index].textContent = 'No entry';
                 elements.workDataElements[index].style.color = '#999';
@@ -295,48 +307,138 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
-    // Update week heading with actual date range
+    // Update week heading with actual date range and highlight if it contains today
     if (elements.weekHead && weekData.dates.length > 0) {
         const startDate = weekData.dates[0].displayDate;
         const endDate = weekData.dates[weekData.dates.length - 1].displayDate;
-        elements.weekHead.textContent = `Week ${week} (${startDate} - ${endDate})`;
+        const weekContainsToday = weekData.dates.some(d => d.date === today);
+        
+        elements.weekHead.textContent = `Week ${week} (${startDate} - ${endDate})${weekContainsToday ? ' - Current Week' : ''}`;
+        
+        if (weekContainsToday) {
+            elements.weekHead.style.color = '#2196f3';
+            elements.weekHead.style.fontWeight = 'bold';
+        } else {
+            elements.weekHead.style.color = '';
+            elements.weekHead.style.fontWeight = '';
+        }
     }
+}
+
+
+    function findCurrentDateWeek(calendarWeeks) {
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+    console.log('Looking for current date:', today);
+    
+    // Find the week that contains today's date
+    for (const week of calendarWeeks) {
+        const weekDates = week.dates.map(d => d.date);
+        if (weekDates.includes(today)) {
+            console.log('Found current date in:', {
+                month: week.monthNumber,
+                week: week.weekNumber,
+                dates: weekDates
+            });
+            return {
+                month: week.monthNumber,
+                week: week.weekNumber
+            };
+        }
+    }
+    
+    // If today's date is not in the generated calendar, find the closest week
+    const today_date = new Date(today);
+    let closestWeek = null;
+    let minDifference = Infinity;
+    
+    for (const week of calendarWeeks) {
+        for (const dateInfo of week.dates) {
+            const weekDate = new Date(dateInfo.date);
+            const difference = Math.abs(today_date - weekDate);
+            
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestWeek = {
+                    month: week.monthNumber,
+                    week: week.weekNumber
+                };
+            }
+        }
+    }
+    
+    if (closestWeek) {
+        console.log('Today not in calendar, using closest week:', closestWeek);
+        return closestWeek;
+    }
+    
+    // Final fallback to first week
+    console.log('Using fallback to first week');
+    return {
+        month: calendarWeeks[0].monthNumber,
+        week: calendarWeeks[0].weekNumber
+    };
 }
 
     // Update month/week button availability based on generated calendar
     function updateButtonAvailability() {
-        // Update month buttons
-        elements.monthButtons.forEach((btn, index) => {
-            const monthNum = index + 1;
-            const hasWeeks = calendarWeeks.some(w => w.monthNumber === monthNum);
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Update month buttons
+    elements.monthButtons.forEach((btn, index) => {
+        const monthNum = index + 1;
+        const hasWeeks = calendarWeeks.some(w => w.monthNumber === monthNum);
+        
+        if (hasWeeks) {
+            btn.classList.remove('disabled');
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
             
-            if (hasWeeks) {
-                btn.classList.remove('disabled');
-                btn.style.opacity = '1';
-                btn.style.pointerEvents = 'auto';
-            } else {
-                btn.classList.add('disabled');
-                btn.style.opacity = '0.5';
-                btn.style.pointerEvents = 'none';
+            // Check if this month contains today's date
+            const monthContainsToday = calendarWeeks.some(w => 
+                w.monthNumber === monthNum && 
+                w.dates.some(d => d.date === today)
+            );
+            
+            if (monthContainsToday) {
+                btn.style.border = '2px solid #007bff'; // Highlight current month
+                btn.style.fontWeight = 'bold';
             }
-        });
+        } else {
+            btn.classList.add('disabled');
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+        }
+    });
 
-        // Update week buttons based on current month
-        elements.weekButtons.forEach((btn, index) => {
-            const weekNum = index + 1;
-            const hasWeek = calendarWeeks.some(w => w.monthNumber === currentMonth && w.weekNumber === weekNum);
+    // Update week buttons based on current month
+    elements.weekButtons.forEach((btn, index) => {
+        const weekNum = index + 1;
+        const weekData = calendarWeeks.find(w => w.monthNumber === currentMonth && w.weekNumber === weekNum);
+        
+        if (weekData) {
+            btn.classList.remove('disabled');
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
             
-            if (hasWeek) {
-                btn.classList.remove('disabled');
-                btn.style.opacity = '1';
-                btn.style.pointerEvents = 'auto';
+            // Check if this week contains today's date
+            const weekContainsToday = weekData.dates.some(d => d.date === today);
+            
+            if (weekContainsToday) {
+                btn.style.border = '2px solid #007bff'; // Highlight current week
+                btn.style.fontWeight = 'bold';
             } else {
-                btn.classList.add('disabled');
-                btn.style.opacity = '0.5';
-                btn.style.pointerEvents = 'none';
+                btn.style.border = ''; // Reset border
+                btn.style.fontWeight = '';
             }
-        });
-    }
+        } else {
+            btn.classList.add('disabled');
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+            btn.style.border = '';
+            btn.style.fontWeight = '';
+        }
+    });
+}
 
     // Error display
     function showError(message) {
@@ -496,54 +598,60 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Main initialization
     async function init() {
-        try {
-            // Load student data first to get start date
-            const studentData = await fetchStudentData();
-            if (!studentData || !studentData.startdate) {
-                showError('Student start date not found. Cannot generate calendar.');
-                return;
-            }
-            
-            displayStudentData(studentData);
-            
-            // Generate weekly calendar based on start date
-            calendarWeeks = generateWeeklyCalendar(studentData.startdate);
-            
-            if (calendarWeeks.length === 0) {
-                showError('Failed to generate calendar weeks.');
-                return;
-            }
-            
-            // Set default to first available month/week
-            const firstWeek = calendarWeeks[0];
-            currentMonth = firstWeek.monthNumber;
-            currentWeek = firstWeek.weekNumber;
-            
-            // Update button availability
-            updateButtonAvailability();
-            
-            // Activate default buttons
-            elements.monthButtons.forEach((btn, i) => {
-                btn.classList.toggle('active', i === (currentMonth - 1));
-            });
-            elements.weekButtons.forEach((btn, i) => {
-                btn.classList.toggle('active', i === (currentWeek - 1));
-            });
-            
-            // Load initial log data
-            await displayWeekLog(currentMonth, currentWeek);
-            
-            // Initialize all components
-            initSelectors();
-            initSignaturePad();
-            initHomeButton();
-            initModalControls();
-            
-        } catch (error) {
-            console.error('Initialization error:', error);
-            showError('Failed to initialize student log calendar.');
+    try {
+        // Load student data first to get start date
+        const studentData = await fetchStudentData();
+        if (!studentData || !studentData.startdate) {
+            showError('Student start date not found. Cannot generate calendar.');
+            return;
         }
+        
+        displayStudentData(studentData);
+        
+        // Generate weekly calendar based on start date
+        calendarWeeks = generateWeeklyCalendar(studentData.startdate);
+        
+        if (calendarWeeks.length === 0) {
+            showError('Failed to generate calendar weeks.');
+            return;
+        }
+        
+        // Find the current date's month and week instead of defaulting to first
+        const currentDateInfo = findCurrentDateWeek(calendarWeeks);
+        currentMonth = currentDateInfo.month;
+        currentWeek = currentDateInfo.week;
+        
+        console.log('Starting with current date:', {
+            month: currentMonth,
+            week: currentWeek,
+            today: new Date().toISOString().split('T')[0]
+        });
+        
+        // Update button availability (with current date highlighting)
+        updateButtonAvailability();
+        
+        // Activate current month/week buttons
+        elements.monthButtons.forEach((btn, i) => {
+            btn.classList.toggle('active', i === (currentMonth - 1));
+        });
+        elements.weekButtons.forEach((btn, i) => {
+            btn.classList.toggle('active', i === (currentWeek - 1));
+        });
+        
+        // Load current week's log data
+        await displayWeekLog(currentMonth, currentWeek);
+        
+        // Initialize all components
+        initSelectors();
+        initSignaturePad();
+        initHomeButton();
+        initModalControls();
+        
+    } catch (error) {
+        console.error('Initialization error:', error);
+        showError('Failed to initialize student log calendar.');
     }
+}
 
     // Start the application
     init();
