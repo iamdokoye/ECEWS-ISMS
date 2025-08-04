@@ -1,4 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
+sessionStorage.getItem('token');
+const user = JSON.parse(sessionStorage.getItem('user'));
+const apiBase = window.API_BASE; 
+
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('userId');
+
+async function fetchNavNameFromDB(userId) {
+  if (!userId) return;
+  try {
+    const res = await axios.get(`${apiBase}/users/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
+      }
+    });
+    const navName = res.data.name || '';
+    document.getElementById('navName').textContent = navName;
+  } catch (err) {
+    console.error('Failed to fetch navName:', err);
+  }
+}
+
+fetchNavNameFromDB(userId);
+
+
+document.addEventListener('DOMContentLoaded', async () => {
   const sections = {
     all: document.querySelector('#section1 .studentsGrid'),
     present: document.querySelector('#section2 .studentsGrid'),

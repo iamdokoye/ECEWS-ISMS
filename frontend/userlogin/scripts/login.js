@@ -20,9 +20,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             const token = response.data.token;
             console.log("User data:", userData);
 
-            localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(userData));
-            localStorage.setItem("userId", userData.id); // Store user ID for later use
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("user", JSON.stringify(userData));
+            sessionStorage.setItem("userId", userData.id); // Store user ID for later use
 
             if (!userData || !userData.role || !userData.id) {
                 alert("User data is incomplete. Please try again.");

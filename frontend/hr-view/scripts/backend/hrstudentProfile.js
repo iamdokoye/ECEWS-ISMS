@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // First try to get studentId from URL, then localStorage
     const urlParams = new URLSearchParams(window.location.search);
     let studentId = urlParams.get('studentId') || localStorage.getItem('StudentId');
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
+    const userId = sessionStorage.getItem('userId');
     const apiBase = window.API_BASE;
     
     // Debugging: Log the values
@@ -14,9 +15,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = '/frontend/hr-view/hrGrid.html';
         return;
     }
+    document.querySelector('.navName').textContent = `${userId}` || 'N/A';
 
-    // Store the studentId in localStorage for future use
-    localStorage.setItem('StudentId', studentId);
+    // Store the studentId in sessionStorage for future use
+    sessionStorage.setItem('StudentId', studentId);
 
     try {
         const response = await fetch(`${apiBase}/students/${studentId}`, {

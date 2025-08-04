@@ -1,5 +1,6 @@
-// let adminId = localStorage.getItem('adminId');
-const token = localStorage.getItem('token');
+
+const token = sessionStorage.getItem('token');
+const user = JSON.parse(sessionStorage.getItem('user'));
 const apiBase = window.API_BASE;
 if (!token) {
     alert('You are not logged in.');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!user || !user.name) {
                 throw new Error('User profile is incomplete');
             }
-            document.getElementById('logoutDropdown').textContent = user.name;
+            document.getElementById('navName').textContent = user.name;
         } catch (err) {
             console.error('Failed to fetch user profile:', err);
             alert('Failed to fetch user profile. Please log in again.');
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.onload = async () => {
+        await fetchUserProfile();
         try {
             const response = await fetch(`${window.API_BASE}/admin/dashboard`, {
                 headers: {
@@ -75,13 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             data.supervisors.forEach(supervisor => {
                 const supDiv = document.createElement('div');
                 supDiv.classList.add('supervisor');
-
-                // const photoDiv = document.createElement('div');
-                // photoDiv.classList.add('superPhoto');
-                // const img = document.createElement('img');
-                // img.src = supervisor.photo || './assets/johndoe.png';
-                // img.alt = 'Supervisor Photo';
-                // photoDiv.appendChild(img);
 
                 const nameDiv = document.createElement('div');
                 nameDiv.classList.add('superName');
