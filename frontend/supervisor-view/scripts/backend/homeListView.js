@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     rowsContainer.className = 'table-rows-container';
     tableBody.appendChild(rowsContainer);
 
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const apiBase = window.API_BASE || 'http://localhost:5000';
 
     if (!token) {
@@ -104,8 +104,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Add click handler
             row.addEventListener('click', () => {
-                // Store student ID in localStorage
-                localStorage.setItem('StudentId', student.student_id);
+                // Store student ID in sessionStorage
+                sessionStorage.setItem('StudentId', student.student_id);
                 // Redirect to log page
                 window.location.href = `/frontend/supervisor-view/studentLog.html?studentId=${encodeURIComponent(student.student_id)}`;
             });
@@ -164,11 +164,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (searchInstitInput) searchInstitInput.addEventListener('input', handleSearch);
         if (searchInterestInput) searchInterestInput.addEventListener('input', handleSearch);
 
-        // Sign out
-        signoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = '/frontend/userlogin/login.html';
-        });
     }
 
     init();

@@ -1,22 +1,24 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // First try to get studentId from URL, then localStorage
     const urlParams = new URLSearchParams(window.location.search);
-    let studentId = urlParams.get('studentId') || localStorage.getItem('StudentId');
+    let studentId = urlParams.get('id') || sessionStorage.getItem('StudentId');
     const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
     const apiBase = window.API_BASE;
     
     // Debugging: Log the values
     console.log('Student ID:', studentId);
     console.log('Token exists:', !!token);
+
     
     if (!token || !studentId) {
         alert('You are not logged in or student ID is missing.');
-        window.location.href = '/frontend/hr-view/hrGrid.html';
+        window.location.href = '/frontend/user-view/studentCalendar.html';
         return;
     }
 
-    // Store the studentId in localStorage for future use
-    localStorage.setItem('StudentId', studentId);
+    // Store the studentId in sessionStorage for future use
+    sessionStorage.setItem('StudentId', studentId);
 
     try {
         const response = await fetch(`${apiBase}/students/${studentId}`, {

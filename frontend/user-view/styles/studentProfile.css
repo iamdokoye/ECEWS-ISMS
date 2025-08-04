@@ -109,7 +109,7 @@ body {
 /* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
 /* THIS CODE HANDLES THE PROFILE DROPDOWNARROW AT THE HEADER */
 .dropDownMenu {
-  height: 6.5rem;
+  height: auto;
   width: 9.5rem;
   display: flex;
   flex-direction: column;
@@ -140,7 +140,7 @@ body {
 
 
 .signDrop {
-  height: 50%;
+  height: 3rem;
   width: 100%;
   text-align: center;
   align-content: center;

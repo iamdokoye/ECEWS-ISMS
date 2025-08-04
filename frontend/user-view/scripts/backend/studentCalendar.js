@@ -1,4 +1,7 @@
-const studentId = localStorage.getItem("studentId");
+const studentId = sessionStorage.getItem("studentId");
+const token = sessionStorage.getItem('token');
+const user = JSON.parse(sessionStorage.getItem('user'));
+console.log('user:', user);
 
 document.addEventListener('DOMContentLoaded', () => {
     const calendarBody = document.getElementById('calendar-body');
@@ -11,13 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const logTextArea = document.getElementById('signatureText');
     const saveLogBtn = document.getElementById('sendFeedback');
     const submitBtn = document.getElementById('proceedBtn4')
+    const profilebtn = document.querySelector('.profileDrop');
+
+
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
     let selectedDate = null;
 
     const apiBase = window.API_BASE;
-    const token = localStorage.getItem('token');
 
     const pad = num => num.toString().padStart(2, '0');
 
@@ -39,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const user = res.data.user;
             document.getElementById('pText').textContent = user.name;
-            // localStorage.setItem('studentId', user.id);
+            // sessionStorage.setItem('studentId', user.id);
+            console.log('User profile fetched:', user);
         } catch (err) {
             console.error('Failed to fetch user profile:', err);
             alert('Failed to fetch user profile. Please log in again.');
@@ -347,15 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred while saving the log.');
         }
     });
-});
 
-// signout.js
-$(document).ready(function() {
-  $('#signDrop').on('click', function() {
-    // Clear all localStorage data
-    localStorage.clear();
-    
-    // Redirect to login page
-    window.location.href = '/frontend/userlogin/login.html';
-  });
+    profilebtn.addEventListener('click', () => {
+        window.location.href = `/frontend/user-view/studentProfile.html?id=${studentId}`;
+    });
 });

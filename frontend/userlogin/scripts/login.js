@@ -18,6 +18,11 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (response.status === 200) {
             const userData = response.data.user;
             const token = response.data.token;
+            if (!token || typeof token !== 'string') {
+                alert("Invalid token received. Please try again.");
+                console.error("Invalid token:", token);
+                return;
+            }
             console.log("User data:", userData);
 
             sessionStorage.setItem("token", token);
@@ -33,18 +38,18 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             // Store user ID and other relevant info based on the user's role
             switch (userData.role?.toLowerCase()) {
                 case 'student':
-                    // localStorage.setItem("user", JSON.stringify(userData));
-                    // localStorage.setItem("studentId", userData.id); // Store user ID for later use
+                    // sessionStorage.setItem("user", JSON.stringify(userData));
+                    sessionStorage.setItem("studentId", userData.id); // Store user ID for later use)
                     window.location.href = "/frontend/user-view/studentCalendar.html";
                     break;
                 case 'supervisor':
-                    // localStorage.setItem("user", JSON.stringify(userData));
-                    // localStorage.setItem("supervisorId", userData.id); // Store user ID for later use
+                    // sessionStorage.setItem("user", JSON.stringify(userData));
+                    // sessionStorage.setItem("supervisorId", userData.id); // Store user ID for later use
                     window.location.href = "/frontend/supervisor-view/homeListView.html";
                     break;
                 case 'admin':
-                    // localStorage.setItem("user", JSON.stringify(userData));
-                    // localStorage.setItem("adminId", userData.id); // Store user ID for later use
+                    // sessionStorage.setItem("user", JSON.stringify(userData));
+                    // sessionStorage.setItem("adminId", userData.id); // Store user ID for later use
                     window.location.href = "/frontend/hr-view/hrDash.html";
                     break;
                 default:

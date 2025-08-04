@@ -1,5 +1,5 @@
 const {
-  getUserByEmailInternal,
+  getUserByEmailInternal: getUserByEmail,
   createUserInternal,
 } = require('../models/userModel');
 const { addStudent } = require('../models/studentModel');
@@ -32,7 +32,7 @@ const register = async (req, res) => {
   }
 
   try {
-    const existingUser = await getUserByEmailInternal(email);
+    const existingUser = await getUserByEmail(email);
     if (existingUser) {
       return res.status(409).json({ message: 'User already exists' });
     }
@@ -47,7 +47,7 @@ const register = async (req, res) => {
         return res.status(400).json({ message: 'Missing student-specific fields' });
       }
 
-      const newUser = await getUserByEmailInternal(email);
+      const newUser = await getUserByEmail(email);
       const validDurations = [3, 6, 9, 12];
       const chosenDuration = Number(duration) || 6;
 
@@ -157,41 +157,47 @@ const login = async (req, res) => {
     return res.status(400).json({ message: 'Email and password are required' });
 
   try {
-    const userInternal = await getUserByEmailInternal(email);
-    if (userInternal) {
-      if (userInternal.password === password) {
-        // Generate JWT token
-        const token = jwt.sign(
-          {
-            id: userInternal.id,
-            name: userInternal.name,
-            email: userInternal.email,
-            role: userInternal.role,
-            unit: userInternal.unit
-          },
-          JWT_SECRET,
-          { expiresIn: JWT_EXPIRATION }
-        );
-        console.log('token:', token);
-        console.log('user:', userInternal);
-        return res.status(200).json({
-          message: 'Login successful!', token,
-          user: {
-            id: userInternal.id,
-            role: userInternal.role,
-            name: userInternal.name, // Ensure this is included
-            email: userInternal.email
-          }
-        });
-      } else {
-        return res.status(401).json({ message: 'Invalid password' });
-      }
+    const userInternal = await getUserByEmail(email);
+
+    if (!userInternal) {
+      return res.status(404).json({ message: 'User not found' });
     }
+
+    if (userInternal.password !== password) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    // Generate JWT token
+    console.log('Generating token for user:', userInternal);
+    const token = jwt.sign(
+      {
+        id: userInternal.id,
+        name: userInternal.name,
+        email: userInternal.email,
+        role: userInternal.role,
+        unit: userInternal.unit
+      },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRATION }
+    );
+    console.log('Token generated:', token);
+    return res.status(200).json({
+      message: 'Login successful!',
+      token,
+      user: {
+        id: userInternal.id,
+        role: userInternal.role,
+        name: userInternal.name,
+        email: userInternal.email
+      }
+    });
+
   } catch (err) {
     console.error('Login error:', err);
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 const getprofile = (req, res) => {
   if (!req.user) {
     return res.status(401).json({ message: 'Unauthorized' });

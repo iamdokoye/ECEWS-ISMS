@@ -68,7 +68,8 @@ $(document).ready(function () {
     $("#logout").click(function (e) {
         e.preventDefault(); // Prevent default navigation
         let targetURL = "/frontend/userlogin/login.html";
-
+        sessionStorage.removeItem('token'); // Clear token from sessionStorage
+        
         $("body").fadeOut(300, function () {
             window.location.href = targetURL; // Navigate after fade-out
         });

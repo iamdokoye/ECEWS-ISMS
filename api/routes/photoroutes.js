@@ -6,14 +6,11 @@ const fs = require('fs').promises;
 const sharp = require('sharp'); // For image optimization
 const { Pool } = require('pg');
 const router = express.Router();
+const auth = require('../middleware/auth'); // Adjust to your auth middleware
 
 // Database connection (adjust to your setup)
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    connectionString: process.env.DATABASE_URL,
 });
 
 // Create uploads directory if it doesn't exist
@@ -58,26 +55,6 @@ const upload = multer({
     }
 });
 
-// Middleware to verify JWT token (adjust to your auth system)
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) {
-        return res.status(401).json({ error: 'Access token required' });
-    }
-
-    // Verify token logic here (adjust to your JWT setup)
-    // jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    //     if (err) return res.status(403).json({ error: 'Invalid token' });
-    //     req.user = user;
-    //     next();
-    // });
-    
-    // For now, just continue (replace with your auth logic)
-    next();
-};
-
 // Helper function to optimize images
 async function optimizeImage(filePath, outputPath) {
     try {
@@ -99,7 +76,7 @@ async function optimizeImage(filePath, outputPath) {
 }
 
 // Upload photo for a student
-router.post('/upload/:studentId', authenticateToken, upload.single('photo'), async (req, res) => {
+router.post('/upload/:studentId', auth, upload.single('photo'), async (req, res) => {
     const client = await pool.connect();
     
     try {
@@ -178,7 +155,7 @@ router.post('/upload/:studentId', authenticateToken, upload.single('photo'), asy
 });
 
 // Get student photo
-router.get('/:studentId', authenticateToken, async (req, res) => {
+router.get('/:studentId', auth, async (req, res) => {
     try {
         const { studentId } = req.params;
         
@@ -282,7 +259,7 @@ router.delete('/:studentId', authenticateToken, async (req, res) => {
 });
 
 // Get all photos for a student (including inactive ones)
-router.get('/:studentId/history', authenticateToken, async (req, res) => {
+router.get('/:studentId/history', auth, async (req, res) => {
     try {
         const { studentId } = req.params;
         
