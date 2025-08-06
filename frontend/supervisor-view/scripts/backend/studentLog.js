@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Get student ID from URL parameters first, then fallback to localStorage
+    // Get student ID from URL parameters first, then fallback to sessionStorage
     const urlParams = new URLSearchParams(window.location.search);
-    let studentId = urlParams.get('studentId') || localStorage.getItem('StudentId');
-    const token = localStorage.getItem('token');
+    let studentId = urlParams.get('studentId') || sessionStorage.getItem('StudentId');
+    const token = sessionStorage.getItem('token');
     const apiBase = window.API_BASE;
     
     // Validate required parameters
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     // Store student ID for future use
-    localStorage.setItem('StudentId', studentId);
+    sessionStorage.setItem('StudentId', studentId);
 
     // Global variables for calendar management
     let studentStartDate = null;
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    console.log('Log map created:', logMap);
+    // console.log('Log map created:', logMap);
 
     // Reset all fields first
     elements.workDataElements.forEach(el => {
@@ -277,11 +277,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Highlight today's date
             if (dateInfo.date === today) {
-                elements.dateDataElements[index].style.backgroundColor = '#e3f2fd';
-                elements.dateDataElements[index].style.border = '2px solid #2196f3';
+                elements.dateDataElements[index].style.color = '#2e6f40';
                 elements.dateDataElements[index].style.fontWeight = 'bold';
-                elements.workDataElements[index].style.backgroundColor = '#e3f2fd';
-                elements.workDataElements[index].style.border = '2px solid #2196f3';
             }
             
             // Check if there's a submitted log for this date
@@ -316,7 +313,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.weekHead.textContent = `Week ${week} (${startDate} - ${endDate})${weekContainsToday ? ' - Current Week' : ''}`;
         
         if (weekContainsToday) {
-            elements.weekHead.style.color = '#2196f3';
+            elements.weekHead.style.color = '#2e6f40';
             elements.weekHead.style.fontWeight = 'bold';
         } else {
             elements.weekHead.style.color = '';
@@ -400,7 +397,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             );
             
             if (monthContainsToday) {
-                btn.style.border = '2px solid #007bff'; // Highlight current month
+                btn.style.backgroundColor = '#aeedc0ff'; // Highlight current week
+                // btn.style.border = '2px solid #007bff'; // Highlight current month
                 btn.style.fontWeight = 'bold';
             }
         } else {
@@ -424,7 +422,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const weekContainsToday = weekData.dates.some(d => d.date === today);
             
             if (weekContainsToday) {
-                btn.style.border = '2px solid #007bff'; // Highlight current week
+                btn.style.backgroundColor = '#aeedc0ff'; // Highlight current week
+                // btn.style.border = '2px solid #007bff'; // Highlight current week
                 btn.style.fontWeight = 'bold';
             } else {
                 btn.style.border = ''; // Reset border

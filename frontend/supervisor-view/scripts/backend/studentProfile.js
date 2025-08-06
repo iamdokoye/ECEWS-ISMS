@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // First try to get studentId from URL, then localStorage
     const urlParams = new URLSearchParams(window.location.search);
-    let studentId = urlParams.get('studentId') || localStorage.getItem('StudentId');
-    const token = localStorage.getItem('token');
+    let studentId = urlParams.get('studentId') || sessionStorage.getItem('StudentId');
+    const token = sessionStorage.getItem('token');
     const apiBase = window.API_BASE;
     
     // Debugging: Log the values
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.johnDoe').textContent = student.name || 'N/A';
         document.querySelector('.Interest').textContent = student.interest || 'N/A';
         document.querySelector('.bioBody').textContent = student.bio || 'No bio available';
-        document.querySelector('.imgBox').textContent = student.photo || 'No photo available';
 
         // Info section
         const infoDataElements = document.querySelectorAll('.infoData');
@@ -46,20 +45,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             infoDataElements[4].textContent = student.contact || 'N/A';
             infoDataElements[5].textContent = student.unit || 'N/A';
             infoDataElements[6].textContent = student.interest || 'N/A';
-            infoDataElements[7].textContent = student.startDate ? 
-                new Date(student.startDate).toLocaleDateString('en-GB') : 'N/A';
+            infoDataElements[7].textContent = student.startdate ? 
+                new Date(student.startdate).toLocaleDateString('en-GB') : 'N/A';
         }
         
         // Additional info
         document.querySelectorAll('.infoData')[8].textContent = student.duration ? 
             `${student.duration} Months` : 'N/A';
         document.querySelectorAll('.infoData')[9].textContent = student.supervisor || 'N/A';
-        
-        // Photo
-        if (student.photoUrl) {
-            document.querySelector('.photoBox img').src = student.photoUrl;
-            document.querySelector('.navPic img').src = student.photoUrl;
-        }
         
     } catch (error) {
         console.error('Error loading student details:', error);
