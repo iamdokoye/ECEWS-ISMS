@@ -1,5 +1,3 @@
-const { log } = require("console");
-
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const studentId = urlParams.get('id');

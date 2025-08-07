@@ -527,7 +527,7 @@
     font-weight: 600;
     display: flex;
     align-items: center;
-    color: #848484;
+    color: #b5b5b5;
 }
 
 .signature {
@@ -536,6 +536,17 @@
     display: flex;
     align-items: center;
     justify-content: right;
+    /* border: 1px solid red */
+}
+.signature-image {
+  max-width: 300px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .comment-section {
@@ -560,6 +571,7 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 0.2rem;
+    /* border: 1px solid purple */
 }
 
 .sign-button {
@@ -763,34 +775,38 @@
     background-color: #669784;
 }
 
+/* .week-signed {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+    color: #155724 !important;
+}
 
+.week-unsigned {
+    background-color: #fff3cd !important;
+    border-color: #ffc107 !important;
+    color: #856404 !important;
+} */
 
+.signature {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px; /* space between text and image */
+  margin-top: 10px;
+}
 
+.signature-indicator {
+  font-size: 14px;
+  font-weight: bold;
+  color: green;
+  font-family: Nunito Sans;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.signature img {
+  max-width: 3rem;
+  max-height: 3rem;
+  width: auto;
+  height: auto;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
+}

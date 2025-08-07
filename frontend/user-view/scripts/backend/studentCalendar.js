@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveLogBtn = document.getElementById('sendFeedback');
     const submitBtn = document.getElementById('proceedBtn4')
     const profilebtn = document.querySelector('.profileDrop');
-
+    const overlay3 = document.getElementById('overlay3');
+    const overlay4 = document.getElementById('overlay4');
+    const overlay5 = document.getElementById('overlay5');
 
 
     let currentMonth = new Date().getMonth();
@@ -274,6 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add Log Submission
+    document.querySelector('.addLogBtn').addEventListener('click', async () => {
+
+        overlay.classList.add('show');
+    });
+
     saveLogBtn.addEventListener('click', async () => {
         const logContent = logTextArea.value.trim();
         if (!logContent) {
@@ -285,9 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please select a date');
             return;
         }
-
         overlay.classList.remove('show');
-        overlay2.classList.add('show');
+        // console.log('overlay2 element:', overlay2);
+
+        overlay2.classList.add('show2');
+        
     });
 
     document.getElementById('proceedBtn').addEventListener('click', async () => {
@@ -307,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await response.json();
-            overlay2.classList.remove('show');
+            overlay2.classList.remove('show2');
             logTextArea.value = '';
 
             if (response.ok) {
@@ -323,11 +332,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('cancelBtn').addEventListener('click', () => {
-        overlay2.classList.remove('show');
+        overlay2.classList.remove('show2');
     });
 
     closeBtn.addEventListener('click', () => {
         overlay.classList.remove('show');
+    });
+
+    document.getElementById('closeBtn2').addEventListener('click', () => {
+        overlay2.classList.remove('show2');
+    });
+
+    document.querySelector('.submit-button').addEventListener('click', () => {
+        overlay4.classList.add('show4');
     });
 
     // <!-- Submit your logs --!>
@@ -341,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             });
             const data = await response.json();
+            overlay4.classList.remove('show4');
 
             if (response.ok) {
                 alert('Log saved successfully');
