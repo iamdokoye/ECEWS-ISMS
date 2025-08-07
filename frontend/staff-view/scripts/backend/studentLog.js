@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Get student ID from URL parameters first, then fallback to sessionStorage
     const urlParams = new URLSearchParams(window.location.search);
-    let studentId = urlParams.get('studentId') || sessionStorage.getItem('StudentId');
-    // const token = sessionStorage.getItem('token');
+    let studentId = urlParams.get('id') || sessionStorage.getItem('StudentId');
+    console.log('StudentId', studentId);
+    const token = sessionStorage.getItem('publicReadToken');
     const apiBase = window.API_BASE;
     
     // Validate required parameters
     if (!token || !studentId) {
         alert('You are not logged in or student ID is missing.');
-        window.location.href = '/frontend/supervisor-view/homeListView.html';
+        window.location.href = '/frontend/staff-view/studentProfile.html';
         return;
     }
     
@@ -40,22 +41,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Enhanced fetch with error handling
-    // async function fetchData(url) {
-    //     try {
-    //         const response = await fetch(url, {
-    //             headers: { Authorization: `Bearer ${token}` }
-    //         });
+    async function fetchData(url) {
+        try {
+            const response = await fetch(url, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             
-    //         if (!response.ok) {
-    //             throw new Error(`HTTP error! status: ${response.status}`);
-    //         }
-    //         return await response.json();
-    //     } catch (error) {
-    //         console.error('Fetch error:', error);
-    //         showError(`Failed to load data: ${error.message}`);
-    //         return null;
-    //     }
-    // }
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Fetch error:', error);
+            showError(`Failed to load data: ${error.message}`);
+            return null;
+        }
+    }
 
     // Generate weekly calendar based on start date
     function generateWeeklyCalendar(startDate) {
@@ -121,13 +122,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function fetchLogData(dates) {
     try {
         const dateStrings = dates.map(d => d.date);
-        console.log('Fetching logs for dates:', dateStrings);
+        // console.log('Fetching logs for dates:', dateStrings);
         
         const url = `${apiBase}/logs/student/${studentId}`;
-        console.log('API URL:', url);
+        // console.log('API URL:', url);
         
         const allLogs = await fetchData(url);
-        console.log('All logs received:', allLogs);
+        // console.log('All logs received:', allLogs);
         
         if (!Array.isArray(allLogs)) {
             console.log('No logs array received');
@@ -578,7 +579,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize home button
     function initHomeButton() {
         elements.goHomeBtn?.addEventListener('click', () => {
-            window.location.href = '/frontend/supervisor-view/homeListView.html';
+            window.location.href = '/frontend/staff-view/homeGrid.html';
         });
     }
 

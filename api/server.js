@@ -29,6 +29,8 @@ app.use('/students', studentRoutes)
 app.use('/students', studentRoutes)
 app.use('/logs', logsRoutes);
 app.use('/images', uploadRoutes);
+app.use('/public', require('./routes/public'));
+
 
 
 app.get('/', (res) => res.send('Server OK'));

@@ -1,20 +1,37 @@
+const { log } = require("console");
+
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const studentId = urlParams.get('id');
-  console.log('Id:', studentId);
   const id = sessionStorage.setItem('studentId', studentId) || studentId;
   const apiBase = window.API_BASE;
-  const log = document.getElementById('viewLog')
+  const Log = document.getElementById('viewLog')
 
   if (!studentId) {
     alert('No student ID provided');
     return;
   }
 
-  log.addEventListener('onClick', () => {
-    sessionStorage.getItem('studentId', id)
-    window.location.href = `log.html?id=${id}`;
+  Log.addEventListener('click', async () => {
+
+    try {
+      const res = await fetch(`${window.API_BASE}/public/generate-public-token`);
+      const data = await res.json();
+
+      if (!data.token) throw new Error('Token not received');
+
+      // Save token and studentId in sessionStorage for log.html
+      sessionStorage.setItem('publicReadToken', data.token);
+      sessionStorage.setItem('StudentId', studentId);
+
+      // Redirect to logs page
+      window.location.href = `studentLog.html?id=${studentId}`;
+    } catch (err) {
+      console.error('Error generating token:', err);
+      alert('Something went wrong. Try again.');
+    }
   });
+
 
   try {
     const response = await fetch(`${apiBase}/students/${studentId}`);
