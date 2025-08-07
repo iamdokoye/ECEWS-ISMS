@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.johnDoe').textContent = student.name || 'N/A';
         document.querySelector('.Interest').textContent = student.interest || 'N/A';
         document.querySelector('.bioBody').textContent = student.bio || 'No bio available';
+        $('.photoBox img').attr('src', `${API_BASE}/upload/${imageId}`);
+
         
         // Info section
         const infoDataElements = document.querySelectorAll('.infoData');

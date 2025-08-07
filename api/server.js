@@ -28,7 +28,7 @@ app.use('/supervisor', supervisorRoutes)
 app.use('/students', studentRoutes)
 app.use('/students', studentRoutes)
 app.use('/logs', logsRoutes);
-app.use('/images', uploadRoutes);
+app.use('/image', uploadRoutes);
 app.use('/public', require('./routes/public'));
 
 
